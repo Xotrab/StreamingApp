@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingApp.Domain", "Stre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingApp.Services", "StreamingApp.Services\StreamingApp.Services.csproj", "{C0442464-9FA4-444F-B53E-F59ABE734B7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingApp.Shared", "StreamingApp.Shared\StreamingApp.Shared.csproj", "{908AFD66-8EB4-4887-AEDB-E7127EAFC8EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C0442464-9FA4-444F-B53E-F59ABE734B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0442464-9FA4-444F-B53E-F59ABE734B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0442464-9FA4-444F-B53E-F59ABE734B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{908AFD66-8EB4-4887-AEDB-E7127EAFC8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908AFD66-8EB4-4887-AEDB-E7127EAFC8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908AFD66-8EB4-4887-AEDB-E7127EAFC8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908AFD66-8EB4-4887-AEDB-E7127EAFC8EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
