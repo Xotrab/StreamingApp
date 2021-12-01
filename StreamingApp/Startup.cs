@@ -34,7 +34,7 @@ namespace StreamingApp
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddDbContext<StreamingAppDbContext>(options => options.UseSqlServer(Configuration["connectionString"]));
+            services.AddDbContext<StreamingAppDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
