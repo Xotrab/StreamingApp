@@ -36,7 +36,7 @@ namespace StreamingApp
 
             services.AddDbContext<StreamingAppDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
             {
                 options.Password.RequiredLength = 5;
                 options.Password.RequireDigit = true;
