@@ -9,10 +9,12 @@ namespace StreamingApp.Domain.Entities
 
         public ICollection<PlaylistModel> Playlists { get; set; }
 
-        public ICollection<SongModel> LikedSongs { get; set; }
+        public ICollection<LikedSong> LikedSongs { get; set; }
 
-        public ICollection<PlaylistModel> LikedPlaylists { get; set; }
+        public ICollection<LikedPlaylist> LikedPlaylists { get; set; }
 
-        public ICollection<ApplicationUser> Followed { get; set; }
+        public ICollection<UserFollow> Following { get; set; }
+
+        public ICollection<UserFollow> FollowedBy { get; set; }
     }
 }
