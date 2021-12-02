@@ -25,7 +25,7 @@ namespace StreamingApp.Domain.Entities
         public DateTime AddedOn { get; set; }
 
         [Required]
-        public ICollection<PlaylistModel> Playlists { get; set; }
+        public ICollection<PlaylistSong> PlaylistSongs { get; set; }
 
         [Required]
         public int AuthorId { get; set; }
@@ -34,6 +34,6 @@ namespace StreamingApp.Domain.Entities
         public ApplicationUser Author { get; set; }
 
         [Required]
-        public ICollection<ApplicationUser> LikedBy { get; set; }
+        public ICollection<LikedSong> LikedBy { get; set; }
     }
 }
