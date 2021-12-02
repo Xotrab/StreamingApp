@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace StreamingApp.Domain.Entities
@@ -15,7 +16,7 @@ namespace StreamingApp.Domain.Entities
         public int Playbacks { get; set; }
 
         [Required]
-        public ICollection<SongModel> Songs { get; set; }
+        public ICollection<PlaylistSong> PlaylistSongs { get; set; }
 
         [Required]
         public int AuthorId { get; set; }
@@ -24,6 +25,6 @@ namespace StreamingApp.Domain.Entities
         public ApplicationUser Author { get; set; }
 
         [Required]
-        public ICollection<ApplicationUser> LikedBy { get; set; }
+        public ICollection<LikedPlaylist> LikedBy { get; set; }
     }
 }
