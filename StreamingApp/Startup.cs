@@ -11,6 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using StreamingApp.Database;
 using StreamingApp.Domain.Entities;
+using StreamingApp.Domain.Interfaces;
+using StreamingApp.Services;
+using StreamingApp.Services.Mappers;
 using System.Text;
 
 namespace StreamingApp
@@ -51,13 +54,16 @@ namespace StreamingApp
                 auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options => {
 
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     RequireExpirationTime = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenValidationKey"])),
                 };
             });
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ApplicationUserMapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
