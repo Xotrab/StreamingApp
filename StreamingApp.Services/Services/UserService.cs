@@ -72,7 +72,7 @@ namespace StreamingApp.Services
                 var tokenBytes = Encoding.UTF8.GetBytes(emailConfirmationToken);
                 var tokenBase64 = WebEncoders.Base64UrlEncode(tokenBytes);
 
-                string url = $"{mConfiguration["AppUrl"]}/confirmemail?userid={applicationUser.Id}&token={tokenBase64}";
+                string url = $"{mConfiguration["AppUrl"]}/confirm-email?userid={applicationUser.Id}&token={tokenBase64}";
 
                 await mMailService.SendEmailAsync(
                     applicationUser.Email,
