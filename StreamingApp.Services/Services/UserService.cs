@@ -67,6 +67,19 @@ namespace StreamingApp.Services
 
             if (result.Succeeded)
             {
+                var emailConfirmationToken = await mUserManager.GenerateEmailConfirmationTokenAsync(applicationUser);
+
+                var tokenBytes = Encoding.UTF8.GetBytes(emailConfirmationToken);
+                var tokenBase64 = WebEncoders.Base64UrlEncode(tokenBytes);
+
+                string url = $"{mConfiguration["AppUrl"]}/confirmemail?userid={applicationUser.Id}&token={tokenBase64}";
+
+                await mMailService.SendEmailAsync(
+                    applicationUser.Email,
+                    "Newave streaming app account email confirmation",
+                    $"<h1>Welcome to Newave!</h1>" + 
+                    $"<p>Please confirm your email address by <a href='{url}'>clicking here</a>.</p>");
+
                 return "Account created successfully".ToResponseSuccess();
 
             }
