@@ -11,5 +11,7 @@ namespace StreamingApp.Domain.Interfaces
     public interface IUserService
     {
         Task<Response> RegisterUserAsync(RegisterDto registerDto);
+
+        Task<Response> LoginUserAsync(LoginDto loginDto);
     }
 }
