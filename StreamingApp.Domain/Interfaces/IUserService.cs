@@ -13,5 +13,7 @@ namespace StreamingApp.Domain.Interfaces
         Task<Response> RegisterUserAsync(RegisterDto registerDto);
 
         Task<Response> LoginUserAsync(LoginDto loginDto);
+
+        Task<Response> ConfirmEmailAsync(string userId, string token);
     }
 }
