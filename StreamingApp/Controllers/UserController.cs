@@ -34,7 +34,7 @@ namespace StreamingApp.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/register")]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody]RegisterDto registerDto)
         { 
             if (!ModelState.IsValid)
@@ -50,5 +50,18 @@ namespace StreamingApp.Controllers
             return Ok(result);
         }
 
+        [HttpGet("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+                return NotFound();
+
+            var result = await mUserService.ConfirmEmailAsync(userId, token);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
     }
 }
