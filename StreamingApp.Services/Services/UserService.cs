@@ -43,7 +43,10 @@ namespace StreamingApp.Services
             if (user == null)
                 return "Invalid username or password".ToResponseFail();
 
-            var isPasswordValid = await mUserManager.CheckPasswordAsync(user, loginDto.Password);
+            if (!user.EmailConfirmed)
+                return "The given email address has not been verified yet".ToResponseFail();
+
+                var isPasswordValid = await mUserManager.CheckPasswordAsync(user, loginDto.Password);
 
             if (!isPasswordValid)
                 return "Invalid username or password".ToResponseFail();
