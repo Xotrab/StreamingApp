@@ -89,6 +89,28 @@ namespace StreamingApp.Services
             return "Error occured during account creation".ToResponseErrorList(errors);
         }
 
+        public async Task<Response> ConfirmEmailAsync(string userId, string token)
+        {
+            var user = await mUserManager.FindByIdAsync(userId);
+
+
+            if (user == null)
+                return "User not found".ToResponseFail();
+
+            var tokenBytes = WebEncoders.Base64UrlDecode(token);
+            string tokenString = Encoding.UTF8.GetString(tokenBytes);
+
+            var result = await mUserManager.ConfirmEmailAsync(user, tokenString);
+
+            if (result.Succeeded)
+                return "Email confirmed successfuly".ToResponseSuccess();
+
+            var errors = result.Errors.Select(error => error.Description);
+
+            return "Error occured while confirming the email".ToResponseErrorList(errors);
+            
+        }
+
         private string GenerateJwtToken(ApplicationUser applicationUser)
         {
             var claims = new List<Claim>
