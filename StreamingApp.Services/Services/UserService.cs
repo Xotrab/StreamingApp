@@ -22,15 +22,18 @@ namespace StreamingApp.Services
         private readonly UserManager<ApplicationUser> mUserManager;
         private readonly ApplicationUserMapper mApplicationUserMapper;
         private readonly IConfiguration mConfiguration;
+        private readonly IMailService mMailService;
 
         public UserService(
             UserManager<ApplicationUser> userManager,
             ApplicationUserMapper applicationUserMapper,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IMailService mailService)
         {
             mUserManager = userManager;
             mApplicationUserMapper = applicationUserMapper;
             mConfiguration = configuration;
+            mMailService = mailService;
         }
 
         public async Task<Response> LoginUserAsync(LoginDto loginDto)
