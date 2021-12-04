@@ -35,5 +35,14 @@ namespace StreamingApp.Shared.Responses
                 Errors = errors
             };
         }
+
+        public static Response<T> ToResponseData<T>(this T data)
+        {
+            return new Response<T>
+            {
+                Success = true,
+                Data = data
+            };
+        }
     }
 }
