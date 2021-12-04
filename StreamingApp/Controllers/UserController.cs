@@ -20,6 +20,20 @@ namespace StreamingApp.Controllers
             mUserService = userService;
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginAsync([FromBody] LoginDto loginDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid register data");
+            
+            var result = await mUserService.LoginUserAsync(loginDto);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
         [HttpPost("/register")]
         public async Task<IActionResult> RegisterAsync([FromBody]RegisterDto registerDto)
         { 
