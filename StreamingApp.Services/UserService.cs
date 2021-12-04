@@ -35,7 +35,7 @@ namespace StreamingApp.Services
 
             var result = await mUserManager.CreateAsync(applicationUser, registerDto.Password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return "Account created successfully".ToResponseSuccess();
 
