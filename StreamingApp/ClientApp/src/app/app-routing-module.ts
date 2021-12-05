@@ -9,7 +9,9 @@ const routes: Routes = [
         import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: '',
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
     component: HomeComponent
   }
 ];
