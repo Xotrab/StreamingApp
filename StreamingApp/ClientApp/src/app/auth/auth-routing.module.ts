@@ -4,6 +4,11 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/',
+    pathMatch: 'full'
+  },
+  {
     path: 'register',
     component: RegisterComponent
   }
