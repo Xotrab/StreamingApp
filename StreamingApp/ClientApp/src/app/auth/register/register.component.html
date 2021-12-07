@@ -1,4 +1,52 @@
-<mat-form-field class="example-form-field" appearance="fill">
-    <mat-label>Clearable input</mat-label>
-    <input matInput type="text">
-</mat-form-field>
+<div class="form-container">
+    <div class="form-container__header">
+        <img src="/assets/logo.png" class="logo">
+        <span class="font-black-large-bold">
+            Newave
+        </span>
+    </div>
+    <div class="form-container__section-divider">
+        <mat-divider class="line"></mat-divider>
+        <span class="font-black-medium-regular">
+            Register
+        </span>
+        <mat-divider class="line"></mat-divider>
+    </div>
+    <mat-form-field class="form-container__input font-black-small-regular">
+        <mat-label>
+            <mat-icon>email</mat-icon>
+            Email address
+        </mat-label>
+        <input matInput type="email">
+    </mat-form-field>
+    <mat-form-field class="form-container__input font-black-small-regular">
+        <mat-label>
+            <mat-icon class="mat-icon-scaled-big">person</mat-icon>
+            Username
+        </mat-label>
+        <input matInput type="text">
+    </mat-form-field>
+    <mat-form-field class="form-container__input font-black-small-regular">
+        <mat-label>
+            <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
+            Password
+        </mat-label>
+        <input matInput type="password">
+    </mat-form-field>
+    <mat-form-field class="form-container__input font-black-small-regular">
+        <mat-label>
+            <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
+            Confirm password
+        </mat-label>
+        <input matInput type="password">
+    </mat-form-field>
+    <button class="rounded-button--red-accent font-white-default-bold">
+        Register
+    </button>
+    <span class="form-container__prompt font-black-small-regular">
+        Already have an account?
+    </span>
+    <button class="rounded-button--medium-gray font-black-small-bold">
+        Login
+    </button>
+</div>
