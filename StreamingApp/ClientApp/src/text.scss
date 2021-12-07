@@ -1,0 +1,35 @@
+.font-black-small-bold {
+    font-family: $primary-font-family;
+    color: var(--black-color) !important;
+    font-size: $font-small;
+    font-weight: $font-bold-weight;
+  }
+  
+  .font-black-large-bold {
+    font-family: $primary-font-family;
+    color: var(--black-color) !important;
+    font-size: $font-large;
+    font-weight: $font-bold-weight;
+  }
+  
+  .font-black-medium-regular {
+    font-family: $primary-font-family;
+    color: var(--black-color) !important;
+    font-size: $font-medium;
+    font-weight: $font-regular-weight;
+  }
+  
+  .font-black-small-regular {
+    font-family: $primary-font-family;
+    color: var(--black-color) !important;
+    font-size: $font-small;
+    font-weight: $font-regular-weight;
+  }
+  
+  .font-white-default-bold {
+    font-family: $primary-font-family;
+    color: var(--white-color) !important;
+    font-size: $font-default;
+    font-weight: $font-bold-weight;
+  }
+  
