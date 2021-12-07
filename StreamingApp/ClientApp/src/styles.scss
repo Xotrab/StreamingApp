@@ -112,3 +112,15 @@ body {
     background-color: var(--red-accent-color);
   }
 }
+
+.mat-focused .mat-form-field-label {
+  color: var(--blue-accent-color) !important;
+}
+
+.mat-form-field-underline {
+  background-color: var(--medium-gray-color) !important;
+}
+
+.mat-form-field-ripple {
+  background-color: var(--blue-accent-color) !important;
+ }
