@@ -19,6 +19,9 @@
                 Email address
             </mat-label>
             <input matInput formControlName="email">
+            <mat-error>
+                Invalid email
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
             <mat-label>
@@ -26,6 +29,9 @@
                 Username
             </mat-label>
             <input matInput type="text" formControlName="username">
+            <mat-error>
+                Invalid username
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
             <mat-label>
@@ -33,6 +39,9 @@
                 Password
             </mat-label>
             <input matInput type="password" formControlName="password">
+            <mat-error>
+                Invalid password
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
             <mat-label>
@@ -40,6 +49,9 @@
                 Confirm password
             </mat-label>
             <input matInput type="password" formControlName="confirmPassword">
+            <mat-error>
+                Passwords do not match
+            </mat-error>
         </mat-form-field>
         <button class="form-container__submit-button rounded-button--red-accent font-white-default-bold" type="submit">
             Register
