@@ -18,28 +18,28 @@
                 <mat-icon>email</mat-icon>
                 Email address
             </mat-label>
-            <input matInput type="email">
+            <input matInput formControlName="email">
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
             <mat-label>
                 <mat-icon class="mat-icon-scaled-big">person</mat-icon>
                 Username
             </mat-label>
-            <input matInput type="text">
+            <input matInput type="text" formControlName="username">
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
             <mat-label>
                 <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
                 Password
             </mat-label>
-            <input matInput type="password">
+            <input matInput type="password" formControlName="password">
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
             <mat-label>
                 <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
                 Confirm password
             </mat-label>
-            <input matInput type="password">
+            <input matInput type="password" formControlName="confirmPassword">
         </mat-form-field>
         <button class="form-container__submit-button rounded-button--red-accent font-white-default-bold" type="submit">
             Register
