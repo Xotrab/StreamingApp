@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { RegisterDto } from 'src/app/api/dtos/register-dto';
 import { PasswordStateMatcher } from 'src/app/helpers/password-state-matcher';
 import { emailValidator, matchingPasswordValidator, passwordValidator, usernameValidator } from 'src/app/helpers/validators';
 
@@ -22,6 +23,21 @@ export class RegisterComponent implements OnInit {
   constructor() { }
 
   public ngOnInit(): void {
+  }
+
+  public submitForm(): void {
+    if (this.registerFormGroup.invalid)
+      //TODO show snackbar message
+      return;
+    
+    const registerDto: RegisterDto = {
+      userName: this.registerFormGroup.get('username').value,
+      email: this.registerFormGroup.get('email').value,
+      password: this.registerFormGroup.get('password').value,
+      confirmPassword: this.registerFormGroup.get('confirmPassword').value
+    };
+
+    console.log(registerDto);
   }
 
 }
