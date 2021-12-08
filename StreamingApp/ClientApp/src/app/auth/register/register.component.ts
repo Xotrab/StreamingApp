@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RegisterDto } from 'src/app/api/dtos/register-dto';
+import { UserService } from 'src/app/api/services/user.service';
 import { PasswordStateMatcher } from 'src/app/helpers/password-state-matcher';
 import { emailValidator, matchingPasswordValidator, passwordValidator, usernameValidator } from 'src/app/helpers/validators';
 
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   public passwordStateMatcher = new PasswordStateMatcher();
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   public ngOnInit(): void {
   }
