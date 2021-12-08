@@ -12,37 +12,39 @@
         </span>
         <mat-divider class="line"></mat-divider>
     </div>
-    <mat-form-field class="form-container__input font-black-small-regular">
-        <mat-label>
-            <mat-icon>email</mat-icon>
-            Email address
-        </mat-label>
-        <input matInput type="email">
-    </mat-form-field>
-    <mat-form-field class="form-container__input font-black-small-regular">
-        <mat-label>
-            <mat-icon class="mat-icon-scaled-big">person</mat-icon>
-            Username
-        </mat-label>
-        <input matInput type="text">
-    </mat-form-field>
-    <mat-form-field class="form-container__input font-black-small-regular">
-        <mat-label>
-            <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
-            Password
-        </mat-label>
-        <input matInput type="password">
-    </mat-form-field>
-    <mat-form-field class="form-container__input font-black-small-regular">
-        <mat-label>
-            <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
-            Confirm password
-        </mat-label>
-        <input matInput type="password">
-    </mat-form-field>
-    <button class="form-container__submit-button rounded-button--red-accent font-white-default-bold">
-        Register
-    </button>
+    <form class="form-container__form">
+        <mat-form-field class="input font-black-small-regular">
+            <mat-label>
+                <mat-icon>email</mat-icon>
+                Email address
+            </mat-label>
+            <input matInput type="email">
+        </mat-form-field>
+        <mat-form-field class="input font-black-small-regular">
+            <mat-label>
+                <mat-icon class="mat-icon-scaled-big">person</mat-icon>
+                Username
+            </mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+        <mat-form-field class="input font-black-small-regular">
+            <mat-label>
+                <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
+                Password
+            </mat-label>
+            <input matInput type="password">
+        </mat-form-field>
+        <mat-form-field class="input font-black-small-regular">
+            <mat-label>
+                <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
+                Confirm password
+            </mat-label>
+            <input matInput type="password">
+        </mat-form-field>
+        <button class="form-container__submit-button rounded-button--red-accent font-white-default-bold" type="submit">
+            Register
+        </button>
+    </form>
     <span class="form-container__prompt font-black-small-regular">
         Already have an account?
     </span>
