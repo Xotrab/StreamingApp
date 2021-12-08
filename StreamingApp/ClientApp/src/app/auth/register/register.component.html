@@ -30,7 +30,7 @@
             </mat-label>
             <input matInput type="text" formControlName="username">
             <mat-error>
-                Invalid username
+                Username has to have between 2 and 20 characters
             </mat-error>
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
@@ -40,7 +40,7 @@
             </mat-label>
             <input matInput type="password" formControlName="password">
             <mat-error>
-                Invalid password
+                 Provide at least one digit, one lower and upper case letter and between 5 to 25 characters
             </mat-error>
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
@@ -48,8 +48,8 @@
                 <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
                 Confirm password
             </mat-label>
-            <input matInput type="password" formControlName="confirmPassword">
-            <mat-error>
+            <input matInput type="password" formControlName="confirmPassword" [errorStateMatcher]="passwordStateMatcher">
+            <mat-error *ngIf="registerFormGroup.errors?.['passwordMismatch']">
                 Passwords do not match
             </mat-error>
         </mat-form-field>
