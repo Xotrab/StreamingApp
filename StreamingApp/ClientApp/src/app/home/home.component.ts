@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { JwtTokenService } from '../services/jwt-token.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public isLoggedIn$: Observable<boolean>;
+  public userName: string;
+
+  constructor(private router: Router, private jwtTokenService: JwtTokenService) { }
 
   public ngOnInit(): void {
+    this.isLoggedIn$ = this.jwtTokenService.isLoggedIn$;
+    this.userName = this.jwtTokenService.decodedUser?.userName;
   }
 
   public navigateToRegisterForm(): void {
@@ -19,5 +26,9 @@ export class HomeComponent implements OnInit {
 
   public navigateToLoginForm(): void {
     this.router.navigate(['/auth/login']);
+  }
+
+  public logout(): void {
+    this.jwtTokenService.logout();
   }
 }
