@@ -19,13 +19,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           let errorMessage = '';
           if (error.error instanceof ErrorEvent) {
-            // client-side error
-            errorMessage = error.error.message;
+            errorMessage = 'Client side error occured'
           } else {
-            // server-side error
-            errorMessage = `${error.status} Message: ${error.message}`;
+            errorMessage = 'Server side error occured';
           }
-          
+
           this.snackBar.open(
             errorMessage, 'Ok', {
               duration: environment.snackbarDuration
