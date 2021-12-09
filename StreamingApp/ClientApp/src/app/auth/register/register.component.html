@@ -56,6 +56,8 @@
         <button class="form-container__submit-button rounded-button--red-accent font-white-default-bold" type="submit">
             Register
         </button>
+        <mat-progress-spinner *ngIf="showSpinner" class="spinner" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
     </form>
     <span class="form-container__prompt font-black-small-regular">
         Already have an account?
