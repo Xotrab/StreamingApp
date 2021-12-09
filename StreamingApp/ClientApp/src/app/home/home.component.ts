@@ -16,4 +16,8 @@ export class HomeComponent implements OnInit {
   public navigateToRegisterForm(): void {
     this.router.navigate(['/auth/register']);
   }
+
+  public navigateToLoginForm(): void {
+    this.router.navigate(['/auth/login']);
+  }
 }
