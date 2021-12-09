@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  appUrl: 'https://localhost:5001'
+  appUrl: 'https://localhost:5001',
+  snackbarDuration: 3000
 };
 
 /*
