@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  appUrl: 'https://localhost:5001',
+  snackbarDuration: 3000
 };

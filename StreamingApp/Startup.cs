@@ -20,6 +20,8 @@ namespace StreamingApp
 {
     public class Startup
     {
+        private readonly string mCorsPolicy = "CorsPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -62,6 +64,17 @@ namespace StreamingApp
                 };
             });
 
+            services.Configure<IdentityOptions>(config => {
+                config.User.RequireUniqueEmail = true;
+            });
+
+            services.AddCors(o => o.AddPolicy(mCorsPolicy, builder =>
+            {
+                builder.WithOrigins(Configuration["ClientAppUrl"])
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ApplicationUserMapper>();
             services.AddTransient<IMailService, MailService>();
@@ -80,6 +93,8 @@ namespace StreamingApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(mCorsPolicy);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
