@@ -112,3 +112,7 @@ input:-webkit-autofill:active{
 .mat-simple-snackbar-action {   
   color: var(--red-accent-color) !important;
 }
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--blue-accent-color);
+}
