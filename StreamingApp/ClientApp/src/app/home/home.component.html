@@ -1,6 +1,15 @@
-<button class="rounded-button--medium-gray font-black-small-bold" (click)="navigateToRegisterForm()">
-    Register
-</button>
-<button class="rounded-button--red-accent font-white-small-bold" (click)="navigateToLoginForm()">
-    Login
+<ng-container *ngIf="!(isLoggedIn$ |async)">
+    <button class="rounded-button--medium-gray font-black-small-bold" (click)="navigateToRegisterForm()">
+        Register
+    </button>
+    <button class="rounded-button--red-accent font-white-small-bold" (click)="navigateToLoginForm()">
+        Login
+    </button>
+</ng-container>
+<button *ngIf="isLoggedIn$ |async" class="rounded-button--medium-gray font-black-small-bold" (click)="logout()">
+    <div class="logout-button-content">
+        <mat-icon class="logout-icon">person</mat-icon>
+        {{ userName }}
+        <mat-icon class="logout-icon">exit_to_app</mat-icon>
+    </div>
 </button>
