@@ -25,6 +25,13 @@
     font-size: $font-small;
     font-weight: $font-regular-weight;
   }
+
+  .font-black-tiny-regular {
+    font-family: $primary-font-family;
+    color: var(--black-color) !important;
+    font-size: $font-tiny;
+    font-weight: $font-regular-weight;
+  }
   
   .font-white-default-bold {
     font-family: $primary-font-family;
