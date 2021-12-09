@@ -96,3 +96,19 @@ input:-webkit-autofill:active{
 .mat-form-field-ripple {
   background-color: var(--blue-accent-color) !important;
 }
+
+.mat-snack-bar-container {
+  border-radius: 1.25rem !important;
+  padding: 1rem 1rem 1rem 1rem !important;
+  background: var(--light-gray-color) !important;
+}
+
+.mat-simple-snackbar {
+  @extend .font-black-tiny-regular;
+  margin-top: 0.4rem !important;
+  margin-left: 1rem !important;
+}
+
+.mat-simple-snackbar-action {   
+  color: var(--red-accent-color) !important;
+}
