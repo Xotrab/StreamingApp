@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterDto } from 'src/app/api/dtos/register-dto';
 import { UserService } from 'src/app/api/services/user.service';
 import { PasswordStateMatcher } from 'src/app/helpers/password-state-matcher';
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   public passwordStateMatcher = new PasswordStateMatcher();
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   public ngOnInit(): void {
   }
@@ -38,7 +39,9 @@ export class RegisterComponent implements OnInit {
       confirmPassword: this.registerFormGroup.get('confirmPassword').value
     };
 
-    console.log(registerDto);
+    this.userService.register(registerDto).subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 
 }
