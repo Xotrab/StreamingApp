@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { RegisterDto } from 'src/app/api/dtos/register-dto';
 import { UserService } from 'src/app/api/services/user.service';
 import { PasswordStateMatcher } from 'src/app/helpers/password-state-matcher';
 import { emailValidator, matchingPasswordValidator, passwordValidator, usernameValidator } from 'src/app/helpers/validators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -24,14 +26,17 @@ export class RegisterComponent implements OnInit {
 
   public showSpinner: boolean = false;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar
+    ) { }
 
   public ngOnInit(): void {
   }
 
   public submitForm(): void {
     if (this.registerFormGroup.invalid)
-      //TODO show snackbar message
       return;
     
     const registerDto: RegisterDto = {
@@ -46,6 +51,11 @@ export class RegisterComponent implements OnInit {
     this.userService.register(registerDto).subscribe(_ => {
       this.showSpinner = false;
         this.router.navigate(['/']);
+        this.snackBar.open(
+          "Registered successfully, please verify your email address", 'Ok', {
+            duration: environment.snackbarDuration
+          }
+        );
       }, _ => this.showSpinner = false);
   }
 
