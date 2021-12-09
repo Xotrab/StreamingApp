@@ -8,11 +8,11 @@
     <div class="form-container__section-divider">
         <mat-divider class="line"></mat-divider>
         <span class="font-black-medium-regular">
-            Register
+            Login
         </span>
         <mat-divider class="line"></mat-divider>
     </div>
-    <form class="form-container__form" [formGroup]="registerFormGroup" (ngSubmit)="submitForm()">
+    <form class="form-container__form" [formGroup]="loginFormGroup" (ngSubmit)="submitForm()">
         <mat-form-field class="input font-black-small-regular">
             <mat-label>
                 <mat-icon>email</mat-icon>
@@ -20,17 +20,7 @@
             </mat-label>
             <input matInput formControlName="email">
             <mat-error>
-                Invalid email
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field class="input font-black-small-regular">
-            <mat-label>
-                <mat-icon class="mat-icon-scaled-big">person</mat-icon>
-                Username
-            </mat-label>
-            <input matInput type="text" formControlName="username">
-            <mat-error>
-                Username has to have between 2 and 20 characters
+                Provide an email
             </mat-error>
         </mat-form-field>
         <mat-form-field class="input font-black-small-regular">
@@ -40,29 +30,19 @@
             </mat-label>
             <input matInput type="password" formControlName="password">
             <mat-error>
-                 Provide at least one digit, one lower and upper case letter and between 5 to 25 characters
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field class="input font-black-small-regular">
-            <mat-label>
-                <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
-                Confirm password
-            </mat-label>
-            <input matInput type="password" formControlName="confirmPassword" [errorStateMatcher]="passwordStateMatcher">
-            <mat-error *ngIf="registerFormGroup.errors?.['passwordMismatch']">
-                Passwords do not match
+                Provide the password
             </mat-error>
         </mat-form-field>
         <button class="form-container__submit-button rounded-button--red-accent font-white-default-bold" type="submit">
-            Register
+            Login
         </button>
         <mat-progress-spinner *ngIf="showSpinner" class="spinner" color="primary" mode="indeterminate">
     </mat-progress-spinner>
     </form>
     <span class="form-container__prompt font-black-small-regular">
-        Already have an account?
+        No account?
     </span>
-    <button class="rounded-button--medium-gray font-black-small-bold" (click)="navigateToLoginForm()">
-        Login
+    <button class="rounded-button--medium-gray font-black-small-bold" (click)="navigateToRegisterForm()">
+        Register
     </button>
 </div>
