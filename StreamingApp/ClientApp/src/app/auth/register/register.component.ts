@@ -35,6 +35,10 @@ export class RegisterComponent implements OnInit {
   public ngOnInit(): void {
   }
 
+  public navigateToLoginForm(): void {
+    this.router.navigate(['/auth/login']);
+  }
+
   public submitForm(): void {
     if (this.registerFormGroup.invalid)
       return;
