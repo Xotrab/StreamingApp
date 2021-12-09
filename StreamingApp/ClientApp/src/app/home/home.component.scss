@@ -1,0 +1,11 @@
+.logout-button-content {
+    display: flex;
+    gap: 0.5rem;
+
+    .mat-icon {
+        vertical-align: middle;
+        margin-bottom: 0.4rem;
+        transform: scale(1.1);
+        transform: scaleX(-1);
+    }
+}
