@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register(registerDto).subscribe(_ => {
       this.showSpinner = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
         this.snackBar.open(
           "Registered successfully, please verify your email address", 'Ok', {
             duration: environment.snackbarDuration
