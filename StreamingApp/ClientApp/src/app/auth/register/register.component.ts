@@ -22,6 +22,8 @@ export class RegisterComponent implements OnInit {
 
   public passwordStateMatcher = new PasswordStateMatcher();
 
+  public showSpinner: boolean = false;
+
   constructor(private userService: UserService, private router: Router) { }
 
   public ngOnInit(): void {
@@ -39,9 +41,12 @@ export class RegisterComponent implements OnInit {
       confirmPassword: this.registerFormGroup.get('confirmPassword').value
     };
 
-    this.userService.register(registerDto).subscribe(() => {
-      this.router.navigate(['/']);
-    });
+    this.showSpinner = true;
+
+    this.userService.register(registerDto).subscribe(_ => {
+      this.showSpinner = false;
+        this.router.navigate(['/']);
+      }, _ => this.showSpinner = false);
   }
 
 }
