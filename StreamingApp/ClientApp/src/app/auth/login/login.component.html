@@ -1,1 +1,48 @@
-<p>login works!</p>
+<div class="form-container">
+    <div class="form-container__header">
+        <img src="/assets/logo.png" class="logo">
+        <span class="font-black-large-bold">
+            Newave
+        </span>
+    </div>
+    <div class="form-container__section-divider">
+        <mat-divider class="line"></mat-divider>
+        <span class="font-black-medium-regular">
+            Login
+        </span>
+        <mat-divider class="line"></mat-divider>
+    </div>
+    <form class="form-container__form" [formGroup]="loginFormGroup" (ngSubmit)="submitForm()">
+        <mat-form-field class="input font-black-small-regular">
+            <mat-label>
+                <mat-icon>email</mat-icon>
+                Email address
+            </mat-label>
+            <input matInput formControlName="email">
+            <mat-error>
+                Provide an email
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input font-black-small-regular">
+            <mat-label>
+                <mat-icon class="mat-icon-scaled-small">lock</mat-icon>
+                Password
+            </mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error>
+                Provide the password
+            </mat-error>
+        </mat-form-field>
+        <button class="form-container__submit-button rounded-button--red-accent font-white-default-bold" type="submit">
+            Login
+        </button>
+        <mat-progress-spinner *ngIf="showSpinner" class="spinner" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+    </form>
+    <span class="form-container__prompt font-black-small-regular">
+        No account?
+    </span>
+    <button class="rounded-button--medium-gray font-black-small-bold" (click)="navigateToRegisterForm()">
+        Register
+    </button>
+</div>
