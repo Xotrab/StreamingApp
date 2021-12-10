@@ -1,11 +1,24 @@
-.logout-button-content {
+.auth-buttons-container {
     display: flex;
-    gap: 0.5rem;
+    gap: 2.5rem;
+    justify-content: flex-end;
+    padding-top: 2.5rem;
+    padding-right: 2.5rem;
 
-    .mat-icon {
-        vertical-align: middle;
-        margin-bottom: 0.4rem;
-        transform: scale(1.1);
-        transform: scaleX(-1);
+    .logout-button-content {
+        display: flex;
+        gap: 0.5rem;
+    
+        .mat-icon {
+            vertical-align: middle;
+            margin-bottom: 0.4rem;
+            transform: scale(1.1);
+            transform: scaleX(-1);
+        }
     }
 }
+
+.small-padding {
+    padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
