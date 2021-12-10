@@ -1,20 +1,51 @@
-.auth-buttons-container {
-    display: flex;
-    gap: 2.5rem;
-    justify-content: flex-end;
-    padding-top: 2.5rem;
-    padding-right: 2.5rem;
+.home-container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 7fr;
+    grid-template-rows: 1fr 13.5fr 1.5fr;
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar content"
+        "footer footer";
 
-    .logout-button-content {
+    &__header {
+        grid-area: header;
+        background-color: black;
+
         display: flex;
-        gap: 0.5rem;
+        gap: 2.5rem;
+        justify-content: flex-end;
+
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+        padding-right: 2.5rem;
     
-        .mat-icon {
-            vertical-align: middle;
-            margin-bottom: 0.4rem;
-            transform: scale(1.1);
-            transform: scaleX(-1);
+        .logout-button-content {
+            display: flex;
+            gap: 0.5rem;
+        
+            .mat-icon {
+                vertical-align: middle;
+                margin-bottom: 0.4rem;
+                transform: scale(1.1);
+                transform: scaleX(-1);
+            }
         }
+    }
+
+    &__sidebar {
+        grid-area: sidebar;
+        background-color: green;
+    }
+
+    &__content {
+        grid-area: content;
+        background-color: purple;
+    }
+
+    &__footer {
+        grid-area: footer;
+        background-color: orange;
     }
 }
 
