@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarOption } from '../helpers/sidebar-option.enum';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  public sidebarOption = SidebarOption;
+	public selectedOption: SidebarOption = this.sidebarOption.Home;
+
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
+  public changeOption(option: SidebarOption): void {
+	  this.selectedOption = option;
+	}
 }
