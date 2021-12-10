@@ -10,7 +10,6 @@
 
     &__header {
         grid-area: header;
-        background-color: black;
 
         display: flex;
         gap: 2.5rem;
@@ -33,17 +32,14 @@
 
     &__sidebar {
         grid-area: sidebar;
-        background-color: green;
     }
 
     &__content {
         grid-area: content;
-        background-color: purple;
     }
 
     &__footer {
         grid-area: footer;
-        background-color: orange;
     }
 }
 
