@@ -60,3 +60,10 @@
   font-size: $font-default;
   font-weight: $font-bold-weight;
 }
+
+.font-black-default-normal {
+  font-family: $primary-font-family;
+  color: var(--black-color) !important;
+  font-size: $font-default;
+  font-weight: $font-normal-weight;
+}
