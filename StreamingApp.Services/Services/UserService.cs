@@ -115,8 +115,9 @@ namespace StreamingApp.Services
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, applicationUser.Email),
-                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString())
+                new Claim("email", applicationUser.Email),
+                new Claim("id", applicationUser.Id.ToString()),
+                new Claim("username", applicationUser.UserName)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(mConfiguration["TokenValidationKey"]));

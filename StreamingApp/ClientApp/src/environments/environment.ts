@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   appUrl: 'https://localhost:5001',
-  snackbarDuration: 3000
+  snackbarDuration: 3000,
+  jwtTokenKey: 'token'
 };
 
 /*
