@@ -1,1 +1,22 @@
-<p>sidebar works!</p>
+<div class="sidebar-container">
+    <div class="sidebar-container__header">
+        <img src="/assets/logo.png" class="logo--small">
+        <span class="font-black-medium-bold">
+            Newave
+        </span>
+    </div>
+    <div class="sidebar-container__navigation-tabs font-black-default-bold">
+        <div [ngClass]="selectedOption === sidebarOption.Home ? 'tab--selected' : 'tab'" (click)="changeOption(sidebarOption.Home)">
+            <mat-icon>home</mat-icon>
+            Home
+        </div>
+        <div [ngClass]="selectedOption === sidebarOption.Search ? 'tab--selected' : 'tab'" (click)="changeOption(sidebarOption.Search)">
+            <mat-icon>search</mat-icon>
+            Search
+        </div>
+        <div [ngClass]="selectedOption === sidebarOption.Library ? 'tab--selected' : 'tab'" (click)="changeOption(sidebarOption.Library)">
+            <mat-icon>library_music</mat-icon>
+            Library
+        </div>
+    </div>
+</div>
