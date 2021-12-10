@@ -11,6 +11,13 @@
   font-size: $font-small;
   font-weight: $font-bold-weight;
 }
+
+.font-black-medium-bold {
+  font-family: $primary-font-family;
+  color: var(--black-color) !important;
+  font-size: $font-medium;
+  font-weight: $font-bold-weight;
+}
   
 .font-black-large-bold {
   font-family: $primary-font-family;
@@ -43,6 +50,13 @@
 .font-white-default-bold {
   font-family: $primary-font-family;
   color: var(--white-color) !important;
+  font-size: $font-default;
+  font-weight: $font-bold-weight;
+}
+
+.font-black-default-bold {
+  font-family: $primary-font-family;
+  color: var(--black-color) !important;
   font-size: $font-default;
   font-weight: $font-bold-weight;
 }
