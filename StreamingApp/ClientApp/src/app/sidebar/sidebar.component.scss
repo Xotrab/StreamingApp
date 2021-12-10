@@ -18,29 +18,35 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
+    }
 
-        .mat-icon {
-            vertical-align: middle;
-            transform: scale(1.2);
-            margin-bottom: 0.3rem;
-            margin-right: 0.5rem;
+    &__playlists {
+        display: flex;
+        align-items: center;
+        margin-top: 12rem;
+    }
+
+    .mat-icon {
+        vertical-align: middle;
+        transform: scale(1.2);
+        margin-bottom: 0.3rem;
+        margin-right: 0.5rem;
+    }
+
+    .tab {
+        border-radius: 0.9rem;
+        padding: 0.5rem 2.25rem 0.5rem 2.25rem;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.7;
         }
+    }
 
-        .tab {
-            border-radius: 0.9rem;
-            padding: 0.5rem 2.25rem 0.5rem 2.25rem;
-            cursor: pointer;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-        .tab--selected {
-            border-radius: 0.9rem;
-            padding: 0.5rem 2.25rem 0.5rem 2.25rem;
-            background-color: var(--medium-gray-color);
-            cursor: pointer;
-        }
+    .tab--selected {
+        border-radius: 0.9rem;
+        padding: 0.5rem 2.25rem 0.5rem 2.25rem;
+        background-color: var(--medium-gray-color);
+        cursor: pointer;
     }
 }
