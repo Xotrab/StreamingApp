@@ -40,6 +40,15 @@
 
     &__footer {
         grid-area: footer;
+
+        .login-prompt {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            height: 100%;
+            background-color: var(--blue-accent-color);
+            padding-left: 6rem;
+        }
     }
 }
 
