@@ -1,6 +1,6 @@
 <div class="home-container">
     <div class="home-container__header">
-        <ng-container *ngIf="!(isLoggedIn$ |async)">
+        <ng-container *ngIf="!(isLoggedIn$ | async)">
             <button class="rounded-button--medium-gray font-black-small-bold" (click)="navigateToRegisterForm()">
                 Register
             </button>
@@ -8,7 +8,7 @@
                 Login
             </button>
         </ng-container>
-        <button *ngIf="isLoggedIn$ |async" class="rounded-button--medium-gray small-padding font-black-small-bold" (click)="logout()">
+        <button *ngIf="isLoggedIn$ | async" class="rounded-button--medium-gray small-padding font-black-small-bold" (click)="logout()">
             <div class="logout-button-content">
                 <mat-icon class="logout-icon">person</mat-icon>
                 {{ userName }}
@@ -17,12 +17,22 @@
         </button>
     </div>
     <div class="home-container__sidebar">
-        <app-sidebar></app-sidebar>
+        <app-sidebar [isLoggedIn]="isLoggedIn$ | async"></app-sidebar>
     </div>
     <div class="home-container__content">
         content
     </div>
     <div class="home-container__footer">
-        footer
+        <div *ngIf="!(isLoggedIn$ | async)" class="login-prompt">
+            <button class="rounded-button--light-gray font-black-small-bold" (click)="navigateToLoginForm()">
+                Login
+            </button>
+            <span class="font-white-small-regular">
+                to use the audio player and create your own library now
+            </span>
+        </div>
+        <ng-container *ngIf="isLoggedIn$ |async">
+            Audio player
+        </ng-container>
     </div>
 </div>
