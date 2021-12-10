@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SidebarOption } from '../helpers/sidebar-option.enum';
 
 @Component({
@@ -7,6 +7,8 @@ import { SidebarOption } from '../helpers/sidebar-option.enum';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
+  @Input() isLoggedIn: boolean;
 
   public sidebarOption = SidebarOption;
 	public selectedOption: SidebarOption = this.sidebarOption.Home;
