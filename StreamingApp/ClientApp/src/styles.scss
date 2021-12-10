@@ -37,17 +37,24 @@ $StreamingApp-theme: mat.define-light-theme((
 @import './assets/fonts/lato/lato-font.scss';
 @import 'text.scss';
 
-html, body { 
-  //height: 100%;
+html { 
+  height: 100%;
   font-size: 10px;
 }
 body {
    margin: 0;
+   height: 100%;
+   overflow: hidden;
 }
 
 .logo {
   width: 10rem;
   height: 10rem;
+}
+
+.logo--small {
+  width: 5.5rem;
+  height: 5.5rem;
 }
 
 .rounded-button {

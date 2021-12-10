@@ -1,0 +1,52 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    gap: 3rem;
+
+    background-color: var(--light-gray-color);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        margin-top: 1.25rem;
+    }
+
+    &__navigation-tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__playlists {
+        display: flex;
+        align-items: center;
+        margin-top: 12rem;
+    }
+
+    .mat-icon {
+        vertical-align: middle;
+        transform: scale(1.2);
+        margin-bottom: 0.3rem;
+        margin-right: 0.5rem;
+    }
+
+    .tab {
+        border-radius: 0.9rem;
+        padding: 0.5rem 2.25rem 0.5rem 2.25rem;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .tab--selected {
+        border-radius: 0.9rem;
+        padding: 0.5rem 2.25rem 0.5rem 2.25rem;
+        background-color: var(--medium-gray-color);
+        cursor: pointer;
+    }
+}

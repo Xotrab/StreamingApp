@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
       if (response.success) {
         this.router.navigate(['/']);
         this.jwtTokenService.setToken(response.data);
-        console.log(response.data);
       }
       this.showSpinner = false;
       }, _ => this.showSpinner = false);
