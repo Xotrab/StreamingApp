@@ -47,6 +47,13 @@
   font-weight: $font-regular-weight;
 }
 
+.font-white-small-regular {
+  font-family: $primary-font-family;
+  color: var(--white-color) !important;
+  font-size: $font-small;
+  font-weight: $font-regular-weight;
+}
+
 .font-white-default-bold {
   font-family: $primary-font-family;
   color: var(--white-color) !important;
