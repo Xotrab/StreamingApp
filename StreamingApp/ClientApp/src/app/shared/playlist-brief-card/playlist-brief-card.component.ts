@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { JwtTokenService } from 'src/app/services/jwt-token.service';
 
 @Component({
   selector: 'app-playlist-brief-card',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistBriefCardComponent implements OnInit {
 
-  constructor() { }
+  public isLoggedIn$: Observable<boolean>;
+  public isLiked: boolean = false;
 
-  ngOnInit(): void {
+  constructor(private jwtTokenService: JwtTokenService) { }
+
+  public ngOnInit(): void {
+    this.isLoggedIn$ = this.jwtTokenService.isLoggedIn$;
   }
 
+  public tooglePlaylistLike(): void {
+    this.isLiked = !this.isLiked;
+  }
 }
