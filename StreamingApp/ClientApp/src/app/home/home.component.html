@@ -20,7 +20,10 @@
         <app-sidebar [isLoggedIn]="isLoggedIn$ | async"></app-sidebar>
     </div>
     <div class="home-container__content">
-        content
+        <span class="font-black-medium-bold">
+            Recommended playlists
+        </span>
+        <app-playlist-brief-card></app-playlist-brief-card>
     </div>
     <div class="home-container__footer">
         <div *ngIf="!(isLoggedIn$ | async)" class="login-prompt">
