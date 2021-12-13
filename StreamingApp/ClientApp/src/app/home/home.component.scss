@@ -36,6 +36,12 @@
 
     &__content {
         grid-area: content;
+
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        padding: 4rem;
     }
 
     &__footer {
