@@ -7,10 +7,12 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PlaylistBriefCardComponent } from './playlist-brief-card/playlist-brief-card.component';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   declarations: [
-    PlaylistBriefCardComponent
+    PlaylistBriefCardComponent,
+    SliderComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { PlaylistBriefCardComponent } from './playlist-brief-card/playlist-brief
     MatIconModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    PlaylistBriefCardComponent
+    PlaylistBriefCardComponent,
+    SliderComponent
   ]
 })
 export class SharedModule { }
