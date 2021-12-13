@@ -1,0 +1,56 @@
+.brief-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 16.5rem;
+    height: 16.5rem;
+    border-radius: 1rem;
+    padding: 1.5rem;
+
+    background-color: var(--light-gray-color);
+
+    &__follow-button {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+
+        .not-followed {
+            transform: scale(0.9);
+            color: var(--black-color);
+            cursor: pointer;
+
+            &:hover {
+                filter: brightness(1.5);
+            }
+        }
+
+        .followed {
+            @extend .not-followed;
+            color: var(--blue-accent-color);
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    &__artist {
+
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        max-width: 100%;
+        display:inline-block;
+
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
