@@ -20,10 +20,24 @@
         <app-sidebar [isLoggedIn]="isLoggedIn$ | async"></app-sidebar>
     </div>
     <div class="home-container__content">
-        <span class="font-black-medium-bold">
-            Recommended playlists
-        </span>
-        <app-slider></app-slider>
+        <div class="slider-section">
+            <span class="font-black-medium-bold">
+                Recommended playlists
+            </span>
+            <app-slider></app-slider>
+        </div>
+        <div class="slider-section">
+            <span class="font-black-medium-bold">
+                Recommended songs
+            </span>
+            <app-slider></app-slider>
+        </div>
+        <div class="slider-section">
+            <span class="font-black-medium-bold">
+                Recommended artists
+            </span>
+            <app-artist-brief-card></app-artist-brief-card>
+        </div>
     </div>
     <div class="home-container__footer">
         <div *ngIf="!(isLoggedIn$ | async)" class="login-prompt">
