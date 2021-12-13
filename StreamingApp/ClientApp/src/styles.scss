@@ -100,6 +100,28 @@ body {
   }
 }
 
+//chrome scrollbar style
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track of scrollbar*/
+::-webkit-scrollbar-track {
+  //box-shadow: inset 0 0 1px var(--blue-accent-color);
+}
+
+/* Handle of scrollbar */
+::-webkit-scrollbar-thumb {
+  background: var(--medium-gray-color);
+  border-radius: 2rem;
+}
+
+/* Handle on hover scrollbar */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red-accent-color);
+  border-radius: 2rem;
+}
+
 // To remove the browser autocomplete blue text background color
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
