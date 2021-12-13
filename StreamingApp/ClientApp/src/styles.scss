@@ -57,6 +57,22 @@ body {
   height: 5.5rem;
 }
 
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 6rem;
+  height: 6rem;
+
+  border-radius: 1rem;
+  background-color: var(--medium-gray-color);
+
+  .mat-icon {
+    transform: scale(1.75);
+  }
+}
+
 .rounded-button {
   padding: 0.5rem 4rem 0.5rem 4rem;
 
