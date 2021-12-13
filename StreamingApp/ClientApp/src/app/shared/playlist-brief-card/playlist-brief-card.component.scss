@@ -1,0 +1,76 @@
+.brief-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 16.5rem;
+    height: 16.5rem;
+    border-radius: 1rem;
+    padding: 1.5rem;
+
+    background-color: var(--light-gray-color);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+
+        .play-button {
+            width: 4.5rem;
+            height: 4.5rem;
+
+            background-color: var(--red-accent-color);
+            color: var(--white-color);
+
+            border-radius: 50%;
+            border: none;
+            outline: none;
+
+            cursor: pointer;
+
+            &:hover {
+                filter: brightness(1.05);
+            }
+
+            .mat-icon {
+                transform: scale(1.5);
+            }
+        }
+    }
+
+    &__title {
+
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        max-width: 100%;
+        display:inline-block;
+
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__author {
+        @extend .brief-container__title;
+    }
+
+    &__stats {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .icon {
+            vertical-align: middle;
+            margin-bottom: 0.5rem;
+
+            &--big {
+                @extend .icon;
+                transform: scale(1.5);
+            }
+        }
+    }
+}
