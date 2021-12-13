@@ -8,10 +8,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PlaylistBriefCardComponent } from './playlist-brief-card/playlist-brief-card.component';
 import { SliderComponent } from './slider/slider.component';
+import { ArtistBriefCardComponent } from './artist-brief-card/artist-brief-card.component';
 
 @NgModule({
   declarations: [
     PlaylistBriefCardComponent,
+    ArtistBriefCardComponent,
     SliderComponent
   ],
   imports: [
@@ -31,7 +33,8 @@ import { SliderComponent } from './slider/slider.component';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     PlaylistBriefCardComponent,
-    SliderComponent
+    SliderComponent,
+    ArtistBriefCardComponent
   ]
 })
 export class SharedModule { }
