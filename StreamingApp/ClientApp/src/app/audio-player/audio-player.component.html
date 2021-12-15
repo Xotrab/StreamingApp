@@ -1,1 +1,39 @@
-<p>audio-player works!</p>
+<div class="container">
+    <div class="container__song-info">
+        <span class="font-black-tiny-bold">
+            Author
+        </span>
+        <span class="font-black-tiny-regular">
+            Title
+        </span>
+    </div>
+    <div>
+        player
+    </div>
+    <div class="container__other">
+        <mat-icon *ngIf="!isLiked" class="not-liked" (click)="tooglePlaylistLike()">
+            favorite_border
+        </mat-icon>
+        <mat-icon *ngIf="isLiked" class="liked" (click)="tooglePlaylistLike()">
+            favorite
+        </mat-icon>
+        <div class="stats font-dark-gray-tiny-regular">
+            <div>
+                <mat-icon class="icon--big">
+                    play_arrow
+                </mat-icon>
+                <span>
+                    212k
+                </span>
+            </div>
+            <div>
+                <mat-icon  class="icon">
+                    favorite
+                </mat-icon>
+                <span>
+                    43k
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

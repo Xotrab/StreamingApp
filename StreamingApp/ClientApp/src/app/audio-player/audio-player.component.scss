@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+
+    height: 100%;
+    background-color: var(--medium-gray-color);
+
+    &__song-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__other {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        .not-liked {
+            transform: scale(0.9);
+            color: var(--black-color);
+            cursor: pointer;
+
+            &:hover {
+                filter: brightness(1.5);
+            }
+        }
+
+        .liked {
+            @extend .not-liked;
+            color: var(--blue-accent-color);
+        }
+
+        .stats {
+            display: flex;
+            flex-direction: column;
+
+            .icon {
+                vertical-align: middle;
+                margin-bottom: 0.5rem;
+                transform: scale(0.9);
+    
+                &--big {
+                    @extend .icon;
+                    transform: scale(1.3);
+                }
+            }
+        }
+    }
+}
