@@ -10,6 +10,7 @@ import { HttpErrorInterceptor } from './services/http-error-interceptor';
 import { SharedModule } from './shared/shared.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import { VimeModule } from '@vime/angular';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    VimeModule
   ],
   providers: [
     {
