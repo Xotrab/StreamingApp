@@ -57,6 +57,22 @@ body {
   height: 5.5rem;
 }
 
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 6rem;
+  height: 6rem;
+
+  border-radius: 1rem;
+  background-color: var(--medium-gray-color);
+
+  .mat-icon {
+    transform: scale(1.75);
+  }
+}
+
 .rounded-button {
   padding: 0.5rem 4rem 0.5rem 4rem;
 
@@ -82,6 +98,28 @@ body {
     @extend .rounded-button;
     background-color: var(--red-accent-color);
   }
+}
+
+//chrome scrollbar style
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track of scrollbar*/
+::-webkit-scrollbar-track {
+  //box-shadow: inset 0 0 1px var(--blue-accent-color);
+}
+
+/* Handle of scrollbar */
+::-webkit-scrollbar-thumb {
+  background: var(--medium-gray-color);
+  border-radius: 2rem;
+}
+
+/* Handle on hover scrollbar */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red-accent-color);
+  border-radius: 2rem;
 }
 
 // To remove the browser autocomplete blue text background color

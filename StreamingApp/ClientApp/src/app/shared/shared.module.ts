@@ -6,9 +6,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PlaylistBriefCardComponent } from './playlist-brief-card/playlist-brief-card.component';
+import { SliderComponent } from './slider/slider.component';
+import { ArtistBriefCardComponent } from './artist-brief-card/artist-brief-card.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PlaylistBriefCardComponent,
+    ArtistBriefCardComponent,
+    SliderComponent
+  ],
   imports: [
     CommonModule,
     MatInputModule,
@@ -24,7 +31,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDividerModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PlaylistBriefCardComponent,
+    SliderComponent,
+    ArtistBriefCardComponent
   ]
 })
 export class SharedModule { }

@@ -36,6 +36,19 @@
 
     &__content {
         grid-area: content;
+
+        display: flex;
+        flex-direction: column;
+        gap: 6rem;
+        overflow-y: scroll;
+
+        padding: 4rem;
+
+        .slider-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
     }
 
     &__footer {
@@ -55,4 +68,3 @@
 .small-padding {
     padding: 0.5rem 2rem 0.5rem 2rem;
 }
-

@@ -40,11 +40,25 @@
   font-weight: $font-regular-weight;
 }
 
+.font-dark-gray-small-regular {
+  font-family: $primary-font-family;
+  color: var(--dark-gray-color) !important;
+  font-size: $font-small;
+  font-weight: $font-regular-weight;
+}
+
 .font-black-tiny-regular {
   font-family: $primary-font-family;
   color: var(--black-color) !important;
   font-size: $font-tiny;
   font-weight: $font-regular-weight;
+}
+
+.font-black-small-bold {
+  font-family: $primary-font-family;
+  color: var(--black-color) !important;
+  font-size: $font-small;
+  font-weight: $font-bold-weight;
 }
 
 .font-white-small-regular {

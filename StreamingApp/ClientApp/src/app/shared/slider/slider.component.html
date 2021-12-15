@@ -1,0 +1,17 @@
+<div class="slider-container">
+    <button  [disabled]="!counter" class="slider-container__nav-button" [ngClass]="{'button-hover': counter}" (click)="onPrevious()">
+        <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <div class="slider-container__content" [ngStyle]="{'transform': 'translateX('+ counter * -24.1 + 'rem' +')', 'transition': '.3s'}">
+        <app-playlist-brief-card
+            *ngFor="let i of [].constructor(8)">
+        </app-playlist-brief-card>
+    </div>
+    <button
+        [disabled]="counter + 6 === itemAmount"
+        class="slider-container__nav-button--left-margin button-hover"
+        [ngClass]="{'button-hover': counter + 6 !== itemAmount}"
+        (click)="onNext()">
+        <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+</div>
