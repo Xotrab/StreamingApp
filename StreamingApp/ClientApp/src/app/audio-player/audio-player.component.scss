@@ -3,14 +3,26 @@
     align-items: center;
     justify-content: center;
     gap: 6rem;
+    border-top: solid 0.1rem var(--medium-gray-color);
 
     height: 100%;
-    background-color: var(--medium-gray-color);
+    background-color: var(--light-gray-color);
 
     &__song-info {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    &__player {
+        width: 70rem;
+
+        .custom-button {
+            cursor: pointer;
+            vertical-align: middle;
+            margin-top: 0.7rem;
+            transform: scale(1.4);
+        }
     }
 
     &__other {
@@ -50,4 +62,30 @@
             }
         }
     }
+}
+
+vm-player[audio] {
+    --vm-player-theme: var(--blue-accent-color);
+    --vm-player-box-shadow: none;
+    --vm-player-font-family: "Lato";
+}
+
+vm-controls {
+    --vm-controls-bg: transparent;
+}
+
+vm-scrubber-control {
+    margin-top: 1.1rem;
+}
+
+vm-end-time {
+    --vm-time-color: var(--black-color);
+    --vm-time-font-weight: 600;
+    --vm-time-font-size: 1.5rem;
+}
+
+vm-current-time {
+    --vm-time-color: var(--blue-accent-color);
+    --vm-time-font-weight: 600;
+    --vm-time-font-size: 1.5rem;
 }

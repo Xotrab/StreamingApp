@@ -7,9 +7,29 @@
             Title
         </span>
     </div>
-    <div class="container__player">
-        player
-    </div>
+    <vm-player class="container__player" theme="light">
+        <vm-audio>
+            <source 
+            data-src="https://media.vimejs.com/audio.mp3" 
+            type="video/mp4"
+            />
+        </vm-audio>
+        <vm-ui>
+            <vm-controls fullWidth>
+                <vm-control-group space="both">
+                    <mat-icon class="custom-button">skip_previous</mat-icon>
+                    <vm-playback-control></vm-playback-control>
+                    <mat-icon class="custom-button">skip_next</mat-icon>
+                    <vm-volume-control></vm-volume-control>
+                </vm-control-group>
+                <vm-control-group space="bottom">
+                    <vm-current-time></vm-current-time>
+                    <vm-scrubber-control></vm-scrubber-control>
+                    <vm-end-time></vm-end-time>
+                </vm-control-group>
+            </vm-controls>
+        </vm-ui>
+    </vm-player>
     <div class="container__other">
         <mat-icon *ngIf="!isLiked" class="not-liked" (click)="tooglePlaylistLike()">
             favorite_border
