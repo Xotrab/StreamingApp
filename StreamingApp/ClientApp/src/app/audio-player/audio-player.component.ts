@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AudioPlayerComponent implements OnInit {
 
+  public isLiked: boolean = false;
+
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
+  public tooglePlaylistLike(): void {
+    this.isLiked = !this.isLiked;
+  }
 }
