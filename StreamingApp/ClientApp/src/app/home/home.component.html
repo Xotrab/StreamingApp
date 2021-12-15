@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="home-container__footer">
-        <div *ngIf="!(isLoggedIn$ | async)" class="login-prompt">
+        <div *ngIf="(isLoggedIn$ | async)" class="login-prompt">
             <button class="rounded-button--light-gray font-black-small-bold" (click)="navigateToLoginForm()">
                 Login
             </button>
@@ -48,7 +48,7 @@
                 to use the audio player and create your own library now
             </span>
         </div>
-        <ng-container *ngIf="isLoggedIn$ |async">
+        <ng-container *ngIf="!(isLoggedIn$ |async)">
             Audio player
         </ng-container>
     </div>
