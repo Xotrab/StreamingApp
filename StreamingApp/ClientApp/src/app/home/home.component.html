@@ -48,8 +48,8 @@
                 to use the audio player and create your own library now
             </span>
         </div>
-        <ng-container *ngIf="isLoggedIn$ |async">
-            Audio player
+        <ng-container *ngIf="(isLoggedIn$ |async)">
+            <app-audio-player></app-audio-player>
         </ng-container>
     </div>
 </div>

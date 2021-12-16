@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="container__song-info">
+        <span class="font-black-tiny-bold">
+            Author
+        </span>
+        <span class="font-black-tiny-regular">
+            Title
+        </span>
+    </div>
+    <vm-player class="container__player" theme="light">
+        <vm-audio>
+            <source 
+            data-src="https://media.vimejs.com/audio.mp3" 
+            type="video/mp4"
+            />
+        </vm-audio>
+        <vm-ui>
+            <vm-controls fullWidth>
+                <vm-control-group space="both">
+                    <div class="spacer"></div>
+                    <vm-control>
+                        <mat-icon class="custom-button">loop</mat-icon>
+                    </vm-control>
+                    <vm-control>
+                        <mat-icon class="custom-button--scaled">skip_previous</mat-icon>
+                    </vm-control>
+                    <vm-playback-control></vm-playback-control>
+                    <vm-control>
+                        <mat-icon class="custom-button--scaled">skip_next</mat-icon>
+                    </vm-control>
+                    <vm-volume-control></vm-volume-control>
+                    <vm-control-spacer></vm-control-spacer>
+                </vm-control-group>
+                <vm-control-group space="bottom">
+                    <vm-current-time></vm-current-time>
+                    <vm-scrubber-control></vm-scrubber-control>
+                    <vm-end-time></vm-end-time>
+                </vm-control-group>
+            </vm-controls>
+        </vm-ui>
+    </vm-player>
+    <div class="container__other">
+        <mat-icon *ngIf="!isLiked" class="not-liked" (click)="tooglePlaylistLike()">
+            favorite_border
+        </mat-icon>
+        <mat-icon *ngIf="isLiked" class="liked" (click)="tooglePlaylistLike()">
+            favorite
+        </mat-icon>
+        <div class="stats font-dark-gray-tiny-regular">
+            <div>
+                <mat-icon class="icon--big">
+                    play_arrow
+                </mat-icon>
+                <span>
+                    212k
+                </span>
+            </div>
+            <div>
+                <mat-icon  class="icon">
+                    favorite
+                </mat-icon>
+                <span>
+                    43k
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
