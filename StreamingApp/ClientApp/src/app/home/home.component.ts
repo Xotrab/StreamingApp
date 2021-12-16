@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Genre } from '../helpers/genre.enum';
 import { SidebarOption } from '../helpers/sidebar-option.enum';
 import { JwtTokenService } from '../services/jwt-token.service';
 
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   public selectedOption: SidebarOption = this.sidebarOption.Home;
 
   public searchFilter: string;
+  public genreEnum = Genre;
 
   constructor(private router: Router, private jwtTokenService: JwtTokenService) { }
 
