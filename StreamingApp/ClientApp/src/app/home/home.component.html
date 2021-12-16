@@ -24,27 +24,42 @@
     <div class="home-container__sidebar">
         <app-sidebar [isLoggedIn]="isLoggedIn$ | async" (selectedOptionEvent)="sidebarOptionChanged($event)"></app-sidebar>
     </div>
-    <div class="home-container__content">
-        <ng-container *ngIf="selectedOption === sidebarOption.Home">
-            <div class="slider-section">
+    <div class="home-container__content"[ngSwitch]="selectedOption">
+        <ng-container *ngSwitchCase="sidebarOption.Home">
+            <div class="section">
                 <span class="font-black-medium-bold">
                     Recommended playlists
                 </span>
                 <app-slider></app-slider>
             </div>
-            <div class="slider-section">
+            <div class="section">
                 <span class="font-black-medium-bold">
                     Recommended songs
                 </span>
                 <app-slider></app-slider>
             </div>
-            <div class="slider-section">
+            <div class="section">
                 <span class="font-black-medium-bold">
                     Recommended artists
                 </span>
                 <app-artist-brief-card></app-artist-brief-card>
             </div>
         </ng-container>
+        <div class="section" *ngSwitchCase="sidebarOption.Search">
+            <span class="font-black-medium-bold">
+                Browse genres
+            </span>
+            <div class="genres-grid">
+                <div *ngFor="let genre of genreEnum | enumToArray" class="genres-grid__item">
+                    <div class="image-placeholder">
+                        <mat-icon>music_note</mat-icon>
+                    </div>
+                    <span class="font-black-default-normal">
+                        {{ genre }}
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="home-container__footer">
         <div *ngIf="!(isLoggedIn$ | async)" class="login-prompt">

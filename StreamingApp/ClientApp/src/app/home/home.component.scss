@@ -75,10 +75,48 @@
 
         padding: 4rem;
 
-        .slider-section {
+        .section {
             display: flex;
             flex-direction: column;
             gap: 2rem;
+        }
+
+        .genres-grid {
+            display: grid;
+            width: 90%;
+
+            grid-template-columns: repeat(6, 1fr);
+
+            grid-gap: 4rem;
+
+            &__item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.75rem;
+
+                width: 16.5rem;
+                height: 16.5rem;
+                border-radius: 1rem;
+                padding: 1.5rem;
+
+                background-color: var(--light-gray-color);
+
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--red-accent-color);
+                }
+
+                &:hover .image-placeholder {
+                    background-color: var(--white-color);
+                }
+
+                &:hover span {
+                    color: var(--white-color) !important;
+                }
+            }
         }
     }
 
