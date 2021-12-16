@@ -1,5 +1,10 @@
 <div class="home-container">
     <div class="home-container__header">
+        <div class="search-input" *ngIf="selectedOption === sidebarOption.Search">
+            <mat-icon>search</mat-icon>
+            <input [(ngModel)]="searchFilter" placeholder="Search" class="font-black-small-regular">
+            <mat-icon *ngIf="searchFilter" (click)="clearInput()">clear</mat-icon>
+        </div>
         <ng-container *ngIf="!(isLoggedIn$ | async)">
             <button class="rounded-button--medium-gray font-black-small-bold" (click)="navigateToRegisterForm()">
                 Register
@@ -17,26 +22,43 @@
         </button>
     </div>
     <div class="home-container__sidebar">
-        <app-sidebar [isLoggedIn]="isLoggedIn$ | async"></app-sidebar>
+        <app-sidebar [isLoggedIn]="isLoggedIn$ | async" (selectedOptionEvent)="sidebarOptionChanged($event)"></app-sidebar>
     </div>
-    <div class="home-container__content">
-        <div class="slider-section">
+    <div class="home-container__content"[ngSwitch]="selectedOption">
+        <ng-container *ngSwitchCase="sidebarOption.Home">
+            <div class="section">
+                <span class="font-black-medium-bold">
+                    Recommended playlists
+                </span>
+                <app-slider></app-slider>
+            </div>
+            <div class="section">
+                <span class="font-black-medium-bold">
+                    Recommended songs
+                </span>
+                <app-slider></app-slider>
+            </div>
+            <div class="section">
+                <span class="font-black-medium-bold">
+                    Recommended artists
+                </span>
+                <app-artist-brief-card></app-artist-brief-card>
+            </div>
+        </ng-container>
+        <div class="section" *ngSwitchCase="sidebarOption.Search">
             <span class="font-black-medium-bold">
-                Recommended playlists
+                Browse genres
             </span>
-            <app-slider></app-slider>
-        </div>
-        <div class="slider-section">
-            <span class="font-black-medium-bold">
-                Recommended songs
-            </span>
-            <app-slider></app-slider>
-        </div>
-        <div class="slider-section">
-            <span class="font-black-medium-bold">
-                Recommended artists
-            </span>
-            <app-artist-brief-card></app-artist-brief-card>
+            <div class="genres-grid">
+                <div *ngFor="let genre of genreEnum | enumToArray" class="genres-grid__item">
+                    <div class="image-placeholder">
+                        <mat-icon>music_note</mat-icon>
+                    </div>
+                    <span class="font-black-default-normal">
+                        {{ genre }}
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="home-container__footer">

@@ -9,12 +9,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PlaylistBriefCardComponent } from './playlist-brief-card/playlist-brief-card.component';
 import { SliderComponent } from './slider/slider.component';
 import { ArtistBriefCardComponent } from './artist-brief-card/artist-brief-card.component';
+import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 
 @NgModule({
   declarations: [
     PlaylistBriefCardComponent,
     ArtistBriefCardComponent,
-    SliderComponent
+    SliderComponent,
+    EnumToArrayPipe
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { ArtistBriefCardComponent } from './artist-brief-card/artist-brief-card.
     MatProgressSpinnerModule,
     PlaylistBriefCardComponent,
     SliderComponent,
-    ArtistBriefCardComponent
+    ArtistBriefCardComponent,
+    EnumToArrayPipe
   ]
 })
 export class SharedModule { }

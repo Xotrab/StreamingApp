@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SidebarOption } from '../helpers/sidebar-option.enum';
 
 @Component({
@@ -9,6 +9,7 @@ import { SidebarOption } from '../helpers/sidebar-option.enum';
 export class SidebarComponent implements OnInit {
 
   @Input() isLoggedIn: boolean;
+  @Output() selectedOptionEvent = new EventEmitter<SidebarOption>();
 
   public sidebarOption = SidebarOption;
 	public selectedOption: SidebarOption = this.sidebarOption.Home;
@@ -20,5 +21,6 @@ export class SidebarComponent implements OnInit {
 
   public changeOption(option: SidebarOption): void {
 	  this.selectedOption = option;
+    this.selectedOptionEvent.emit(this.selectedOption);
 	}
 }
