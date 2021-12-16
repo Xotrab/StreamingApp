@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   public sidebarOption = SidebarOption;
   public selectedOption: SidebarOption = this.sidebarOption.Home;
 
+  public searchFilter: string;
+
   constructor(private router: Router, private jwtTokenService: JwtTokenService) { }
 
   public ngOnInit(): void {
@@ -38,5 +40,9 @@ export class HomeComponent implements OnInit {
 
   public sidebarOptionChanged($event): void {
     this.selectedOption = $event;
+  }
+
+  public clearInput(): void {
+    this.searchFilter = null;
   }
 }
