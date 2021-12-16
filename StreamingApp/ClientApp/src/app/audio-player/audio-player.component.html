@@ -17,10 +17,19 @@
         <vm-ui>
             <vm-controls fullWidth>
                 <vm-control-group space="both">
-                    <mat-icon class="custom-button">skip_previous</mat-icon>
+                    <div class="spacer"></div>
+                    <vm-control>
+                        <mat-icon class="custom-button">loop</mat-icon>
+                    </vm-control>
+                    <vm-control>
+                        <mat-icon class="custom-button--scaled">skip_previous</mat-icon>
+                    </vm-control>
                     <vm-playback-control></vm-playback-control>
-                    <mat-icon class="custom-button">skip_next</mat-icon>
+                    <vm-control>
+                        <mat-icon class="custom-button--scaled">skip_next</mat-icon>
+                    </vm-control>
                     <vm-volume-control></vm-volume-control>
+                    <vm-control-spacer></vm-control-spacer>
                 </vm-control-group>
                 <vm-control-group space="bottom">
                     <vm-current-time></vm-current-time>
