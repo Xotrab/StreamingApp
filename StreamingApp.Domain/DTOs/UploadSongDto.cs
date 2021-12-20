@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using StreamingApp.Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace StreamingApp.Domain.DTOs
     {
         public IFormFile File { get; set; }
 
-        public string Genre { get; set; }
+        public Genre Genre { get; set; }
     }
 }

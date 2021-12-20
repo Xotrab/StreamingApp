@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using StreamingApp.Database;
+using StreamingApp.Database.Repositories;
 using StreamingApp.Domain.Entities;
 using StreamingApp.Domain.Interfaces;
 using StreamingApp.Services;
@@ -59,6 +60,8 @@ namespace StreamingApp
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
                     RequireExpirationTime = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenValidationKey"])),
                 };
@@ -79,6 +82,9 @@ namespace StreamingApp
             services.AddScoped<ApplicationUserMapper>();
             services.AddTransient<IMailService, MailService>();
             services.AddTransient<IAzureService, AzureService>();
+            services.AddTransient<ISongService, SongService>();
+            services.AddScoped<SongRepository, SongRepository>();
+            services.AddAutoMapper(typeof(SongProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StreamingApp.Database\StreamingApp.Database.csproj" />
     <ProjectReference Include="..\StreamingApp.Domain\StreamingApp.Domain.csproj" />
   </ItemGroup>
 

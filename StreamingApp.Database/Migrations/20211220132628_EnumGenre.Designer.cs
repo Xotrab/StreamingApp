@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StreamingApp.Database;
 
 namespace StreamingApp.Database.Migrations
 {
     [DbContext(typeof(StreamingAppDbContext))]
-    partial class StreamingAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211220132628_EnumGenre")]
+    partial class EnumGenre
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
