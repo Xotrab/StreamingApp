@@ -44,5 +44,15 @@ namespace StreamingApp.Shared.Responses
                 Data = data
             };
         }
+
+        public static Response<string> ToResponseDataFail(this string message)
+        {
+            return new Response<string>
+            {
+                Success = false,
+                Message = message,
+                Data = null
+            };
+        }
     }
 }
