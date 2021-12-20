@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StreamingApp.Domain.DTOs;
 using StreamingApp.Domain.Interfaces;
@@ -22,6 +23,7 @@ namespace StreamingApp.Controllers
             mSongService = songService;
         }
 
+        [Authorize]
         [HttpPost("songs")]
         public async Task<IActionResult> UploadSongAsync([FromForm] UploadSongDto uploadSongDto) 
         {
@@ -31,7 +33,7 @@ namespace StreamingApp.Controllers
                 return BadRequest(azureResult);
 
             var songUrl = azureResult.Data;
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mSongService.AddAsync(uploadSongDto, songUrl, userId);
 
             if (!result.Success)
