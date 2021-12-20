@@ -12,6 +12,9 @@ export class AudioPlayerComponent implements OnInit {
   constructor() { }
 
   public ngOnInit(): void {
+    var style = document.createElement( 'style' );
+    style.innerHTML = 'div { background-color: #F5F5F5; padding-bottom: 10rem !important;}';
+    document.getElementById('vmPlayer').shadowRoot.appendChild(style);
   }
 
   public tooglePlaylistLike(): void {
