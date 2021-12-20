@@ -17,11 +17,11 @@ namespace StreamingApp.Database.Repositories
             mDbContext = dbContext;
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
             try
             {
-                mDbContext.SaveChanges();
+                await mDbContext.SaveChangesAsync();
             }
             catch (Exception)
             {
@@ -29,7 +29,7 @@ namespace StreamingApp.Database.Repositories
             }
         }
 
-        public async Task<T> Get(int id)
+        public async Task<T> GetAsync(int id)
         {
             var result = await mDbSet.FindAsync(id);
             return result;
