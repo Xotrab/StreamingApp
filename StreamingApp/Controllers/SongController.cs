@@ -14,20 +14,27 @@ namespace StreamingApp.Controllers
     public class SongController : ControllerBase
     {
         private readonly IAzureService mAzureService;
-        public SongController(IAzureService azureService)
+        private readonly ISongService mSongService;
+        public SongController(IAzureService azureService, ISongService songService)
         {
             mAzureService = azureService;
+            mSongService = songService;
         }
 
         [HttpPost("songs")]
         public async Task<IActionResult> UploadSongAsync([FromForm] UploadSongDto uploadSongDto) 
         {
-            var result = await mAzureService.UploadAsync(uploadSongDto);
+            var azureResult = await mAzureService.UploadAsync(uploadSongDto);
+
+            if (!azureResult.Success)
+                return BadRequest(azureResult);
+
+            var result = await mSongService.AddAsync(uploadSongDto);
 
             if (!result.Success)
                 return BadRequest(result);
 
-            return Ok();
+            return Ok(result);
         }
     }
 }
