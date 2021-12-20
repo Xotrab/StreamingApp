@@ -99,7 +99,7 @@ namespace StreamingApp.Services
             return new TokenCredentials(result.AccessToken, TokenType);
         }
 
-        public async Task<Response> UploadAsync(UploadSongDto uploadSongDto)
+        public async Task<Response<string>> UploadAsync(UploadSongDto uploadSongDto)
         {
             IAzureMediaServicesClient client;
             try
@@ -110,7 +110,7 @@ namespace StreamingApp.Services
             {
                 Console.Error.WriteLine("TIP: Make sure that you have filled out the appsettings.json file before running this sample.");
                 Console.Error.WriteLine($"{e.Message}");
-                return "Error occured during the upload".ToResponseFail();
+                return "Error occured during the upload".ToResponseDataFail();
             }
 
             // Set the polling interval for long running operations to 2 seconds.
@@ -171,7 +171,7 @@ namespace StreamingApp.Services
 
             if (job.State != JobState.Finished)
             {
-                return "Error occured during the upload job".ToResponseFail();
+                return "Error occured during the upload job".ToResponseDataFail();
             }
 
             Console.WriteLine("Job finished.");
@@ -201,7 +201,7 @@ namespace StreamingApp.Services
                 Console.WriteLine(url);
             }
 
-            return urls.ToResponseData();
+            return urls.ElementAt(0).ToResponseData();
         }
 
         public async Task<Transform> GetOrCreateTransformAsync(
