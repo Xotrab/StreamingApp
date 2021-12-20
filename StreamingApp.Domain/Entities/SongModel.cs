@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StreamingApp.Shared.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,7 +17,7 @@ namespace StreamingApp.Domain.Entities
         public string Url { get; set; }
 
         [Required]
-        public string Genre { get; set; }
+        public Genre Genre { get; set; }
 
         [Required]
         public int Playbacks { get; set; }
