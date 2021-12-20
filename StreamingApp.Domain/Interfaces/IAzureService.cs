@@ -17,7 +17,7 @@ namespace StreamingApp.Domain.Interfaces
         Task<IAzureMediaServicesClient> CreateMediaServicesClientAsync();
         Task<ServiceClientCredentials> GetCredentialsAsync();
         Task<ServiceClientCredentials> GetCredentialsInteractiveAuthAsync();
-        Task<Response> UploadAsync(UploadSongDto uploadSongDto);
+        Task<Response<string>> UploadAsync(UploadSongDto uploadSongDto);
         Task<Asset> CreateInputAssetAsync(
             IAzureMediaServicesClient client,
             string resourceGroupName,
