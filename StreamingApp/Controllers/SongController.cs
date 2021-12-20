@@ -5,6 +5,7 @@ using StreamingApp.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace StreamingApp.Controllers
@@ -29,7 +30,9 @@ namespace StreamingApp.Controllers
             if (!azureResult.Success)
                 return BadRequest(azureResult);
 
-            var result = await mSongService.AddAsync(uploadSongDto);
+            var songUrl = azureResult.Data;
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var result = await mSongService.AddAsync(uploadSongDto, songUrl, userId);
 
             if (!result.Success)
                 return BadRequest(result);
