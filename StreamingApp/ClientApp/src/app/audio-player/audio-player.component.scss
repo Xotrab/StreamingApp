@@ -78,10 +78,14 @@
     }
 }
 
-vm-player[audio] {
+vm-player {
     --vm-player-theme: var(--blue-accent-color);
     --vm-player-box-shadow: none;
     --vm-player-font-family: "Lato";
+}
+
+vm-player[video] {
+    --vm-player-bg: var(--light-gray-color);
 }
 
 vm-controls {

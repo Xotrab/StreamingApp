@@ -7,13 +7,13 @@
             Title
         </span>
     </div>
-    <vm-player class="container__player" theme="light">
-        <vm-audio>
-            <source 
-            data-src="https://media.vimejs.com/audio.mp3" 
-            type="video/mp4"
+    <vm-player class="container__player" theme="light" id="vmPlayer">
+        <vm-hls version="latest">
+            <source
+            data-src="https://xotrab-gewc1.streaming.media.azure.net/71ffd6fa-5414-44e9-aab2-051e11f8983f/wielka%20piwnica.ism/manifest(format=m3u8-aapl)" 
+            type="application/x-mpegURL"
             />
-        </vm-audio>
+        </vm-hls>
         <vm-ui>
             <vm-controls fullWidth>
                 <vm-control-group space="both">
