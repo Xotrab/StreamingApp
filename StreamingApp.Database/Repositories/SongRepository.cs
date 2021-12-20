@@ -20,7 +20,7 @@ namespace StreamingApp.Database.Repositories
         public async Task<int> CreateAsync(SongModel model)
         {
             var result =  await mDbSet.AddAsync(model);
-            await SaveAsync();
+            await mDbContext.SaveChangesAsync();
 
             return result.Entity.Id;
         }

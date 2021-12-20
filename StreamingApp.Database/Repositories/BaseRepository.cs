@@ -17,22 +17,18 @@ namespace StreamingApp.Database.Repositories
             mDbContext = dbContext;
         }
 
-        public async Task SaveAsync()
-        {
-            try
-            {
-                await mDbContext.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public async Task<T> GetAsync(int id)
         {
             var result = await mDbSet.FindAsync(id);
             return result;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var entity = await mDbSet.FindAsync(id);
+            mDbSet.Remove(entity);
+
+            return await mDbContext.SaveChangesAsync() > 0;
         }
     }
 }
