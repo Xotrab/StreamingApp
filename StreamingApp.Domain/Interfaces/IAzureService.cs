@@ -3,6 +3,7 @@ using Microsoft.Azure.Management.Media;
 using Microsoft.Azure.Management.Media.Models;
 using Microsoft.Rest;
 using StreamingApp.Domain.DTOs;
+using StreamingApp.Shared.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace StreamingApp.Domain.Interfaces
         Task<IAzureMediaServicesClient> CreateMediaServicesClientAsync();
         Task<ServiceClientCredentials> GetCredentialsAsync();
         Task<ServiceClientCredentials> GetCredentialsInteractiveAuthAsync();
-        Task UploadAsync(UploadSongDto uploadSongDto);
+        Task<Response> UploadAsync(UploadSongDto uploadSongDto);
         Task<Asset> CreateInputAssetAsync(
             IAzureMediaServicesClient client,
             string resourceGroupName,

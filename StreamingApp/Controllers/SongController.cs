@@ -22,7 +22,10 @@ namespace StreamingApp.Controllers
         [HttpPost("songs")]
         public async Task<IActionResult> UploadSongAsync([FromForm] UploadSongDto uploadSongDto) 
         {
-            await mAzureService.UploadAsync(uploadSongDto);
+            var result = await mAzureService.UploadAsync(uploadSongDto);
+
+            if (!result.Success)
+                return BadRequest(result);
 
             return Ok();
         }

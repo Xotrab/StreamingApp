@@ -7,6 +7,7 @@ using Microsoft.Identity.Client;
 using Microsoft.Rest;
 using StreamingApp.Domain.DTOs;
 using StreamingApp.Domain.Interfaces;
+using StreamingApp.Shared.Responses;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -98,7 +99,7 @@ namespace StreamingApp.Services
             return new TokenCredentials(result.AccessToken, TokenType);
         }
 
-        public async Task UploadAsync(UploadSongDto uploadSongDto)
+        public async Task<Response> UploadAsync(UploadSongDto uploadSongDto)
         {
             IAzureMediaServicesClient client;
             try
@@ -109,7 +110,7 @@ namespace StreamingApp.Services
             {
                 Console.Error.WriteLine("TIP: Make sure that you have filled out the appsettings.json file before running this sample.");
                 Console.Error.WriteLine($"{e.Message}");
-                return;
+                return "Error occured during the upload".ToResponseFail();
             }
 
             // Set the polling interval for long running operations to 2 seconds.
@@ -168,35 +169,39 @@ namespace StreamingApp.Services
                 AdaptiveStreamingTransformName,
                 jobName);
 
-            if (job.State == JobState.Finished)
+            if (job.State != JobState.Finished)
             {
-                Console.WriteLine("Job finished.");
-
-                StreamingLocator locator = await CreateStreamingLocatorAsync(
-                    client,
-                    mConfiguration["ResourceGroup"],
-                    mConfiguration["AccountName"],
-                    outputAsset.Name,
-                    locatorName);
-
-                // Note that the URLs returned by this method include a /manifest path followed by a (format=)
-                // parameter that controls the type of manifest that is returned. 
-                // The /manifest(format=m3u8-aapl) will provide Apple HLS v4 manifest using MPEG TS segments.
-                // The /manifest(format=mpd-time-csf) will provide MPEG DASH manifest.
-                // And using just /manifest alone will return Microsoft Smooth Streaming format.
-                // There are additional formats available that are not returned in this call, please check the documentation
-                // on the dynamic packager for additional formats - see https://docs.microsoft.com/azure/media-services/latest/dynamic-packaging-overview
-                IList<string> urls = await GetStreamingUrlsAsync(
-                    client,
-                    mConfiguration["ResourceGroup"],
-                    mConfiguration["AccountName"],
-                    locator.Name);
-
-                foreach (var url in urls)
-                {
-                    Console.WriteLine(url);
-                }
+                return "Error occured during the upload job".ToResponseFail();
             }
+
+            Console.WriteLine("Job finished.");
+
+            StreamingLocator locator = await CreateStreamingLocatorAsync(
+                client,
+                mConfiguration["ResourceGroup"],
+                mConfiguration["AccountName"],
+                outputAsset.Name,
+                locatorName);
+
+            // Note that the URLs returned by this method include a /manifest path followed by a (format=)
+            // parameter that controls the type of manifest that is returned. 
+            // The /manifest(format=m3u8-aapl) will provide Apple HLS v4 manifest using MPEG TS segments.
+            // The /manifest(format=mpd-time-csf) will provide MPEG DASH manifest.
+            // And using just /manifest alone will return Microsoft Smooth Streaming format.
+            // There are additional formats available that are not returned in this call, please check the documentation
+            // on the dynamic packager for additional formats - see https://docs.microsoft.com/azure/media-services/latest/dynamic-packaging-overview
+            IList<string> urls = await GetStreamingUrlsAsync(
+                client,
+                mConfiguration["ResourceGroup"],
+                mConfiguration["AccountName"],
+                locator.Name);
+
+            foreach (var url in urls)
+            {
+                Console.WriteLine(url);
+            }
+
+            return urls.ToResponseData();
         }
 
         public async Task<Transform> GetOrCreateTransformAsync(
