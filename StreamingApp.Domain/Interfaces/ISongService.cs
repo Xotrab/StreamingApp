@@ -10,6 +10,6 @@ namespace StreamingApp.Domain.Interfaces
 {
     public interface ISongService
     {
-        Task<Response> AddAsync(UploadSongDto uploadSongDto);
+        Task<Response> AddAsync(UploadSongDto uploadSongDto, string url, int userId);
     }
 }
