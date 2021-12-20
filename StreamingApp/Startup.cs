@@ -82,6 +82,7 @@ namespace StreamingApp
             services.AddTransient<IAzureService, AzureService>();
             services.AddTransient<ISongService, SongService>();
             services.AddScoped<SongRepository, SongRepository>();
+            services.AddAutoMapper(typeof(SongProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
