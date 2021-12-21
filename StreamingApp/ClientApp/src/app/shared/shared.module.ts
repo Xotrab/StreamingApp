@@ -14,6 +14,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { PlaylistTableComponent } from './playlist-table/playlist-table.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PlaylistTableComponent } from './playlist-table/playlist-table.componen
     MatProgressSpinnerModule,
     MatTabsModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   exports: [
     MatInputModule,
@@ -49,7 +51,8 @@ import { PlaylistTableComponent } from './playlist-table/playlist-table.componen
     MatTabsModule,
     MatDialogModule,
     MatSelectModule,
-    PlaylistTableComponent
+    PlaylistTableComponent,
+    MatTableModule
   ]
 })
 export class SharedModule { }
