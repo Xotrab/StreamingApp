@@ -12,6 +12,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { VimeModule } from '@vime/angular';
 import { LibraryModule } from './library/library.module';
+import { AttachTokenInterceptor } from './services/attach-token-interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { LibraryModule } from './library/library.module';
     LibraryModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AttachTokenInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
