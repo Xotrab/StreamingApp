@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { VimeModule } from '@vime/angular';
+import { LibraryModule } from './library/library.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { VimeModule } from '@vime/angular';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    VimeModule
+    VimeModule,
+    LibraryModule
   ],
   providers: [
     {
