@@ -10,6 +10,9 @@ import { PlaylistBriefCardComponent } from './playlist-brief-card/playlist-brief
 import { SliderComponent } from './slider/slider.component';
 import { ArtistBriefCardComponent } from './artist-brief-card/artist-brief-card.component';
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
     MatDividerModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   exports: [
     MatInputModule,
@@ -37,7 +43,10 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
     PlaylistBriefCardComponent,
     SliderComponent,
     ArtistBriefCardComponent,
-    EnumToArrayPipe
+    EnumToArrayPipe,
+    MatTabsModule,
+    MatDialogModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

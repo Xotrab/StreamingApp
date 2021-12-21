@@ -60,6 +60,7 @@
                 </div>
             </div>
         </div>
+        <app-user-library *ngSwitchCase="sidebarOption.Library"></app-user-library>
     </div>
     <div class="home-container__footer">
         <div *ngIf="!(isLoggedIn$ | async)" class="login-prompt">

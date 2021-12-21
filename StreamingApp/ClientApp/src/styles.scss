@@ -164,3 +164,23 @@ input:-webkit-autofill:active{
 .mat-progress-spinner circle, .mat-spinner circle {
   stroke: var(--blue-accent-color);
 }
+
+.mat-tab-group {
+  width: 41.7%;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: var(--red-accent-color) !important;
+}
+
+.mat-tab-label {
+  @extend .font-black-small-normal;
+}
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+}
+
+.mat-dialog-container {
+  border-radius: 1rem !important;
+}

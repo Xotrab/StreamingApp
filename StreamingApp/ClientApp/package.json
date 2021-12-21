@@ -29,6 +29,7 @@
     "@vime/core": "^5.3.0",
     "core-js": "^3.19.2",
     "jquery": "^3.6.0",
+    "ngx-dropzone": "^3.0.0",
     "oidc-client": "^1.11.5",
     "popper.js": "^1.16.0",
     "rxjs": "^6.6.7",

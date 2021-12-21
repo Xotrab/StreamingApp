@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 80rem;
+
+    &__header {
+        align-self: flex-start;
+    }
+
+    &__dropzone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 60%;
+        background-color: var(--light-gray-color);
+        border: none;
+        box-shadow: 0 0 0.2rem 0 var(--dark-gray-color);
+        border-radius: 1rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+
+        .label {
+            outline: none !important;
+        }
+
+        .preview {
+            background-image: none;
+            border-radius: 1rem;
+
+            &:hover {
+                background-color: var(--upload-song-bg-color);
+            }
+        }
+
+        .dropzone-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+            .mat-icon {
+                color: var(--black-color);
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 2rem;
+
+        .no-pointer-events {
+            pointer-events: none;
+        }
+    }
+
+    .spinner {
+        position: absolute;
+        align-self: center;
+        top: 55%;
+    }
+}
