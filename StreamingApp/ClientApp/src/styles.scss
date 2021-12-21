@@ -184,3 +184,31 @@ input:-webkit-autofill:active{
 .mat-dialog-container {
   border-radius: 1rem !important;
 }
+
+.mat-header-cell {
+  @extend .font-black-tiny-bold;
+  border-bottom-color: var(--medium-gray-color) !important;
+  margin-bottom: 1rem !important;
+}
+
+.mat-cell {
+  @extend .font-black-tiny-regular;
+  border-bottom-style: none !important;
+}
+
+.mat-row {
+  &:hover {
+    background-color: var(--medium-gray-color);
+  }
+}
+
+tr td:first-child { 
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+}
+
+tr td:last-child { 
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}
+
