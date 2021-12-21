@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UploadedSongsComponent } from './uploaded-songs/uploaded-songs.component';
 import { UploadSongDialogComponent } from './upload-song-dialog/upload-song-dialog.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
   imports: [
     CommonModule,
     SharedModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    FormsModule
   ],
   exports: [
     UserLibraryComponent,
