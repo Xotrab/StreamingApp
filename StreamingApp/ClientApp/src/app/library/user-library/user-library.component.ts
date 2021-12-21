@@ -9,7 +9,7 @@ import { LibraryTab } from 'src/app/helpers/library-tab.enum';
 export class UserLibraryComponent implements OnInit {
 
   public libraryTab = LibraryTab;
-	public selectedTab: LibraryTab = this.libraryTab.LikedSongs;
+	public selectedTab: LibraryTab = this.libraryTab.Uploaded;
 
   constructor() { }
 
