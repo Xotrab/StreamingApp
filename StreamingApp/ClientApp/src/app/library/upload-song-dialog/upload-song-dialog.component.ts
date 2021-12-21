@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { DialogAction } from 'src/app/helpers/dialog-action.enum';
 
 @Component({
   selector: 'app-upload-song-dialog',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadSongDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<UploadSongDialogComponent>) { }
 
-  ngOnInit(): void {
+  public song: File;
+
+  public ngOnInit(): void {
   }
 
+  public close(): void {
+    this.dialogRef.close({ event: DialogAction.Cancel, data: null });
+  }
+
+  public onFileDrop(event): void {
+    this.song = event.addedFiles[0];
+  }
+
+  public onFileRemove(): void {
+    this.song = null;
+  }
 }
