@@ -52,5 +52,15 @@
     &__actions {
         display: flex;
         gap: 2rem;
+
+        .no-pointer-events {
+            pointer-events: none;
+        }
+    }
+
+    .spinner {
+        position: absolute;
+        align-self: center;
+        top: 55%;
     }
 }
