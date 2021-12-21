@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DialogAction } from 'src/app/helpers/dialog-action.enum';
+import { Genre } from 'src/app/helpers/genre.enum';
 
 @Component({
   selector: 'app-upload-song-dialog',
@@ -12,6 +13,7 @@ export class UploadSongDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<UploadSongDialogComponent>) { }
 
   public song: File;
+  public genreEnum = Genre;
 
   public ngOnInit(): void {
   }

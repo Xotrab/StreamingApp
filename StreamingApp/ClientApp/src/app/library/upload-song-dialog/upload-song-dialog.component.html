@@ -15,6 +15,14 @@
             </ngx-dropzone-label>
         </ngx-dropzone-preview>
     </ngx-dropzone>
+    <mat-form-field class="font-black-small-regular">
+        <mat-label>Choose a genre</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let genre of genreEnum | enumToArray; let i = index" value="i">
+              {{ genre }}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
     <div class="container__actions">
         <button class="rounded-button--medium-gray font-black-small-bold" (click)="close()">
             Cancel
