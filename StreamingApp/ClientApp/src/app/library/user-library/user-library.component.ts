@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LibraryTab } from 'src/app/helpers/library-tab.enum';
 
 @Component({
   selector: 'app-user-library',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLibraryComponent implements OnInit {
 
+  public libraryTab = LibraryTab;
+	public selectedTab: LibraryTab = this.libraryTab.LikedSongs;
+
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
+  public navigateToTab(tab: LibraryTab): void {
+		this.selectedTab = tab;
+	}
 }
