@@ -13,6 +13,11 @@ export class JwtTokenService {
 
   private jwtToken: string;
 
+  private token: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+	get token$() {
+		return this.token.asObservable();
+	}
+
   private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 	get isLoggedIn$() {
 		return this.isLoggedIn.asObservable();
@@ -30,6 +35,7 @@ export class JwtTokenService {
   public setToken(token: string): void {
     localStorage.setItem(environment.jwtTokenKey, token);
     this.jwtToken = token;
+    this.token.next(this.jwtToken);
     this.decodeToken();
     this.isLoggedIn.next(true);
   }
@@ -55,6 +61,7 @@ export class JwtTokenService {
     this.router.navigate(['/']);
     this.isLoggedIn.next(false);
     this.username.next(null);
+    this.token.next(null);
   }
 
   private  getTokenFromLocalStorage(): void {
@@ -65,11 +72,13 @@ export class JwtTokenService {
     
     if (this.hasTokenExpired(token)) {
       this.logout();
+      return;
     }
 
     this.jwtToken = token;
     this.decodeToken();
     this.isLoggedIn.next(true);
+    this.token.next(this.jwtToken);
   }
 
   private hasTokenExpired(token: string): boolean {
