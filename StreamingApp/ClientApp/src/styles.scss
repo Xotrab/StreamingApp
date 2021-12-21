@@ -172,3 +172,7 @@ input:-webkit-autofill:active{
 .mat-tab-label {
   @extend .font-black-small-normal;
 }
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+}
