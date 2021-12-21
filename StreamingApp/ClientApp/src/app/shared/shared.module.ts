@@ -11,6 +11,7 @@ import { SliderComponent } from './slider/slider.component';
 import { ArtistBriefCardComponent } from './artist-brief-card/artist-brief-card.component';
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatIconModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
   ],
   exports: [
     MatInputModule,
@@ -40,7 +42,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     SliderComponent,
     ArtistBriefCardComponent,
     EnumToArrayPipe,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }
