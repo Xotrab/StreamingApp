@@ -165,6 +165,10 @@ input:-webkit-autofill:active{
   stroke: var(--blue-accent-color);
 }
 
+.mat-tab-group {
+  width: 41.7%;
+}
+
 .mat-tab-group.mat-primary .mat-ink-bar {
   background-color: var(--red-accent-color) !important;
 }
