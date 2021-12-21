@@ -1,1 +1,26 @@
-<p>upload-song-dialog works!</p>
+<div class="container">
+    <span class="container__header font-black-medium-bold">
+        Upload song
+    </span>
+    <ngx-dropzone class="container__dropzone" accept="audio/mpeg" multiple="false" (change)="onFileDrop($event)">
+        <ngx-dropzone-label class="label font-dark-gray-small-regular">Drop your file here</ngx-dropzone-label>
+        <ngx-dropzone-preview class="preview" *ngIf="song" [removable]="true" (removed)="onFileRemove()">
+            <ngx-dropzone-label class="dropzone-label">
+                <div class="image-placeholder">
+                    <mat-icon>music_note</mat-icon>
+                </div>
+                <span class="font-black-small-regular">
+                    {{ song.name }}
+                </span>
+            </ngx-dropzone-label>
+        </ngx-dropzone-preview>
+    </ngx-dropzone>
+    <div class="container__actions">
+        <button class="rounded-button--medium-gray font-black-small-bold" (click)="close()">
+            Cancel
+        </button>
+        <button class="rounded-button--red-accent font-white-small-bold">
+            Upload
+        </button>
+    </div>
+</div>
