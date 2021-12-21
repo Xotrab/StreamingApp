@@ -4,6 +4,7 @@ import { UserLibraryComponent } from './user-library/user-library.component';
 import { SharedModule } from '../shared/shared.module';
 import { UploadedSongsComponent } from './uploaded-songs/uploaded-songs.component';
 import { UploadSongDialogComponent } from './upload-song-dialog/upload-song-dialog.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 
@@ -15,12 +16,14 @@ import { UploadSongDialogComponent } from './upload-song-dialog/upload-song-dial
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    NgxDropzoneModule
   ],
   exports: [
     UserLibraryComponent,
     UploadedSongsComponent,
-    UploadSongDialogComponent
+    UploadSongDialogComponent,
+    NgxDropzoneModule
   ]
 })
 export class LibraryModule { }
