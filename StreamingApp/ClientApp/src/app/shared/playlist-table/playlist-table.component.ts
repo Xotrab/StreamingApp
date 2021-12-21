@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PlaylistDto } from 'src/app/api/dtos/playlist-dto';
+import { SongDto } from 'src/app/api/dtos/song-dto';
 
 @Component({
   selector: 'app-playlist-table',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistTableComponent implements OnInit {
 
+  @Input() playlist: PlaylistDto;
+
+  public dataSource: Array<SongDto>;
+  public displayedColumns: string[] = ['position', 'title', 'artist', 'genre', 'addedOn', 'likes', 'playbacks'];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.dataSource = this.playlist.songs;
   }
 
 }
