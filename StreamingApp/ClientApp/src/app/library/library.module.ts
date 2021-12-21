@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { UserLibraryComponent } from './user-library/user-library.component';
 import { SharedModule } from '../shared/shared.module';
 import { UploadedSongsComponent } from './uploaded-songs/uploaded-songs.component';
+import { UploadSongDialogComponent } from './upload-song-dialog/upload-song-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     UserLibraryComponent,
-    UploadedSongsComponent
+    UploadedSongsComponent,
+    UploadSongDialogComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { UploadedSongsComponent } from './uploaded-songs/uploaded-songs.componen
   ],
   exports: [
     UserLibraryComponent,
-    UploadedSongsComponent
+    UploadedSongsComponent,
+    UploadSongDialogComponent
   ]
 })
 export class LibraryModule { }
