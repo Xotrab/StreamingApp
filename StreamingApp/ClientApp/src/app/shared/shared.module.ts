@@ -53,6 +53,9 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     PlaylistTableComponent,
     MatTableModule
+  ],
+  providers: [
+    EnumToArrayPipe
   ]
 })
 export class SharedModule { }
