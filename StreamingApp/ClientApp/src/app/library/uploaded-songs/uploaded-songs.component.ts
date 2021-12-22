@@ -57,6 +57,34 @@ export class UploadedSongsComponent implements OnInit {
           userName: "Keef"
         }
       },
+      {
+        id: 4,
+        name: "gym class",
+        genre: 1,
+        url: "",
+        playbacks: 1337,
+        likes: 2500,
+        addedOn: new Date(Date.now()),
+        author: {
+          id: 11,
+          email: "b.kaluza99@gmail.com",
+          userName: "Peep"
+        }
+      },
+      {
+        id: 5,
+        name: "Nights",
+        genre: 1,
+        url: "",
+        playbacks: 1337,
+        likes: 2500,
+        addedOn: new Date(Date.now()),
+        author: {
+          id: 11,
+          email: "b.kaluza99@gmail.com",
+          userName: "Frank Ocean"
+        }
+      },
     ],
     playbacks: 0,
     likes: 0,
