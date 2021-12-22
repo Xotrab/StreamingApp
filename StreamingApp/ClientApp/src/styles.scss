@@ -202,6 +202,19 @@ input:-webkit-autofill:active{
   }
 }
 
+// controlling the visibility of the play button on playlist table row
+.mat-row .play-button {
+  display: none;
+}
+
+.mat-row:hover .play-button {
+  display: block;
+}
+
+.mat-row:hover .song-position {
+  display: none;
+}
+
 tr td:first-child { 
   border-top-left-radius: 0.75rem;
   border-bottom-left-radius: 0.75rem;
@@ -216,4 +229,5 @@ tr td:last-child {
   border-collapse: separate!important;
   border-spacing:0 1rem !important;
 }
+
 
