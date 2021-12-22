@@ -13,13 +13,16 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { PlaylistTableComponent } from './playlist-table/playlist-table.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     PlaylistBriefCardComponent,
     ArtistBriefCardComponent,
     SliderComponent,
-    EnumToArrayPipe
+    EnumToArrayPipe,
+    PlaylistTableComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatProgressSpinnerModule,
     MatTabsModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   exports: [
     MatInputModule,
@@ -46,7 +50,12 @@ import { MatSelectModule } from '@angular/material/select';
     EnumToArrayPipe,
     MatTabsModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    PlaylistTableComponent,
+    MatTableModule
+  ],
+  providers: [
+    EnumToArrayPipe
   ]
 })
 export class SharedModule { }

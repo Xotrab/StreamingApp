@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ApplicationUser } from '../helpers/application-user';
+import { ApplicationUserDto } from '../api/dtos/application-user-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtTokenService {
 
-  public decodedUser: ApplicationUser;
+  public decodedUser: ApplicationUserDto;
 
   private jwtToken: string;
 
