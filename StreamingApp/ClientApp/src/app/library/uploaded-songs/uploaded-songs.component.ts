@@ -60,7 +60,7 @@ export class UploadedSongsComponent implements OnInit {
       {
         id: 4,
         name: "gym class",
-        genre: 1,
+        genre: 8,
         url: "",
         playbacks: 1337,
         likes: 2500,
