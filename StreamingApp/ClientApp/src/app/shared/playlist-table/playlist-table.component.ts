@@ -19,7 +19,7 @@ export class PlaylistTableComponent implements OnInit {
   public genres = Genre;
   public genreNames: Array<string>;
 
-  public currentSongId: number = 0;
+  public currentSongId: number = null;
   public isPlaying: boolean = false;
 
   constructor(private enumToArrayPipe: EnumToArrayPipe) { }
