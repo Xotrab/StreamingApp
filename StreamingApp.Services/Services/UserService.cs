@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -20,18 +21,18 @@ namespace StreamingApp.Services
     public class UserService : IUserService
     {
         private readonly UserManager<ApplicationUser> mUserManager;
-        private readonly ApplicationUserMapper mApplicationUserMapper;
+        private readonly IMapper mMapper;
         private readonly IConfiguration mConfiguration;
         private readonly IMailService mMailService;
 
         public UserService(
             UserManager<ApplicationUser> userManager,
-            ApplicationUserMapper applicationUserMapper,
+            IMapper mapper,
             IConfiguration configuration,
             IMailService mailService)
         {
             mUserManager = userManager;
-            mApplicationUserMapper = applicationUserMapper;
+            mMapper = mapper;
             mConfiguration = configuration;
             mMailService = mailService;
         }
@@ -61,7 +62,7 @@ namespace StreamingApp.Services
             if (registerDto.Password != registerDto.ConfirmPassword)
                 return "Password mismatch".ToResponseFail();
 
-            var applicationUser = mApplicationUserMapper.Map(registerDto);
+            var applicationUser = mMapper.Map<ApplicationUser>(registerDto);
 
             var result = await mUserManager.CreateAsync(applicationUser, registerDto.Password);
 
