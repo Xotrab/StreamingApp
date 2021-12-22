@@ -212,3 +212,8 @@ tr td:last-child {
   border-bottom-right-radius: 0.75rem;
 }
 
+.mat-table {
+  border-collapse: separate!important;
+  border-spacing:0 1rem !important;
+}
+
