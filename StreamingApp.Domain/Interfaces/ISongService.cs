@@ -11,5 +11,6 @@ namespace StreamingApp.Domain.Interfaces
     public interface ISongService
     {
         Task<Response> AddAsync(UploadSongDto uploadSongDto, string url, int userId);
+        Task<Response> GetUploadedAsync(int userId);
     }
 }

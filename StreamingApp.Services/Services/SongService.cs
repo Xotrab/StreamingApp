@@ -44,5 +44,21 @@ namespace StreamingApp.Services
 
             return result.ToResponseData();
         }
+
+        public async Task<Response> GetUploadedAsync(int userId)
+        {
+            List<SongModel> result;
+
+            try 
+            {
+                result = await mSongRepository.GetUploadedAsync(userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while fetching the uploaded".ToResponseFail();
+            }
+
+            return mMapper.Map<List<SongDto>>(result).ToResponseData();
+        }
     }
 }

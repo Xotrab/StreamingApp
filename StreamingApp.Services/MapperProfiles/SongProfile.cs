@@ -19,6 +19,9 @@ namespace StreamingApp.Services.Mappers
                 .ForMember(model => model.Url, x => x.MapFrom((src, dst, dstMember, context) => context.Items["Url"]))
                 .ForMember(model => model.AuthorId, x => x.MapFrom((src, dst, dstMember, context) => context.Items["AuthorId"]))
                 .ForMember(model => model.AddedOn, x => x.MapFrom(_ => DateTime.Now));
+
+            CreateMap<SongModel, SongDto>()
+                .ForMember(dto => dto.Likes, x => x.MapFrom(model => model.LikedBy.Count));
         }
     }
 }
