@@ -41,5 +41,19 @@ namespace StreamingApp.Controllers
 
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpGet("uploads")]
+        public async Task<IActionResult> GetUploadedAsync()
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mSongService.GetUploadedAsync(userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }
