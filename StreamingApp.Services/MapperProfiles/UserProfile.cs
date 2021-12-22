@@ -14,6 +14,8 @@ namespace StreamingApp.Services.Mappers
         public UserProfile()
         {
             CreateMap<RegisterDto, ApplicationUser>();
+
+            CreateMap<ApplicationUser, ApplicationUserDto>();
         }
     }
 }
