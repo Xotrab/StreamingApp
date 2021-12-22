@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PlaylistDto } from 'src/app/api/dtos/playlist-dto';
 import { SongDto } from 'src/app/api/dtos/song-dto';
+import { Genre } from 'src/app/helpers/genre.enum';
+import { EnumToArrayPipe } from '../pipes/enum-to-array.pipe';
 
 @Component({
   selector: 'app-playlist-table',
@@ -14,10 +16,14 @@ export class PlaylistTableComponent implements OnInit {
   public dataSource: Array<SongDto>;
   public displayedColumns: string[] = ['position', 'title', 'artist', 'genre', 'addedOn', 'likes', 'playbacks'];
 
-  constructor() { }
+  public genres = Genre;
+  public genreNames: Array<string>;
+
+  constructor(private enumToArrayPipe: EnumToArrayPipe) { }
 
   ngOnInit(): void {
     this.dataSource = this.playlist.songs;
+    this.genreNames = this.enumToArrayPipe.transform(this.genres);
   }
 
 }
