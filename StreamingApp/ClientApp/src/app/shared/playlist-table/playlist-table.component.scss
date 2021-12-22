@@ -27,4 +27,18 @@ table {
     .mat-column-likes, .mat-column-playbacks {
         width: 15%;
     }
+
+    .play-button {
+        transform: scale(1.15);
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    .position-header {
+        padding-left: 2.9rem;
+    }
+
+    .song-position {
+        padding-left: 0.5rem;
+    }
 }
