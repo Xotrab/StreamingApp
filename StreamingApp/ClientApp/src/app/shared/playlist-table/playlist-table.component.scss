@@ -1,3 +1,23 @@
 table {
     width: 100%;
+
+    .mat-column-position {
+        width: 5%;
+    }
+
+    .mat-column-title {
+        width: 25%;
+    }
+
+    .mat-column-artist {
+        width: 20%;
+    }
+
+    .mat-column-genre, .mat-column-addedOn {
+        width: 10%;
+    }
+
+    .mat-column-likes, .mat-column-playbacks {
+        width: 15%;
+    }
 }
