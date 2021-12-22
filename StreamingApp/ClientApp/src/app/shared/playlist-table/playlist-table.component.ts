@@ -19,11 +19,23 @@ export class PlaylistTableComponent implements OnInit {
   public genres = Genre;
   public genreNames: Array<string>;
 
+  public currentSongId: number = 0;
+  public isPlaying: boolean = false;
+
   constructor(private enumToArrayPipe: EnumToArrayPipe) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.dataSource = this.playlist.songs;
     this.genreNames = this.enumToArrayPipe.transform(this.genres);
+  }
+
+  public play(id: number): void {
+    this.currentSongId = id;
+    this.isPlaying = true;
+  }
+
+  public pause(): void {
+    this.isPlaying = false;
   }
 
 }
