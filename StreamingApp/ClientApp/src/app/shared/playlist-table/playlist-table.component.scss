@@ -41,4 +41,12 @@ table {
     .song-position {
         padding-left: 0.5rem;
     }
+
+    .selected-row {
+        background-color: var(--red-accent-color);
+        
+        td {
+            color: var(--white-color) !important;
+        }
+    }
 }
