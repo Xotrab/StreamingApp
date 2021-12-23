@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SongDto } from '../api/dtos/song-dto';
+import { AudioPlayerService } from '../services/audio-player.service';
 
 @Component({
   selector: 'app-audio-player',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AudioPlayerComponent implements OnInit {
 
+  public song: SongDto;
+
   public isLiked: boolean = false;
 
-  constructor() { }
+  constructor(private audioPlayerService: AudioPlayerService) { }
 
   public ngOnInit(): void {
     var style = document.createElement( 'style' );
@@ -17,7 +21,23 @@ export class AudioPlayerComponent implements OnInit {
     document.getElementById('vmPlayer').shadowRoot.appendChild(style);
   }
 
-  public tooglePlaylistLike(): void {
+  public togglePlaylistLike(): void {
     this.isLiked = !this.isLiked;
+  }
+
+  public toggleLoop(): void {
+
+  }
+
+  public previous(): void {
+
+  }
+
+  public togglePlay(): void {
+    
+  }
+
+  public next(): void {
+
   }
 }
