@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Player } from '@vime/angular';
 import { SongDto } from '../api/dtos/song-dto';
 import { AudioPlayerService } from '../services/audio-player.service';
 
@@ -7,18 +8,38 @@ import { AudioPlayerService } from '../services/audio-player.service';
   templateUrl: './audio-player.component.html',
   styleUrls: ['./audio-player.component.scss']
 })
-export class AudioPlayerComponent implements OnInit {
+export class AudioPlayerComponent implements OnInit, AfterViewInit {
 
   public song: SongDto;
 
   public isLiked: boolean = false;
 
+  public isPlaying: boolean = false;
+
+  public harambe: boolean = true;
+
   constructor(private audioPlayerService: AudioPlayerService) { }
 
+  @ViewChildren(Player) playerList: QueryList<Player>
+
+  ngAfterViewInit() {
+    this.playerList.changes.subscribe(() => {
+      const player = this.playerList.first;
+      if(!!player) {
+        var style = document.createElement( 'style' );
+        style.innerHTML = 'div { background-color: #F5F5F5; padding-bottom: 10rem !important;}';
+        document.getElementById('vmPlayer').shadowRoot.appendChild(style);
+      }
+    })  
+  } 
+  
   public ngOnInit(): void {
-    var style = document.createElement( 'style' );
-    style.innerHTML = 'div { background-color: #F5F5F5; padding-bottom: 10rem !important;}';
-    document.getElementById('vmPlayer').shadowRoot.appendChild(style);
+    this.audioPlayerService.currentSong$.subscribe(result => {
+      this.song = result;
+      this.harambe = false;
+      setTimeout(()=> {this.harambe = true;}, 1);
+    });
+    this.audioPlayerService.isPlaying$.subscribe(result => this.isPlaying = result);
   }
 
   public togglePlaylistLike(): void {
@@ -30,14 +51,15 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   public previous(): void {
-
+    this.audioPlayerService.previous();
   }
 
   public togglePlay(): void {
-    
+    this.isPlaying = !this.isPlaying;
+    this.audioPlayerService.togglePlay(this.isPlaying);
   }
 
   public next(): void {
-
+    this.audioPlayerService.next();
   }
 }
