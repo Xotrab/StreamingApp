@@ -1,44 +1,46 @@
 <div class="container">
     <div class="container__song-info">
         <span class="font-black-tiny-bold">
-            Author
+            {{ song.author.userName }}
         </span>
         <span class="font-black-tiny-regular">
-            Title
+            {{ song.name }}
         </span>
     </div>
-    <vm-player class="container__player" theme="light" id="vmPlayer">
-        <vm-hls version="latest">
-            <source
-            data-src="https://xotrab-gewc1.streaming.media.azure.net/8fe88093-fb12-4f4c-850b-d8458dd2e0b5/Riot.ism/manifest(format=m3u8-aapl)" 
-            type="application/x-mpegURL"
-            />
-        </vm-hls>
-        <vm-ui>
-            <vm-controls fullWidth>
-                <vm-control-group space="both">
-                    <div class="spacer"></div>
-                    <vm-control (click)="toggleLoop()">
-                        <mat-icon class="custom-button">loop</mat-icon>
-                    </vm-control>
-                    <vm-control (click)="previous()">
-                        <mat-icon class="custom-button--scaled">skip_previous</mat-icon>
-                    </vm-control>
-                    <vm-playback-control (click)="togglePlay()"></vm-playback-control>
-                    <vm-control (click)="next()">
-                        <mat-icon class="custom-button--scaled">skip_next</mat-icon>
-                    </vm-control>
-                    <vm-volume-control></vm-volume-control>
-                    <vm-control-spacer></vm-control-spacer>
-                </vm-control-group>
-                <vm-control-group space="bottom">
-                    <vm-current-time></vm-current-time>
-                    <vm-scrubber-control></vm-scrubber-control>
-                    <vm-end-time></vm-end-time>
-                </vm-control-group>
-            </vm-controls>
-        </vm-ui>
-    </vm-player>
+    <ng-container *ngIf="harambe">
+        <vm-player class="container__player" theme="light" id="vmPlayer" [autoplay]="isPlaying">
+            <vm-hls version="latest">
+                <source
+                [src]="song.url"
+                type="application/x-mpegURL"
+                />
+            </vm-hls>
+            <vm-ui>
+                <vm-controls fullWidth [activeDuration]="80000">
+                    <vm-control-group space="both">
+                        <div class="spacer"></div>
+                        <vm-control (click)="toggleLoop()">
+                            <mat-icon class="custom-button">loop</mat-icon>
+                        </vm-control>
+                        <vm-control (click)="previous()">
+                            <mat-icon class="custom-button--scaled">skip_previous</mat-icon>
+                        </vm-control>
+                        <vm-playback-control [pressed]="isPlaying" (click)="togglePlay()"></vm-playback-control>
+                        <vm-control (click)="next()">
+                            <mat-icon class="custom-button--scaled">skip_next</mat-icon>
+                        </vm-control>
+                        <vm-volume-control></vm-volume-control>
+                        <vm-control-spacer></vm-control-spacer>
+                    </vm-control-group>
+                    <vm-control-group space="bottom">
+                        <vm-current-time></vm-current-time>
+                        <vm-scrubber-control></vm-scrubber-control>
+                        <vm-end-time></vm-end-time>
+                    </vm-control-group>
+                </vm-controls>
+            </vm-ui>
+        </vm-player>
+    </ng-container>
     <div class="container__other">
         <mat-icon *ngIf="!isLiked" class="not-liked" (click)="togglePlaylistLike()">
             favorite_border
@@ -52,7 +54,7 @@
                     play_arrow
                 </mat-icon>
                 <span>
-                    212k
+                    {{ song.playbacks }}
                 </span>
             </div>
             <div>
@@ -60,7 +62,7 @@
                     favorite
                 </mat-icon>
                 <span>
-                    43k
+                    {{ song.likes }}
                 </span>
             </div>
         </div>
