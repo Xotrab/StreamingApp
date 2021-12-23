@@ -10,7 +10,7 @@
     <vm-player class="container__player" theme="light" id="vmPlayer">
         <vm-hls version="latest">
             <source
-            data-src="https://xotrab-gewc1.streaming.media.azure.net/71ffd6fa-5414-44e9-aab2-051e11f8983f/wielka%20piwnica.ism/manifest(format=m3u8-aapl)" 
+            data-src="https://xotrab-gewc1.streaming.media.azure.net/8fe88093-fb12-4f4c-850b-d8458dd2e0b5/Riot.ism/manifest(format=m3u8-aapl)" 
             type="application/x-mpegURL"
             />
         </vm-hls>
@@ -18,14 +18,14 @@
             <vm-controls fullWidth>
                 <vm-control-group space="both">
                     <div class="spacer"></div>
-                    <vm-control>
+                    <vm-control (click)="toggleLoop()">
                         <mat-icon class="custom-button">loop</mat-icon>
                     </vm-control>
-                    <vm-control>
+                    <vm-control (click)="previous()">
                         <mat-icon class="custom-button--scaled">skip_previous</mat-icon>
                     </vm-control>
-                    <vm-playback-control></vm-playback-control>
-                    <vm-control>
+                    <vm-playback-control (click)="togglePlay()"></vm-playback-control>
+                    <vm-control (click)="next()">
                         <mat-icon class="custom-button--scaled">skip_next</mat-icon>
                     </vm-control>
                     <vm-volume-control></vm-volume-control>
@@ -40,10 +40,10 @@
         </vm-ui>
     </vm-player>
     <div class="container__other">
-        <mat-icon *ngIf="!isLiked" class="not-liked" (click)="tooglePlaylistLike()">
+        <mat-icon *ngIf="!isLiked" class="not-liked" (click)="togglePlaylistLike()">
             favorite_border
         </mat-icon>
-        <mat-icon *ngIf="isLiked" class="liked" (click)="tooglePlaylistLike()">
+        <mat-icon *ngIf="isLiked" class="liked" (click)="togglePlaylistLike()">
             favorite
         </mat-icon>
         <div class="stats font-dark-gray-tiny-regular">
