@@ -10,5 +10,6 @@ namespace StreamingApp.Domain.Interfaces
         Task<Response> GetUploadedAsync(int userId);
         Task<Response> GetLikedSongsAsync(int userId);
         Task<Response> LikeSongAsync(int songId, int userId);
+        Task<Response> DislikeSongAsync(int songId, int userId);
     }
 }

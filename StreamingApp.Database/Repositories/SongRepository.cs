@@ -57,5 +57,18 @@ namespace StreamingApp.Database.Repositories
             mDbSet.Update(song);
             await mDbContext.SaveChangesAsync();
         }
+
+        public async Task DislikeSongAsync(int songId, int userId)
+        {
+            var song = await mDbSet.Include(x => x.LikedBy)
+                                   .FirstOrDefaultAsync(x => x.Id == songId);
+
+            var songLike = song.LikedBy.FirstOrDefault(x => x.UserId == userId);
+
+            song.LikedBy.Remove(songLike);
+
+            mDbSet.Update(song);
+            await mDbContext.SaveChangesAsync();
+        }
     }
 }

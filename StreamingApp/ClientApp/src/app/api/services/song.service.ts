@@ -40,4 +40,10 @@ export class SongService {
 
     return this.http.post<ApiResponse<any>>(url, null);
   }
+
+  public dislikeSong(songId: number): Observable<ApiResponse<any>> {
+    const url = environment.appUrl + '/songs/' + songId + '/likes';
+
+    return this.http.delete<ApiResponse<any>>(url);
+  }
 }

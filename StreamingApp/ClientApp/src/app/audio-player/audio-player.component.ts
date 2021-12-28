@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Player } from '@vime/angular';
 import { SongDto } from '../api/dtos/song-dto';
+import { SongService } from '../api/services/song.service';
 import { AudioPlayerService } from '../services/audio-player.service';
 
 @Component({
@@ -12,15 +13,15 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
 
   public song: SongDto;
 
-  public isLiked: boolean = false;
-
   public isPlaying: boolean = false;
 
   public harambe: boolean = true;
 
   public loopActive: boolean = false;
 
-  constructor(private audioPlayerService: AudioPlayerService) { }
+  public likedSongs: Array<SongDto>;
+
+  constructor(private audioPlayerService: AudioPlayerService, private songService: SongService) { }
 
   @ViewChildren(Player) playerList: QueryList<Player>;
 
@@ -52,7 +53,16 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
   }
 
   public togglePlaylistLike(): void {
-    this.isLiked = !this.isLiked;
+    if (!this.song.likedByUser) {
+      this.songService.likeSong(this.song.id).subscribe(result => {
+        this.song.likedByUser = true;
+      });
+    }
+    else {
+      this.songService.dislikeSong(this.song.id).subscribe(result => {
+        this.song.likedByUser = false;
+      })
+    }
   }
 
   public toggleLoop(): void {
