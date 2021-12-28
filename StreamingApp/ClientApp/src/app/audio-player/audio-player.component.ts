@@ -20,7 +20,9 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
 
   constructor(private audioPlayerService: AudioPlayerService) { }
 
-  @ViewChildren(Player) playerList: QueryList<Player>
+  @ViewChildren(Player) playerList: QueryList<Player>;
+
+  @ViewChild(Player) player: Player;
 
   ngAfterViewInit() {
     this.playerList.changes.subscribe(() => {
@@ -39,7 +41,12 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
       this.harambe = false;
       setTimeout(()=> {this.harambe = true;}, 1);
     });
-    this.audioPlayerService.isPlaying$.subscribe(result => this.isPlaying = result);
+    this.audioPlayerService.isPlaying$.subscribe(result => {
+      this.isPlaying = result;
+      if (this.player) {
+        this.player.paused = !this.isPlaying;
+      }
+    });
   }
 
   public togglePlaylistLike(): void {
@@ -55,8 +62,8 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
   }
 
   public togglePlay(): void {
-    this.isPlaying = !this.isPlaying;
-    this.audioPlayerService.togglePlay(this.isPlaying);
+    //this.isPlaying = !this.isPlaying;
+    this.audioPlayerService.togglePlay(!this.isPlaying);
   }
 
   public next(): void {
