@@ -29,7 +29,7 @@ export class AudioPlayerService {
 
   constructor() {
     const tempPlaylist: PlaylistDto = {
-      id: 0,
+      id: -2,
       name: "Liked Songs",
       playbacks: 0,
       likes: 0,
@@ -76,11 +76,25 @@ export class AudioPlayerService {
             "email":"b.kaluza99@gmail.com",
             "userName":"Gigachad"
           }
-        }
+        },
+        {
+          "id":4,
+          "name":"Solo 2",
+          "url":"https://xotrab-gewc1.streaming.media.azure.net/f1832712-af9d-4f95-9924-cb71e62fbe95/Solo.ism/manifest(format=m3u8-aapl)",
+          "genre":4,
+          "playbacks":0,
+          "addedOn": null,
+          "likes":0,
+          "author":{
+            "id":11,
+            "email":"b.kaluza99@gmail.com",
+            "userName":"Gigachad"
+          }
+        },
       ]
     };
 
-    this.playPlaylist(tempPlaylist, 0);
+    this.playPlaylist(tempPlaylist, 3, true);
    }
 
   //Methods called by both
@@ -91,14 +105,20 @@ export class AudioPlayerService {
 
   //Methods called by other components
 
-  public playPlaylist(playlist: PlaylistDto, songId: number): void {
+  public playPlaylist(playlist: PlaylistDto, songId: number, init: boolean=false): void {
     if (this.playlist?.id !== playlist.id) {
       this.playlist = playlist;
       this.playlistId.next(this.playlist.id);
     }
 
-    this.currentSongId = songId;
-    this.currentSong.next(this.playlist.songs[this.currentSongId]);
+    if (this.currentSongId !== songId) {
+      this.currentSongId = songId;
+      this.currentSong.next(this.playlist.songs[this.currentSongId]);
+    }
+    
+    if (!init) {
+      this.isPlaying.next(true);
+    }
   }
 
 
