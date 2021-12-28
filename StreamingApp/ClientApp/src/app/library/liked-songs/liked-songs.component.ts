@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SongDto } from 'src/app/api/dtos/song-dto';
+import { SongService } from 'src/app/api/services/song.service';
 
 @Component({
   selector: 'app-liked-songs',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LikedSongsComponent implements OnInit {
 
-  constructor() { }
+  public likedSongs: Array<SongDto>;
 
-  ngOnInit(): void {
+  constructor(private songService: SongService) { }
+
+  public ngOnInit(): void {
+    this.songService.getLiked().subscribe(result => this.likedSongs = result.data);
   }
 
 }
