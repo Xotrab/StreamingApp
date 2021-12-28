@@ -55,5 +55,19 @@ namespace StreamingApp.Controllers
 
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpGet("likes")]
+        public async Task<IActionResult> GetLikedSongsAsync()
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mSongService.GetLikedSongsAsync(userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }

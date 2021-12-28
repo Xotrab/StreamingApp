@@ -60,5 +60,21 @@ namespace StreamingApp.Services
 
             return mMapper.Map<List<SongDto>>(result).ToResponseData();
         }
+
+        public async Task<Response> GetLikedSongsAsync(int userId)
+        {
+            List<SongModel> result;
+
+            try
+            {
+                result = await mSongRepository.GetLikedSongsAsync(userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while fetching the liked songs".ToResponseFail();
+            }
+
+            return mMapper.Map<List<SongDto>>(result).ToResponseData();
+        }
     }
 }

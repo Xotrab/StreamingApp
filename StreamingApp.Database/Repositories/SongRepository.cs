@@ -32,5 +32,13 @@ namespace StreamingApp.Database.Repositories
                                .Where(x => x.AuthorId == userId)
                                .ToListAsync();
         }
+
+        public async Task<List<SongModel>> GetLikedSongsAsync(int userId)
+        {
+            return await mDbSet.Include(x => x.Author)
+                               .Include(x => x.LikedBy)
+                               .Where(x => x.LikedBy.Any(x => x.UserId == userId))
+                               .ToListAsync();
+        }
     }
 }
