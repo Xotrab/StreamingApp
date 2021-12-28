@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using StreamingApp.Database.Repositories;
 using StreamingApp.Domain.DTOs;
 using StreamingApp.Domain.Entities;
@@ -75,6 +76,20 @@ namespace StreamingApp.Services
             }
 
             return mMapper.Map<List<SongDto>>(result).ToResponseData();
+        }
+
+        public async Task<Response> LikeSongAsync(int songId, int userId)
+        {
+            try
+            {
+                await mSongRepository.LikeSongAsync(songId, userId);
+            }
+            catch(Exception)
+            {
+                return "Error occured while liking the song".ToResponseFail();
+            }
+
+            return "Song liked successfully".ToResponseSuccess();
         }
     }
 }

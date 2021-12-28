@@ -69,5 +69,19 @@ namespace StreamingApp.Controllers
 
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpPost("songs/{songId}/likes")]
+        public async Task<IActionResult> LikeSongAsync(int songId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mSongService.LikeSongAsync(songId, userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }

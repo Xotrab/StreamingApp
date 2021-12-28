@@ -1,9 +1,5 @@
 ﻿using StreamingApp.Domain.DTOs;
 using StreamingApp.Shared.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StreamingApp.Domain.Interfaces
@@ -13,5 +9,6 @@ namespace StreamingApp.Domain.Interfaces
         Task<Response> AddAsync(UploadSongDto uploadSongDto, string url, int userId);
         Task<Response> GetUploadedAsync(int userId);
         Task<Response> GetLikedSongsAsync(int userId);
+        Task<Response> LikeSongAsync(int songId, int userId);
     }
 }
