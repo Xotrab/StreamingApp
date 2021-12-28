@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { PlaylistDto } from 'src/app/api/dtos/playlist-dto';
 import { SongDto } from 'src/app/api/dtos/song-dto';
 import { Genre } from 'src/app/helpers/genre.enum';
+import { AudioPlayerService } from 'src/app/services/audio-player.service';
 import { EnumToArrayPipe } from '../pipes/enum-to-array.pipe';
 
 @Component({
@@ -12,6 +13,7 @@ import { EnumToArrayPipe } from '../pipes/enum-to-array.pipe';
 export class PlaylistTableComponent implements OnInit, OnChanges {
 
   @Input() songs: Array<SongDto>;
+  @Input() playlistId: number;
 
   public dataSource: Array<SongDto>;
   public displayedColumns: string[] = ['position', 'title', 'artist', 'genre', 'addedOn', 'likes', 'playbacks'];
@@ -22,11 +24,13 @@ export class PlaylistTableComponent implements OnInit, OnChanges {
   public currentSongId: number = null;
   public isPlaying: boolean = false;
 
-  constructor(private enumToArrayPipe: EnumToArrayPipe) { }
+  constructor(private enumToArrayPipe: EnumToArrayPipe, private audioPlayerService: AudioPlayerService) { }
   
   public ngOnInit(): void {
     this.dataSource = this.songs;
     this.genreNames = this.enumToArrayPipe.transform(this.genres);
+
+    this.audioPlayerService.isPlaying$.subscribe(result => this.isPlaying = result);
   }
   
   public ngOnChanges(changes: SimpleChanges): void {
@@ -38,10 +42,18 @@ export class PlaylistTableComponent implements OnInit, OnChanges {
   public play(id: number): void {
     this.currentSongId = id;
     this.isPlaying = true;
+
+    const playlistDto = {
+      id: this.playlistId,
+      songs: this.songs
+    } as PlaylistDto;
+
+    this.audioPlayerService.playPlaylist(playlistDto, this.currentSongId);
   }
 
   public pause(): void {
     this.isPlaying = false;
+    this.audioPlayerService.togglePlay(false);
   }
 
 }
