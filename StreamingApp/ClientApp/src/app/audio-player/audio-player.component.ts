@@ -62,7 +62,6 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
   }
 
   public togglePlay(): void {
-    //this.isPlaying = !this.isPlaying;
     this.audioPlayerService.togglePlay(!this.isPlaying);
   }
 
