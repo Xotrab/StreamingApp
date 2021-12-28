@@ -36,6 +36,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns; let i=index" [ngClass]="{'selected-row': i === currentSongId && playlistInThePlayer}"></tr>
   </table>
-    <div class="no-data-prompt font-black-tiny-bold" *ngIf="!dataSource">
+    <div class="no-data-prompt font-black-tiny-bold" *ngIf="!dataSource?.length">
         No songs found
     </div>

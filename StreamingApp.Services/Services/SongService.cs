@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using StreamingApp.Database.Repositories;
 using StreamingApp.Domain.DTOs;
 using StreamingApp.Domain.Entities;
@@ -58,7 +59,57 @@ namespace StreamingApp.Services
                 return "Error occured while fetching the uploaded".ToResponseFail();
             }
 
-            return mMapper.Map<List<SongDto>>(result).ToResponseData();
+            return mMapper.Map<List<SongDto>>(result, opt =>
+            {
+                opt.Items["UserId"] = userId;
+            }).ToResponseData();
+        }
+
+        public async Task<Response> GetLikedSongsAsync(int userId)
+        {
+            List<SongModel> result;
+
+            try
+            {
+                result = await mSongRepository.GetLikedSongsAsync(userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while fetching the liked songs".ToResponseFail();
+            }
+
+            return mMapper.Map<List<SongDto>>(result, opt =>
+            {
+                opt.Items["UserId"] = userId;
+            }).ToResponseData();
+        }
+
+        public async Task<Response> LikeSongAsync(int songId, int userId)
+        {
+            try
+            {
+                await mSongRepository.LikeSongAsync(songId, userId);
+            }
+            catch(Exception)
+            {
+                return "Error occured while liking the song".ToResponseFail();
+            }
+
+            return "Song liked successfully".ToResponseSuccess();
+        }
+
+        public async Task<Response> DislikeSongAsync(int songId, int userId)
+        {
+            try
+            {
+                await mSongRepository.DislikeSongAsync(songId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while disliking the song".ToResponseFail();
+            }
+
+            return "Song disliked successfully".ToResponseSuccess();
         }
     }
 }

@@ -1,9 +1,5 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-
-    &__tabs {
-        height: 6rem;
-    }
+    gap: 2rem;
 }

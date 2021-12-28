@@ -8,6 +8,7 @@ export interface SongDto {
     genre: Genre;
     playbacks: number;
     likes: number;
+    likedByUser: boolean;
     addedOn: Date;
     author: ApplicationUserDto;
 };

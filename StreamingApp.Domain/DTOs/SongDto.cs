@@ -19,6 +19,8 @@ namespace StreamingApp.Domain.DTOs
 
         public int Likes { get; set; }
 
+        public bool LikedByUser { get; set; }
+
         public ApplicationUserDto Author { get; set; }
     }
 }

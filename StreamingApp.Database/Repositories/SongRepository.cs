@@ -32,5 +32,43 @@ namespace StreamingApp.Database.Repositories
                                .Where(x => x.AuthorId == userId)
                                .ToListAsync();
         }
+
+        public async Task<List<SongModel>> GetLikedSongsAsync(int userId)
+        {
+            return await mDbSet.Include(x => x.Author)
+                               .Include(x => x.LikedBy)
+                               .Where(x => x.LikedBy.Any(x => x.UserId == userId))
+                               .ToListAsync();
+        }
+
+        public async Task LikeSongAsync(int songId, int userId)
+        {
+            var song = await mDbSet.Include(x => x.LikedBy)
+                                   .FirstOrDefaultAsync(x => x.Id == songId);
+
+            var likedSong = new LikedSong 
+            {
+                UserId = userId,
+                SongId = songId,
+            };
+
+            song.LikedBy.Add(likedSong);
+
+            mDbSet.Update(song);
+            await mDbContext.SaveChangesAsync();
+        }
+
+        public async Task DislikeSongAsync(int songId, int userId)
+        {
+            var song = await mDbSet.Include(x => x.LikedBy)
+                                   .FirstOrDefaultAsync(x => x.Id == songId);
+
+            var songLike = song.LikedBy.FirstOrDefault(x => x.UserId == userId);
+
+            song.LikedBy.Remove(songLike);
+
+            mDbSet.Update(song);
+            await mDbContext.SaveChangesAsync();
+        }
     }
 }

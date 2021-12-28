@@ -50,6 +50,7 @@ export class AudioPlayerService {
           "playbacks":0,
           "addedOn":null,
           "likes":0,
+          "likedByUser": false,
           "author":{
             "id":11,
             "email":"b.kaluza99@gmail.com",
@@ -64,6 +65,7 @@ export class AudioPlayerService {
           "playbacks":0,
           "addedOn": null,
           "likes":0,
+          "likedByUser": false,
           "author":{
             "id":11,
             "email":"b.kaluza99@gmail.com",
@@ -78,6 +80,7 @@ export class AudioPlayerService {
           "playbacks":0,
           "addedOn": null,
           "likes":0,
+          "likedByUser": false,
           "author":{
             "id":11,
             "email":"b.kaluza99@gmail.com",
@@ -92,6 +95,7 @@ export class AudioPlayerService {
           "playbacks":0,
           "addedOn": null,
           "likes":0,
+          "likedByUser": false,
           "author":{
             "id":11,
             "email":"b.kaluza99@gmail.com",

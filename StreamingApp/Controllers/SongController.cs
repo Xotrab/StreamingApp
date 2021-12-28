@@ -55,5 +55,47 @@ namespace StreamingApp.Controllers
 
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpGet("likes")]
+        public async Task<IActionResult> GetLikedSongsAsync()
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mSongService.GetLikedSongsAsync(userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost("songs/{songId}/likes")]
+        public async Task<IActionResult> LikeSongAsync(int songId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mSongService.LikeSongAsync(songId, userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpDelete("songs/{songId}/likes")]
+        public async Task<IActionResult> DislikeSongAsync(int songId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mSongService.DislikeSongAsync(songId, userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }

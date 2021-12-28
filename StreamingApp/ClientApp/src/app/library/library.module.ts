@@ -6,6 +6,7 @@ import { UploadedSongsComponent } from './uploaded-songs/uploaded-songs.componen
 import { UploadSongDialogComponent } from './upload-song-dialog/upload-song-dialog.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FormsModule } from '@angular/forms';
+import { LikedSongsComponent } from './liked-songs/liked-songs.component';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     UserLibraryComponent,
     UploadedSongsComponent,
-    UploadSongDialogComponent
+    UploadSongDialogComponent,
+    LikedSongsComponent
   ],
   imports: [
     CommonModule,
