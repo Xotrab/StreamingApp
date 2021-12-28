@@ -1,17 +1,17 @@
 <div class="container">
     <div class="container__song-info">
         <span class="font-black-tiny-bold">
-            {{ song.author.userName }}
+            {{ song?.author.userName }}
         </span>
         <span class="font-black-tiny-regular">
-            {{ song.name }}
+            {{ song?.name }}
         </span>
     </div>
     <ng-container *ngIf="harambe">
         <vm-player class="container__player" theme="light" id="vmPlayer" [autoplay]="isPlaying">
             <vm-hls version="latest">
                 <source
-                [src]="song.url"
+                [src]="song?.url"
                 type="application/x-mpegURL"
                 />
             </vm-hls>
@@ -54,7 +54,7 @@
                     play_arrow
                 </mat-icon>
                 <span>
-                    {{ song.playbacks }}
+                    {{ song?.playbacks }}
                 </span>
             </div>
             <div>
@@ -62,7 +62,7 @@
                     favorite
                 </mat-icon>
                 <span>
-                    {{ song.likes }}
+                    {{ song?.likes }}
                 </span>
             </div>
         </div>
