@@ -42,10 +42,10 @@
         </vm-player>
     </ng-container>
     <div class="container__other">
-        <mat-icon *ngIf="!isLiked" class="not-liked" (click)="togglePlaylistLike()">
+        <mat-icon *ngIf="!song?.likedByUser" class="not-liked" (click)="togglePlaylistLike()">
             favorite_border
         </mat-icon>
-        <mat-icon *ngIf="isLiked" class="liked" (click)="togglePlaylistLike()">
+        <mat-icon *ngIf="song?.likedByUser" class="liked" (click)="togglePlaylistLike()">
             favorite
         </mat-icon>
         <div class="stats font-dark-gray-tiny-regular">

@@ -59,7 +59,10 @@ namespace StreamingApp.Services
                 return "Error occured while fetching the uploaded".ToResponseFail();
             }
 
-            return mMapper.Map<List<SongDto>>(result).ToResponseData();
+            return mMapper.Map<List<SongDto>>(result, opt =>
+            {
+                opt.Items["UserId"] = userId;
+            }).ToResponseData();
         }
 
         public async Task<Response> GetLikedSongsAsync(int userId)
@@ -75,7 +78,10 @@ namespace StreamingApp.Services
                 return "Error occured while fetching the liked songs".ToResponseFail();
             }
 
-            return mMapper.Map<List<SongDto>>(result).ToResponseData();
+            return mMapper.Map<List<SongDto>>(result, opt =>
+            {
+                opt.Items["UserId"] = userId;
+            }).ToResponseData();
         }
 
         public async Task<Response> LikeSongAsync(int songId, int userId)
