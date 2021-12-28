@@ -52,7 +52,6 @@ export class PlaylistTableComponent implements OnInit, OnChanges {
   }
 
   public pause(): void {
-    //this.isPlaying = false;
     this.audioPlayerService.togglePlay(false);
   }
 
