@@ -8,7 +8,7 @@
         </span>
     </div>
     <ng-container *ngIf="harambe">
-        <vm-player class="container__player" theme="light" id="vmPlayer" [autoplay]="isPlaying">
+        <vm-player class="container__player" theme="light" id="vmPlayer" [autoplay]="isPlaying" [loop]="loopActive">
             <vm-hls version="latest">
                 <source
                 [src]="song?.url"
@@ -19,7 +19,7 @@
                 <vm-controls fullWidth [activeDuration]="80000">
                     <vm-control-group space="both">
                         <div class="spacer"></div>
-                        <vm-control (click)="toggleLoop()">
+                        <vm-control [ngClass]="{'loop-active': loopActive}" (click)="toggleLoop()">
                             <mat-icon class="custom-button">loop</mat-icon>
                         </vm-control>
                         <vm-control (click)="previous()">

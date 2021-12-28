@@ -111,3 +111,7 @@ vm-current-time {
     --vm-time-font-weight: 600;
     --vm-time-font-size: 1.5rem;
 }
+
+.loop-active {
+    --vm-control-bg: var(--medium-gray-color);
+}

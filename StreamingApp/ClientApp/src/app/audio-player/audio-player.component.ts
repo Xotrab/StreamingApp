@@ -18,6 +18,8 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
 
   public harambe: boolean = true;
 
+  public loopActive: boolean = false;
+
   constructor(private audioPlayerService: AudioPlayerService) { }
 
   @ViewChildren(Player) playerList: QueryList<Player>;
@@ -54,7 +56,7 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
   }
 
   public toggleLoop(): void {
-
+    this.loopActive = !this.loopActive;
   }
 
   public previous(): void {
