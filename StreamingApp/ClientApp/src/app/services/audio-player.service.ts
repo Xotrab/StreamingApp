@@ -17,11 +17,18 @@ export class AudioPlayerService {
 		return this.currentSong.asObservable();
 	}
 
+  //Used by the playlist table component to determine the selected song
+  private songId: BehaviorSubject<number> = new BehaviorSubject<number>(null);
+	get songId$() {
+		return this.songId.asObservable();
+	}
+
+  //Used by the playlist table component to determine the selected song
   private playlistId: BehaviorSubject<number> = new BehaviorSubject<number>(null);
 	get playlistId$() {
 		return this.playlistId.asObservable();
 	}
-
+  
   private isPlaying: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 	get isPlaying$() {
 		return this.isPlaying.asObservable();
@@ -114,6 +121,7 @@ export class AudioPlayerService {
     if (this.currentSongId !== songId) {
       this.currentSongId = songId;
       this.currentSong.next(this.playlist.songs[this.currentSongId]);
+      this.songId.next(this.currentSongId);
     }
     
     if (!init) {
@@ -130,11 +138,13 @@ export class AudioPlayerService {
       this.currentSongId -= 1;
     
     this.currentSong.next(this.playlist.songs[this.currentSongId]);
+    this.songId.next(this.currentSongId);
   }
 
   public next(): void {
     //if the current song is the last one then simply play the first song in the playlist, otherwise increment the currentSongId and emit the new song
     this.currentSongId = this.currentSongId === this.playlist.songs.length - 1 ? 0 : this.currentSongId += 1;
     this.currentSong.next(this.playlist.songs[this.currentSongId]);
+    this.songId.next(this.currentSongId);
   }
 }
