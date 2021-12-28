@@ -23,6 +23,7 @@ export class PlaylistTableComponent implements OnInit, OnChanges {
 
   public currentSongId: number = null;
   public isPlaying: boolean = false;
+  public playlistInThePlayer: boolean = false;
 
   constructor(private enumToArrayPipe: EnumToArrayPipe, private audioPlayerService: AudioPlayerService) { }
   
@@ -31,6 +32,8 @@ export class PlaylistTableComponent implements OnInit, OnChanges {
     this.genreNames = this.enumToArrayPipe.transform(this.genres);
 
     this.audioPlayerService.isPlaying$.subscribe(result => this.isPlaying = result);
+    this.audioPlayerService.songId$.subscribe(result => this.currentSongId = result);
+    this.audioPlayerService.playlistId$.subscribe(result => this.playlistInThePlayer = this.playlistId === result);
   }
   
   public ngOnChanges(changes: SimpleChanges): void {
