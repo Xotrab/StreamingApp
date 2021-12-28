@@ -8,7 +8,7 @@
         </span>
     </div>
     <ng-container *ngIf="harambe">
-        <vm-player class="container__player" theme="light" id="vmPlayer" [autoplay]="isPlaying" [loop]="loopActive">
+        <vm-player class="container__player" theme="light" id="vmPlayer" [autoplay]="isPlaying" [loop]="loopActive" (vmPlaybackEnded)="autoNext()">
             <vm-hls version="latest">
                 <source
                 [src]="song?.url"

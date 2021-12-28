@@ -59,6 +59,12 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
     this.loopActive = !this.loopActive;
   }
 
+  public autoNext(): void {
+    if (!this.loopActive) {
+      this.next();
+    }
+  }
+
   public previous(): void {
     this.audioPlayerService.previous();
   }
