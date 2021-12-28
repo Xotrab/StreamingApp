@@ -56,11 +56,13 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
     if (!this.song.likedByUser) {
       this.songService.likeSong(this.song.id).subscribe(result => {
         this.song.likedByUser = true;
+        this.song.likes +=1;
       });
     }
     else {
       this.songService.dislikeSong(this.song.id).subscribe(result => {
         this.song.likedByUser = false;
+        this.song.likes -=1;
       })
     }
   }
