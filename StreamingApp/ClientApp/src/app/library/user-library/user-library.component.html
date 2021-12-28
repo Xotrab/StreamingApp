@@ -6,6 +6,7 @@
         <mat-tab label="Uploaded"></mat-tab>
     </mat-tab-group>
     <ng-container [ngSwitch]="selectedTab">
+        <app-liked-songs *ngSwitchCase="libraryTab.LikedSongs"></app-liked-songs>
         <app-uploaded-songs *ngSwitchCase="libraryTab.Uploaded"></app-uploaded-songs>
     </ng-container>
 </div>
