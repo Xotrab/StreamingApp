@@ -28,4 +28,10 @@ export class SongService {
 
     return this.http.get<ApiResponse<SongDto[]>>(url);
   }
+
+  public getLiked(): Observable<ApiResponse<SongDto[]>> {
+    const url = environment.appUrl + '/likes';
+
+    return this.http.get<ApiResponse<SongDto[]>>(url);
+  }
 }
