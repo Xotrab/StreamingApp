@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PlaylistBriefDto } from 'src/app/api/dtos/playlist-brief-dto';
 import { PlaylistService } from 'src/app/api/services/playlist.service';
+import { DialogAction } from 'src/app/helpers/dialog-action.enum';
 import { CreatePlaylistDialogComponent } from '../create-playlist-dialog/create-playlist-dialog.component';
 
 @Component({
@@ -21,7 +22,13 @@ export class UserPlaylistsComponent implements OnInit {
   }
 
   public openCreatePlaylistDialog(): void {
-    this.dialog.open(CreatePlaylistDialogComponent, { disableClose: true, scrollStrategy: new NoopScrollStrategy() });
+    const dialogRef = this.dialog.open(CreatePlaylistDialogComponent, { disableClose: true, scrollStrategy: new NoopScrollStrategy() });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      if (result.event === DialogAction.Submit) {
+        this.playlistService.getPlaylistBrief(result.data).subscribe(result => this.playlistBriefs.push(result.data));
+      }
+    });
   }
 
 }
