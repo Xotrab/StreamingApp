@@ -1,9 +1,9 @@
 <div class="brief-container">
     <div class="brief-container__like-button" *ngIf="isLoggedIn$ | async">
-        <mat-icon *ngIf="!isLiked" class="not-liked" (click)="tooglePlaylistLike()">
+        <mat-icon *ngIf="!playlistBrief?.likedByUser" class="not-liked" (click)="tooglePlaylistLike()">
             favorite_border
         </mat-icon>
-        <mat-icon *ngIf="isLiked" class="liked" (click)="tooglePlaylistLike()">
+        <mat-icon *ngIf="playlistBrief?.likedByUser" class="liked" (click)="tooglePlaylistLike()">
             favorite
         </mat-icon>
     </div>
@@ -16,10 +16,10 @@
         </button>
     </div>
     <span class="brief-container__title font-black-small-bold">
-        Title
+        {{ playlistBrief?.name }}
     </span>
     <span class="brief-container__author font-black-small-regular">
-        Author
+        {{ playlistBrief?.author?.userName }}
     </span>
     <div class="brief-container__stats font-dark-gray-small-regular">
         <div class="stat">
@@ -27,7 +27,7 @@
                 play_arrow
             </mat-icon>
             <span>
-                212k
+                {{ playlistBrief?.playbacks }}
             </span>
         </div>
         <div class="stat">
@@ -35,7 +35,7 @@
                 favorite
             </mat-icon>
             <span>
-                43k
+                {{ playlistBrief?.likes }}
             </span>
         </div>
     </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PlaylistBriefDto } from 'src/app/api/dtos/playlist-brief-dto';
 import { JwtTokenService } from 'src/app/services/jwt-token.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { JwtTokenService } from 'src/app/services/jwt-token.service';
 })
 export class PlaylistBriefCardComponent implements OnInit {
 
+  @Input() playlistBrief: PlaylistBriefDto;
+
   public isLoggedIn$: Observable<boolean>;
-  public isLiked: boolean = false;
 
   constructor(private jwtTokenService: JwtTokenService) { }
 
@@ -19,6 +21,6 @@ export class PlaylistBriefCardComponent implements OnInit {
   }
 
   public tooglePlaylistLike(): void {
-    this.isLiked = !this.isLiked;
+    //this.isLiked = !this.isLiked;
   }
 }
