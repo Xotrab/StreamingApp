@@ -1,4 +1,5 @@
-﻿using StreamingApp.Shared.Responses;
+﻿using StreamingApp.Domain.DTOs;
+using StreamingApp.Shared.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace StreamingApp.Domain.Interfaces
     public interface IPlaylistService
     {
         Task<Response> CreateAsync(string playlistName, int userId);
+        Task<Response<PlaylistBriefDto>> GetBriefAsync(int playlistId, int userId);
+        Task<Response> GetDetailedAsync(PlaylistBriefDto briefDto, int userId);
     }
 }

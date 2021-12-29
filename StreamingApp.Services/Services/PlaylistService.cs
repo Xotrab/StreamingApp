@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StreamingApp.Database.Repositories;
+using StreamingApp.Domain.DTOs;
 using StreamingApp.Domain.Entities;
 using StreamingApp.Domain.Interfaces;
 using StreamingApp.Shared.Responses;
@@ -14,12 +15,14 @@ namespace StreamingApp.Services
     public class PlaylistService : IPlaylistService
     {
         private readonly PlaylistRepository mPlaylistRepository;
+        private readonly SongRepository mSongRepository;
         private readonly IMapper mMapper;
 
-        public PlaylistService(PlaylistRepository playlistRepository, IMapper mapper)
+        public PlaylistService(PlaylistRepository playlistRepository, IMapper mapper, SongRepository songRepository)
         {
             mPlaylistRepository = playlistRepository;
             mMapper = mapper;
+            mSongRepository = songRepository;
         }
 
         public async Task<Response> CreateAsync(string playlistName, int userId)
@@ -41,6 +44,53 @@ namespace StreamingApp.Services
             }
 
             return result.ToResponseData();
+        }
+
+        public async Task<Response<PlaylistBriefDto>> GetBriefAsync(int playlistId, int userId)
+        {
+            PlaylistModel result;
+
+            try
+            {
+                result = await mPlaylistRepository.GetBriefAsync(playlistId);
+            }
+            catch (Exception)
+            {
+                return new Response<PlaylistBriefDto>
+                {
+                    Success = false,
+                    Message = "Error occured while fetching the playlist brief"
+                };
+            }
+
+            return mMapper.Map<PlaylistBriefDto>(result, opt =>
+               {
+                   opt.Items["UserId"] = userId;
+               }).ToResponseData();            
+        }
+
+        public async Task<Response> GetDetailedAsync(PlaylistBriefDto briefDto, int userId)
+        {
+            List<SongModel> result;
+
+            try
+            {
+                result = await mSongRepository.GetSongs(briefDto.SongIds);
+            }
+            catch (Exception)
+            {
+                return "Error occured while fetching playlist songs".ToResponseFail();
+            }
+
+            var songDtos = mMapper.Map<List<SongDto>>(result, opt => 
+                {
+                    opt.Items["UserId"] = userId;
+                });
+
+            return mMapper.Map<PlaylistDto>(briefDto, opt =>
+            {
+                opt.Items["Songs"] = songDtos;
+            }).ToResponseData();
         }
     }
 }
