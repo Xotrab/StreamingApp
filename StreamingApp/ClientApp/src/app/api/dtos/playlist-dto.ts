@@ -7,5 +7,6 @@ export interface PlaylistDto {
     songs: Array<SongDto>;
     playbacks: number;
     likes: number;
+    likedByUser: boolean;
     author: ApplicationUserDto;
 };

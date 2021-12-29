@@ -40,6 +40,7 @@ export class AudioPlayerService {
       name: "Liked Songs",
       playbacks: 0,
       likes: 0,
+      likedByUser: false,
       author: null,
       songs: [
         {
