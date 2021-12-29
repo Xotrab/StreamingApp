@@ -70,5 +70,13 @@ namespace StreamingApp.Database.Repositories
             mDbSet.Update(song);
             await mDbContext.SaveChangesAsync();
         }
+
+        public async Task<List<SongModel>> GetSongs(List<int> songIds)
+        {
+            return await mDbSet.Include(x => x.Author)
+                               .Include(x => x.LikedBy)
+                               .Where(x => songIds.Contains(x.Id))
+                               .ToListAsync();
+        }
     }
 }
