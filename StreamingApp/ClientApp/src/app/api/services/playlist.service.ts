@@ -38,4 +38,16 @@ export class PlaylistService {
 
     return this.http.delete<ApiResponse<void>>(url);
   }
+
+  public likePlaylist(playlistId: number): Observable<ApiResponse<void>> {
+    const url = environment.appUrl + '/playlists/' + playlistId + '/likes';
+
+    return this.http.post<ApiResponse<void>>(url, null);
+  }
+
+  public dislikePlaylist(playlistId: number): Observable<ApiResponse<void>> {
+    const url = environment.appUrl + '/playlists/' + playlistId + '/likes';
+
+    return this.http.delete<ApiResponse<void>>(url);
+  }
 }

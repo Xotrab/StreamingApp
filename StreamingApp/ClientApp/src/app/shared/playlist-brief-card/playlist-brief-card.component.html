@@ -1,9 +1,9 @@
 <div class="brief-container" (contextmenu)="onRightClick($event)">
     <div class="brief-container__like-button" *ngIf="(isLoggedIn$ | async) && !showMenu">
-        <mat-icon *ngIf="!playlistBrief?.likedByUser" class="not-liked" (click)="tooglePlaylistLike()">
+        <mat-icon *ngIf="!playlistBrief?.likedByUser" class="not-liked" (click)="likePlaylist()">
             favorite_border
         </mat-icon>
-        <mat-icon *ngIf="playlistBrief?.likedByUser" class="liked" (click)="tooglePlaylistLike()">
+        <mat-icon *ngIf="playlistBrief?.likedByUser" class="liked" (click)="dislikePlaylist()">
             favorite
         </mat-icon>
     </div>
