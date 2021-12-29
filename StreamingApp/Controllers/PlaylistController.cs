@@ -45,7 +45,7 @@ namespace StreamingApp.Controllers
 
             var result = await mPlaylistService.GetDetailedAsync(briefResult.Data, userId);
 
-            if (result.Success)
+            if (!result.Success)
                 return BadRequest(result);
 
             return Ok(result);
@@ -58,7 +58,7 @@ namespace StreamingApp.Controllers
             var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mPlaylistService.RemoveAsync(playlistId, userId);
 
-            if (result.Success)
+            if (!result.Success)
                 return BadRequest(result);
 
             return Ok(result);
@@ -71,7 +71,7 @@ namespace StreamingApp.Controllers
             var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mPlaylistService.AddSongAsync(playlistId, songId, userId);
 
-            if (result.Success)
+            if (!result.Success)
                 return BadRequest(result);
 
             return Ok(result);
@@ -84,7 +84,7 @@ namespace StreamingApp.Controllers
             var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mPlaylistService.RemoveSongAsync(playlistId, songId, userId);
 
-            if (result.Success)
+            if (!result.Success)
                 return BadRequest(result);
 
             return Ok(result);
@@ -97,7 +97,7 @@ namespace StreamingApp.Controllers
             var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mPlaylistService.LikePlaylistAsync(playlistId, userId);
 
-            if (result.Success)
+            if (!result.Success)
                 return BadRequest(result);
 
             return Ok(result);
@@ -110,7 +110,7 @@ namespace StreamingApp.Controllers
             var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mPlaylistService.DislikePlaylistAsync(playlistId, userId);
 
-            if (result.Success)
+            if (!result.Success)
                 return BadRequest(result);
 
             return Ok(result);
