@@ -230,4 +230,17 @@ tr td:last-child {
   border-spacing:0 1rem !important;
 }
 
+.mat-menu-panel {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
 
+  .mat-menu-item {
+    @extend .font-black-tiny-regular;
+    border-radius: 1.25rem;
+    background-color: var(--white-color) !important;
+
+    &:hover {
+        background-color: var(--light-gray-color) !important;
+    }
+  }
+}
