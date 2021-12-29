@@ -102,5 +102,18 @@ namespace StreamingApp.Controllers
 
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpDelete("playlists/{playlistId}/likes")]
+        public async Task<IActionResult> DislikePlaylistAsync(int playlistId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var result = await mPlaylistService.DislikePlaylistAsync(playlistId, userId);
+
+            if (result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }

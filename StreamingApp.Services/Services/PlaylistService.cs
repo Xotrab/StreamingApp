@@ -174,5 +174,19 @@ namespace StreamingApp.Services
 
             return "Playlist liked successfully".ToResponseSuccess();
         }
+
+        public async Task<Response> DislikePlaylistAsync(int playlistId, int userId)
+        {
+            try
+            {
+                await mPlaylistRepository.DislikePlaylistAsync(playlistId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while disliking the playlist".ToResponseFail();
+            }
+
+            return "Playlist disliked successfully".ToResponseSuccess();
+        }
     }
 }
