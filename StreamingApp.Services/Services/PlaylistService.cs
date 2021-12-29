@@ -102,6 +102,15 @@ namespace StreamingApp.Services
         {
             try
             {
+                await mPlaylistRepository.RemoveAllPlaylistSongs(playlistId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while removing the playlist songs".ToResponseFail();
+            }
+
+            try
+            {
                 await mPlaylistRepository.RemoveUserPlaylist(playlistId, userId);
             }
             catch (Exception)
