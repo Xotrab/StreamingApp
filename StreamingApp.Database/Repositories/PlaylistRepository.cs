@@ -140,5 +140,14 @@ namespace StreamingApp.Database.Repositories
 
             await mDbContext.SaveChangesAsync();
         }
+
+        public async Task<List<PlaylistModel>> GetUserPlaylistBriefsAsync(int userId)
+        {
+            return await mDbSet.Include(x => x.Author)
+                               .Include(x => x.LikedBy)
+                               .Include(x => x.PlaylistSongs)
+                               .Where(x => x.AuthorId == userId || x.LikedBy.Any(x => x.UserId == userId))
+                               .ToListAsync();
+        }
     }
 }
