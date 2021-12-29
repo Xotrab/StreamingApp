@@ -111,6 +111,15 @@ namespace StreamingApp.Services
 
             try
             {
+                await mPlaylistRepository.RemoveAllPlaylistLikes(playlistId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while removing the playlist likes".ToResponseFail();
+            }
+
+            try
+            {
                 await mPlaylistRepository.RemoveUserPlaylist(playlistId, userId);
             }
             catch (Exception)
