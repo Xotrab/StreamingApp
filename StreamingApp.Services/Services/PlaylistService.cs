@@ -111,5 +111,25 @@ namespace StreamingApp.Services
 
             return "Playlist removed succesfully".ToResponseSuccess();
         }
+
+        public async Task<Response> AddSongAsync(int playlistId, int songId, int userId)
+        {
+            bool result;
+            try
+            {
+                result = await mPlaylistRepository.AddSongAsync(playlistId, songId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured whilte adding the song to the playlist".ToResponseFail();
+            }
+
+            if (!result)
+            {
+                return "Error occured whilte adding the song to the playlist".ToResponseFail();
+            }
+
+            return "Successfully added the song to the playlist".ToResponseSuccess();
+        }
     }
 }

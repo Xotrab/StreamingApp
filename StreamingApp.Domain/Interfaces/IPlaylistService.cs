@@ -14,5 +14,6 @@ namespace StreamingApp.Domain.Interfaces
         Task<Response<PlaylistBriefDto>> GetBriefAsync(int playlistId, int userId);
         Task<Response> GetDetailedAsync(PlaylistBriefDto briefDto, int userId);
         Task<Response> RemoveAsync(int playlistId, int userId);
+        Task<Response> AddSongAsync(int playlistId, int songId, int userId);
     }
 }

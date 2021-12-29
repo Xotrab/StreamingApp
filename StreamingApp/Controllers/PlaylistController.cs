@@ -63,5 +63,18 @@ namespace StreamingApp.Controllers
 
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpPost("playlists/{playlistId}/songs")]
+        public async Task<IActionResult> AddSongAsync(int playlistId, [FromForm] int songId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var result = await mPlaylistService.AddSongAsync(playlistId, songId, userId);
+
+            if (result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }
