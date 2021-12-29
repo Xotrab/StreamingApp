@@ -10,7 +10,8 @@
     <div class="container__playlist-grid">
         <app-playlist-brief-card 
             *ngFor="let brief of playlistBriefs"
-            [playlistBrief]="brief">
+            [playlistBrief]="brief"
+            [showMenu]="brief.author.id === currentUser?.id">
     </app-playlist-brief-card>
     </div>
 </div>
