@@ -52,6 +52,19 @@ namespace StreamingApp.Controllers
         }
 
         [Authorize]
+        [HttpGet("playlists/{playlistId}/brief")]
+        public async Task<IActionResult> GetPlaylistBriefAsync(int playlistId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var result = await mPlaylistService.GetBriefAsync(playlistId, userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [Authorize]
         [HttpDelete("playlists/{playlistId}")]
         public async Task<IActionResult> RemovePlaylistAsync(int playlistId)
         {
