@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { PlaylistTableComponent } from './playlist-table/playlist-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
+import { RemovePlaylistDialogComponent } from './remove-playlist-dialog/remove-playlist-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ArtistBriefCardComponent,
     SliderComponent,
     EnumToArrayPipe,
-    PlaylistTableComponent
+    PlaylistTableComponent,
+    RemovePlaylistDialogComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +57,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     PlaylistTableComponent,
     MatTableModule,
-    MatMenuModule
+    MatMenuModule,
+    RemovePlaylistDialogComponent
   ],
   providers: [
     EnumToArrayPipe
