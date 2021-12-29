@@ -8,6 +8,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FormsModule } from '@angular/forms';
 import { LikedSongsComponent } from './liked-songs/liked-songs.component';
 import { UserPlaylistsComponent } from './user-playlists/user-playlists.component';
+import { CreatePlaylistDialogComponent } from './create-playlist-dialog/create-playlist-dialog.component';
 
 
 
@@ -17,7 +18,8 @@ import { UserPlaylistsComponent } from './user-playlists/user-playlists.componen
     UploadedSongsComponent,
     UploadSongDialogComponent,
     LikedSongsComponent,
-    UserPlaylistsComponent
+    UserPlaylistsComponent,
+    CreatePlaylistDialogComponent
   ],
   imports: [
     CommonModule,

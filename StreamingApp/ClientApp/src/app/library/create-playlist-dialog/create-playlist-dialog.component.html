@@ -1,0 +1,28 @@
+<div class="container">
+    <span class="container__header font-black-medium-bold">
+        Create playlist
+    </span>
+    <mat-form-field class="input font-black-small-regular">
+        <mat-label>
+            Playlist name
+        </mat-label>
+        <input matInput [(ngModel)]="playlistName">
+    </mat-form-field>
+    <div class="container__actions">
+        <button
+            class="rounded-button--medium-gray font-black-small-bold"
+            [ngClass]="{'no-pointer-events': showSpinner}"
+            (click)="close()"
+            [disabled]="showSpinner">
+            Cancel
+        </button>
+        <button
+        class="rounded-button--red-accent font-white-small-bold"
+        [ngClass]="{'no-pointer-events': showSpinner}"
+        (click)="submit()"
+        [disabled]="showSpinner">
+            Create
+        </button>
+    </div>
+    <mat-progress-spinner *ngIf="showSpinner" class="spinner" color="primary" mode="indeterminate"></mat-progress-spinner>
+</div>
