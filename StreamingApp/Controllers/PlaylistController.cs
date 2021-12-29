@@ -22,12 +22,30 @@ namespace StreamingApp.Controllers
 
         [Authorize]
         [HttpPost("playlists")]
-        public async Task<IActionResult> UploadSongAsync([FromForm] string playlistName)
+        public async Task<IActionResult> CreatePlaylistAsync([FromForm] string playlistName)
         {
             var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mPlaylistService.CreateAsync(playlistName, userId);
 
             if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet("playlists/{playlistId}")]
+        public async Task<IActionResult> GetPlaylistAsync(int playlistId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var briefResult = await mPlaylistService.GetBriefAsync(playlistId, userId);
+
+            if (!briefResult.Success)
+                return BadRequest(briefResult);
+
+            var result = await mPlaylistService.GetDetailedAsync(briefResult.Data, userId);
+
+            if (result.Success)
                 return BadRequest(result);
 
             return Ok(result);
