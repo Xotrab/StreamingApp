@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { PlaylistTableComponent } from './playlist-table/playlist-table.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTabsModule,
     MatDialogModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ],
   exports: [
     MatInputModule,
@@ -52,7 +54,8 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatSelectModule,
     PlaylistTableComponent,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ],
   providers: [
     EnumToArrayPipe
