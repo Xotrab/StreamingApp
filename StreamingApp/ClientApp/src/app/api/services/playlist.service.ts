@@ -32,4 +32,10 @@ export class PlaylistService {
 
     return this.http.get<ApiResponse<PlaylistBriefDto>>(url);
   }
+
+  public removePlaylist(playlistId: number): Observable<ApiResponse<void>> {
+    const url = environment.appUrl + '/playlists/' + playlistId;
+
+    return this.http.delete<ApiResponse<void>>(url);
+  }
 }
