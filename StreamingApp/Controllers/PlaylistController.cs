@@ -76,5 +76,18 @@ namespace StreamingApp.Controllers
 
             return Ok(result);
         }
+
+        [Authorize]
+        [HttpDelete("playlists/{playlistId}/songs/{songId}")]
+        public async Task<IActionResult> RemoveSongAsync(int playlistId, int songId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var result = await mPlaylistService.RemoveSongAsync(playlistId, songId, userId);
+
+            if (result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }

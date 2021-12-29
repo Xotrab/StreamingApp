@@ -121,15 +121,35 @@ namespace StreamingApp.Services
             }
             catch (Exception)
             {
-                return "Error occured whilte adding the song to the playlist".ToResponseFail();
+                return "Error occured while adding the song to the playlist".ToResponseFail();
             }
 
             if (!result)
             {
-                return "Error occured whilte adding the song to the playlist".ToResponseFail();
+                return "Error occured while adding the song to the playlist".ToResponseFail();
             }
 
             return "Successfully added the song to the playlist".ToResponseSuccess();
+        }
+
+        public async Task<Response> RemoveSongAsync(int playlistId, int songId, int userId)
+        {
+            bool result;
+            try
+            {
+                result = await mPlaylistRepository.RemoveSongAsync(playlistId, songId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while removing the song from the playlist".ToResponseFail();
+            }
+
+            if (!result)
+            {
+                return "Error occured while removing the song from the playlist".ToResponseFail();
+            }
+
+            return "Successfully removed the song from the playlist".ToResponseSuccess();
         }
     }
 }

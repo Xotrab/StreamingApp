@@ -65,5 +65,28 @@ namespace StreamingApp.Database.Repositories
 
             return await mDbContext.SaveChangesAsync() > 0;
         }
+
+        public async Task<bool> RemoveSongAsync(int playlistId, int songId, int userId)
+        {
+            var playlist = await mDbSet.Include(x => x.PlaylistSongs)
+                                       .FirstOrDefaultAsync(x => x.Id == playlistId && x.AuthorId == userId);
+
+            if (playlist == null)
+            {
+                return false;
+            }
+
+            var playlistSong = playlist.PlaylistSongs.FirstOrDefault(x => x.SongId == songId);
+
+            if (playlistSong == null)
+            {
+                return false;
+            }
+
+            playlist.PlaylistSongs.Remove(playlistSong);
+            mDbSet.Update(playlist);
+
+            return await mDbContext.SaveChangesAsync() > 0;
+        }
     }
 }
