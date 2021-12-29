@@ -160,5 +160,19 @@ namespace StreamingApp.Services
 
             return "Successfully removed the song from the playlist".ToResponseSuccess();
         }
+
+        public async Task<Response> LikePlaylistAsync(int playlistId, int userId)
+        {
+            try
+            {
+                await mPlaylistRepository.LikePlaylistAsync(playlistId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while liking the playlist".ToResponseFail();
+            }
+
+            return "Playlist liked successfully".ToResponseSuccess();
+        }
     }
 }
