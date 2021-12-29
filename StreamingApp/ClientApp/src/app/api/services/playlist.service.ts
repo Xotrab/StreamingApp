@@ -17,4 +17,13 @@ export class PlaylistService {
 
     return this.http.get<ApiResponse<PlaylistBriefDto[]>>(url);
   }
+
+  public createPlaylist(playlistName: string): Observable<ApiResponse<number>> {
+    const url = environment.appUrl + '/playlists';
+
+    const formData = new FormData();
+    formData.append("playlistName", playlistName);
+
+    return this.http.post<ApiResponse<number>>(url, formData);
+  }
 }
