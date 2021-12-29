@@ -7,4 +7,10 @@
             Create playlist
         </button>
     </div>
+    <div class="container__playlist-grid">
+        <app-playlist-brief-card 
+            *ngFor="let brief of playlistBriefs"
+            [playlistBrief]="brief">
+    </app-playlist-brief-card>
+    </div>
 </div>
