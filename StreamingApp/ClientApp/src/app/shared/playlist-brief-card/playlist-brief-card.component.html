@@ -1,5 +1,5 @@
-<div class="brief-container">
-    <div class="brief-container__like-button" *ngIf="isLoggedIn$ | async">
+<div class="brief-container" (contextmenu)="onRightClick($event)">
+    <div class="brief-container__like-button" *ngIf="(isLoggedIn$ | async) && !showMenu">
         <mat-icon *ngIf="!playlistBrief?.likedByUser" class="not-liked" (click)="tooglePlaylistLike()">
             favorite_border
         </mat-icon>
@@ -40,3 +40,13 @@
         </div>
     </div>
 </div>
+<div style="visibility: hidden; position: fixed;" 
+    [style.left]="menuPosition.x" 
+    [style.top]="menuPosition.y" 
+    [matMenuTriggerFor]="rightMenu">
+</div> 
+<mat-menu #rightMenu="matMenu"> 
+    <ng-template matMenuContent let-item="item">
+      <button mat-menu-item>Remove playlist</button>
+    </ng-template> 
+</mat-menu>
