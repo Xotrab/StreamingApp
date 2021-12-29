@@ -24,5 +24,13 @@ namespace StreamingApp.Database.Repositories
 
             return result.Entity.Id;
         }
+
+        public async Task<PlaylistModel> GetBriefAsync(int playlistId)
+        {
+            return await mDbSet.Include(x => x.Author)
+                               .Include(x => x.LikedBy)
+                               .Include(x => x.PlaylistSongs)
+                               .FirstOrDefaultAsync(x => x.Id == playlistId);
+        }
     }
 }
