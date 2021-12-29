@@ -11,7 +11,8 @@
         <app-playlist-brief-card 
             *ngFor="let brief of playlistBriefs"
             [playlistBrief]="brief"
-            [showMenu]="brief.author.id === currentUser?.id">
+            [showMenu]="brief.author.id === currentUser?.id"
+            (playlistRemoved)="removePlaylist($event)">
     </app-playlist-brief-card>
     </div>
 </div>

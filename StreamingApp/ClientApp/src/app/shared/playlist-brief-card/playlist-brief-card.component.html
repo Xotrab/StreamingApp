@@ -46,7 +46,9 @@
     [matMenuTriggerFor]="rightMenu">
 </div> 
 <mat-menu #rightMenu="matMenu"> 
-    <ng-template matMenuContent let-item="item">
-      <button mat-menu-item>Remove playlist</button>
+    <ng-template matMenuContent>
+        <button mat-menu-item (click)="openRemovePlaylistDialog()">
+            Remove playlist
+        </button>
     </ng-template> 
 </mat-menu>

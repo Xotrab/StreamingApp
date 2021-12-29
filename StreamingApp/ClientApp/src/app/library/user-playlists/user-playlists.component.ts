@@ -31,13 +31,17 @@ export class UserPlaylistsComponent implements OnInit {
   }
 
   public openCreatePlaylistDialog(): void {
-    const dialogRef = this.dialog.open(CreatePlaylistDialogComponent, { disableClose: true, scrollStrategy: new NoopScrollStrategy() });
+    const dialogRef = this.dialog.open(CreatePlaylistDialogComponent, { disableClose: true, autoFocus: false, scrollStrategy: new NoopScrollStrategy() });
 
     dialogRef.afterClosed().subscribe(result =>{
       if (result.event === DialogAction.Submit) {
         this.playlistService.getPlaylistBrief(result.data).subscribe(result => this.playlistBriefs.push(result.data));
       }
     });
+  }
+
+  public removePlaylist($event): void {
+    this.playlistBriefs = this.playlistBriefs.filter(brief => brief.id !== $event);
   }
 
 }
