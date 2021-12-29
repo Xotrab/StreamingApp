@@ -26,4 +26,10 @@ export class PlaylistService {
 
     return this.http.post<ApiResponse<number>>(url, formData);
   }
+
+  public getPlaylistBrief(playlistId: number): Observable<ApiResponse<PlaylistBriefDto>> {
+    const url = environment.appUrl + '/playlists/' + playlistId + '/brief';
+
+    return this.http.get<ApiResponse<PlaylistBriefDto>>(url);
+  }
 }
