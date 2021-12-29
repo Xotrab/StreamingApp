@@ -73,6 +73,11 @@ namespace StreamingApp.Services
         {
             List<SongModel> result;
 
+            if (briefDto == null)
+            {
+                return "Playlist not found".ToResponseFail();
+            }
+
             try
             {
                 result = await mSongRepository.GetSongs(briefDto.SongIds);
@@ -91,6 +96,20 @@ namespace StreamingApp.Services
             {
                 opt.Items["Songs"] = songDtos;
             }).ToResponseData();
+        }
+
+        public async Task<Response> RemoveAsync(int playlistId, int userId)
+        {
+            try
+            {
+                await mPlaylistRepository.RemoveUserPlaylist(playlistId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while removing the playlist".ToResponseFail();
+            }
+
+            return "Playlist removed succesfully".ToResponseSuccess();
         }
     }
 }

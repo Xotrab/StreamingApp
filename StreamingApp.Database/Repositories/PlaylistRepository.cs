@@ -32,5 +32,16 @@ namespace StreamingApp.Database.Repositories
                                .Include(x => x.PlaylistSongs)
                                .FirstOrDefaultAsync(x => x.Id == playlistId);
         }
+
+        public async Task<bool> RemoveUserPlaylist(int playlistId, int userId)
+        {
+            var entity = await mDbSet.FindAsync(playlistId);
+
+            if (entity.AuthorId != userId)
+                return false;
+
+            mDbSet.Remove(entity);
+            return await mDbContext.SaveChangesAsync() > 0;
+        }
     }
 }
