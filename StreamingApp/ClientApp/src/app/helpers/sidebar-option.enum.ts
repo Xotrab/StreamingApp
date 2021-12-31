@@ -1,5 +1,6 @@
 export enum SidebarOption {
     Home,
     Search,
-    Library
+    Library,
+    PlaylistView
 }

@@ -5,9 +5,11 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { PlaylistBriefDto } from 'src/app/api/dtos/playlist-brief-dto';
+import { PlaylistDto } from 'src/app/api/dtos/playlist-dto';
 import { PlaylistService } from 'src/app/api/services/playlist.service';
 import { DialogAction } from 'src/app/helpers/dialog-action.enum';
 import { MenuPosition } from 'src/app/helpers/menu-position';
+import { AudioPlayerService } from 'src/app/services/audio-player.service';
 import { JwtTokenService } from 'src/app/services/jwt-token.service';
 import { environment } from 'src/environments/environment';
 import { RemovePlaylistDialogComponent } from '../remove-playlist-dialog/remove-playlist-dialog.component';
@@ -33,11 +35,14 @@ export class PlaylistBriefCardComponent implements OnInit {
     y:'0'
   };
 
+  public playlistDto: PlaylistDto;
+
   constructor(
     private jwtTokenService: JwtTokenService,
     private dialog: MatDialog,
     private playlistService: PlaylistService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private audioPlayerService: AudioPlayerService
   ) { }
 
   public ngOnInit(): void {
@@ -90,6 +95,18 @@ export class PlaylistBriefCardComponent implements OnInit {
       if (result.event === DialogAction.Submit) {
         this.playlistRemoved.emit(result.data);
       }
+    });
+  }
+
+  public openPlaylist(): void {
+    if (this.playlistDto) {
+      this.audioPlayerService.openPlaylist(this.playlistDto);
+      return;
+    }
+
+    this.playlistService.getPlaylist(this.playlistBrief.id).subscribe(result => {
+      this.playlistDto = result.data;
+      this.audioPlayerService.openPlaylist(this.playlistDto);
     });
   }
 }

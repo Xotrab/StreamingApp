@@ -34,6 +34,11 @@ export class AudioPlayerService {
 		return this.isPlaying.asObservable();
 	}
 
+  private openedPlaylist: BehaviorSubject<PlaylistDto> = new BehaviorSubject<PlaylistDto>(null);
+	get openedPlaylist$() {
+		return this.openedPlaylist.asObservable();
+	}
+
   constructor() {
     const tempPlaylist: PlaylistDto = {
       id: -2,
@@ -151,5 +156,15 @@ export class AudioPlayerService {
     this.currentSongId = this.currentSongId === this.playlist.songs.length - 1 ? 0 : this.currentSongId += 1;
     this.currentSong.next(this.playlist.songs[this.currentSongId]);
     this.songId.next(this.currentSongId);
+  }
+
+  //Methods for opening and closing the playlist details with song list
+
+  public openPlaylist(playlist: PlaylistDto): void {
+    this.openedPlaylist.next(playlist);
+  }
+
+  public closePlaylist(): void {
+    this.openedPlaylist.next(null);
   }
 }

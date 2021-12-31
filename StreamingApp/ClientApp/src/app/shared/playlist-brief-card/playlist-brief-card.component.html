@@ -15,7 +15,7 @@
             <mat-icon>play_arrow</mat-icon>
         </button>
     </div>
-    <span class="brief-container__title font-black-small-bold">
+    <span class="brief-container__title font-black-small-bold" (click)="openPlaylist()">
         {{ playlistBrief?.name }}
     </span>
     <span class="brief-container__author font-black-small-regular">
