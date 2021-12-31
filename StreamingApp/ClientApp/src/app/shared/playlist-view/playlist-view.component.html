@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="container__header">
+        <div class="info">
+            <div class="image-placeholder scale-placeholder">
+                <mat-icon>music_note</mat-icon>
+            </div>
+            <div class="info__data">
+                <span class="font-black-medium-bold">
+                    {{ playlist.name }}
+                </span>
+                <span class="font-black-small-regular">
+                    {{ playlist.author.userName }}
+                </span>
+                <div class="stats font-dark-gray-tiny-regular">
+                    <div>
+                        <mat-icon class="icon--big">
+                            play_arrow
+                        </mat-icon>
+                        <span>
+                            {{ playlist.playbacks }}
+                        </span>
+                    </div>
+                    <div>
+                        <mat-icon  class="icon">
+                            favorite
+                        </mat-icon>
+                        <span>
+                            {{ playlist.likes }}
+                        </span>
+                    </div>
+                </div>
+                <span class="font-dark-gray-tiny-regular">
+                   {{ this.playlist.songs.length | i18nPlural:pluralMap }}
+                </span>
+            </div>
+        </div>
+        <div class="search-input">
+            <mat-icon>search</mat-icon>
+            <input [(ngModel)]="searchFilter" placeholder="Search" class="font-black-small-regular">
+            <mat-icon *ngIf="searchFilter" (click)="clearInput()">clear</mat-icon>
+        </div>
+    </div>
+    <app-playlist-table [songs]="playlist.songs" [playlistId]="playlist.id"></app-playlist-table>
+</div>
