@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StreamingApp.Domain.DTOs;
 using StreamingApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,20 @@ namespace StreamingApp.Database.Repositories
                                .Include(x => x.LikedBy)
                                .Where(x => songIds.Contains(x.Id))
                                .ToListAsync();
+        }
+
+        public async Task<List<SongModel>> SearchAsync(SearchDto searchDto)
+        {
+            var query = mDbSet.Include(x => x.Author)
+                              .Include(x => x.LikedBy)
+                              .Where(x => x.Name.ToLower().Contains(searchDto.Filter.ToLower()));
+
+            if (searchDto.Genre != null) 
+            {
+                query = query.Where(x => x.Genre == searchDto.Genre);
+            }
+
+            return await query.ToListAsync();                
         }
     }
 }
