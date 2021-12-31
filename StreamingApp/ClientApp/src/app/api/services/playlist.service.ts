@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiResponse } from '../dtos/api-response';
 import { PlaylistBriefDto } from '../dtos/playlist-brief-dto';
+import { PlaylistDto } from '../dtos/playlist-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,12 @@ export class PlaylistService {
     const url = environment.appUrl + '/playlists/' + playlistId + '/brief';
 
     return this.http.get<ApiResponse<PlaylistBriefDto>>(url);
+  }
+
+  public getPlaylist(playlistId: number): Observable<ApiResponse<PlaylistDto>> {
+    const url = environment.appUrl + '/playlists/' + playlistId;
+
+    return this.http.get<ApiResponse<PlaylistDto>>(url);
   }
 
   public removePlaylist(playlistId: number): Observable<ApiResponse<void>> {
