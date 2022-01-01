@@ -19,6 +19,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RemovePlaylistDialogComponent } from './remove-playlist-dialog/remove-playlist-dialog.component';
 import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
 import { FormsModule } from '@angular/forms';
+import { SongBriefCardComponent } from './song-brief-card/song-brief-card.component';
+import { SongInPlaylistPipe } from './pipes/song-in-playlist.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FormsModule } from '@angular/forms';
     EnumToArrayPipe,
     PlaylistTableComponent,
     RemovePlaylistDialogComponent,
-    PlaylistViewComponent
+    PlaylistViewComponent,
+    SongBriefCardComponent,
+    SongInPlaylistPipe
   ],
   imports: [
     CommonModule,
@@ -63,7 +67,9 @@ import { FormsModule } from '@angular/forms';
     MatTableModule,
     MatMenuModule,
     RemovePlaylistDialogComponent,
-    PlaylistViewComponent
+    PlaylistViewComponent,
+    SongBriefCardComponent,
+    SongInPlaylistPipe
   ],
   providers: [
     EnumToArrayPipe
