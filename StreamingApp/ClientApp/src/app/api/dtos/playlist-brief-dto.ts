@@ -1,10 +1,9 @@
 import { ApplicationUserDto } from "./application-user-dto";
-import { SongDto } from "./song-dto";
 
-export interface PlaylistDto {
+export interface PlaylistBriefDto {
     id: number;
     name: string;
-    songs: Array<SongDto>;
+    songIds: Array<number>;
     playbacks: number;
     likes: number;
     likedByUser: boolean;

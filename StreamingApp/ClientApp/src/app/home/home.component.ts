@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { PlaylistDto } from '../api/dtos/playlist-dto';
 import { Genre } from '../helpers/genre.enum';
 import { SidebarOption } from '../helpers/sidebar-option.enum';
+import { AudioPlayerService } from '../services/audio-player.service';
 import { JwtTokenService } from '../services/jwt-token.service';
 
 @Component({
@@ -21,11 +23,20 @@ export class HomeComponent implements OnInit {
   public searchFilter: string;
   public genreEnum = Genre;
 
-  constructor(private router: Router, private jwtTokenService: JwtTokenService) { }
+  public openedPlaylist: PlaylistDto = null;
+
+  constructor(private router: Router, private jwtTokenService: JwtTokenService, private audioPlayerService: AudioPlayerService) { }
 
   public ngOnInit(): void {
     this.isLoggedIn$ = this.jwtTokenService.isLoggedIn$;
     this.userName = this.jwtTokenService.decodedUser?.userName;
+
+    this.audioPlayerService.openedPlaylist$.subscribe(result => {
+      this.openedPlaylist = result;
+      if (this.openedPlaylist) {
+        this.selectedOption = this.sidebarOption.PlaylistView;
+      }
+    });
   }
 
   public navigateToRegisterForm(): void {
@@ -41,6 +52,7 @@ export class HomeComponent implements OnInit {
   }
 
   public sidebarOptionChanged($event): void {
+    this.audioPlayerService.closePlaylist();
     this.selectedOption = $event;
   }
 

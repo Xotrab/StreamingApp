@@ -52,6 +52,19 @@ namespace StreamingApp.Controllers
         }
 
         [Authorize]
+        [HttpGet("playlists/{playlistId}/brief")]
+        public async Task<IActionResult> GetPlaylistBriefAsync(int playlistId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var result = await mPlaylistService.GetBriefAsync(playlistId, userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [Authorize]
         [HttpDelete("playlists/{playlistId}")]
         public async Task<IActionResult> RemovePlaylistAsync(int playlistId)
         {
@@ -109,6 +122,19 @@ namespace StreamingApp.Controllers
         {
             var userId = int.Parse(User.FindFirst("id").Value);
             var result = await mPlaylistService.DislikePlaylistAsync(playlistId, userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet("playlists")]
+        public async Task<IActionResult> GetUserPlaylistBriefsAsync()
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var result = await mPlaylistService.GetUserPlaylistBriefsAsync(userId);
 
             if (!result.Success)
                 return BadRequest(result);

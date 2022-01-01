@@ -15,6 +15,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { PlaylistTableComponent } from './playlist-table/playlist-table.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { RemovePlaylistDialogComponent } from './remove-playlist-dialog/remove-playlist-dialog.component';
+import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
+import { FormsModule } from '@angular/forms';
+import { SongBriefCardComponent } from './song-brief-card/song-brief-card.component';
+import { SongInPlaylistPipe } from './pipes/song-in-playlist.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,11 @@ import { MatTableModule } from '@angular/material/table';
     ArtistBriefCardComponent,
     SliderComponent,
     EnumToArrayPipe,
-    PlaylistTableComponent
+    PlaylistTableComponent,
+    RemovePlaylistDialogComponent,
+    PlaylistViewComponent,
+    SongBriefCardComponent,
+    SongInPlaylistPipe
   ],
   imports: [
     CommonModule,
@@ -35,7 +45,9 @@ import { MatTableModule } from '@angular/material/table';
     MatTabsModule,
     MatDialogModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule,
+    FormsModule
   ],
   exports: [
     MatInputModule,
@@ -52,7 +64,12 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatSelectModule,
     PlaylistTableComponent,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule,
+    RemovePlaylistDialogComponent,
+    PlaylistViewComponent,
+    SongBriefCardComponent,
+    SongInPlaylistPipe
   ],
   providers: [
     EnumToArrayPipe

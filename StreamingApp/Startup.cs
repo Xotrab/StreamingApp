@@ -83,6 +83,7 @@ namespace StreamingApp
             services.AddTransient<IAzureService, AzureService>();
             services.AddTransient<ISongService, SongService>();
             services.AddTransient<IPlaylistService, PlaylistService>();
+            services.AddTransient<ISearchService, SearchService>();
             services.AddScoped<SongRepository, SongRepository>();
             services.AddScoped<PlaylistRepository, PlaylistRepository>();
             services.AddAutoMapper(typeof(SongProfile), typeof(UserProfile), typeof(PlaylistProfile));

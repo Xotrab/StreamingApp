@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__playlist-grid {
+        display: grid;
+        width: 90%;
+
+        grid-template-columns: repeat(6, 1fr);
+
+        grid-gap: 4rem;
+    }
+}

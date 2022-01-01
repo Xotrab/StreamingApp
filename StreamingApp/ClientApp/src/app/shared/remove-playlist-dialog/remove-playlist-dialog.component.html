@@ -1,0 +1,22 @@
+<div class="container">
+    <span class="font-black-small-bold">
+        Are you sure you want to remove {{ playlistBrief.name }}?
+    </span>
+    <div class="container__actions">
+        <button
+            class="rounded-button--medium-gray font-black-small-bold"
+            [ngClass]="{'no-pointer-events': showSpinner}"
+            (click)="close()"
+            [disabled]="showSpinner">
+            Cancel
+        </button>
+        <button
+        class="rounded-button--red-accent font-white-small-bold"
+        [ngClass]="{'no-pointer-events': showSpinner}"
+        (click)="submit()"
+        [disabled]="showSpinner">
+            Remove
+        </button>
+    </div>
+    <mat-progress-spinner *ngIf="showSpinner" class="spinner" color="primary" mode="indeterminate"></mat-progress-spinner>
+</div>

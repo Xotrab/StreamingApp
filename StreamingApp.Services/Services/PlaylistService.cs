@@ -197,5 +197,24 @@ namespace StreamingApp.Services
 
             return "Playlist disliked successfully".ToResponseSuccess();
         }
+
+        public async Task<Response> GetUserPlaylistBriefsAsync(int userId)
+        {
+            List<PlaylistModel> result;
+
+            try
+            {
+                result = await mPlaylistRepository.GetUserPlaylistBriefsAsync(userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while fetching user playlists".ToResponseFail();
+            }
+
+            return mMapper.Map<List<PlaylistBriefDto>>(result, opt => 
+                {
+                    opt.Items["UserId"] = userId;
+                }).ToResponseData();
+        }
     }
 }

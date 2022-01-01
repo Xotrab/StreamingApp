@@ -18,5 +18,6 @@ namespace StreamingApp.Domain.Interfaces
         Task<Response> RemoveSongAsync(int playlistId, int songId, int userId);
         Task<Response> LikePlaylistAsync(int playlistId, int userId);
         Task<Response> DislikePlaylistAsync(int playlistId, int userId);
+        Task<Response> GetUserPlaylistBriefsAsync(int userId);
     }
 }

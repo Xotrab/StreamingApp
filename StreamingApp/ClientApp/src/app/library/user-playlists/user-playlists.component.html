@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="container__header">
+        <span class="font-black-medium-bold">
+            Your playlists
+        </span>
+        <button class="rounded-button--red-accent font-white-small-bold" (click)="openCreatePlaylistDialog()">
+            Create playlist
+        </button>
+    </div>
+    <div class="container__playlist-grid">
+        <app-playlist-brief-card 
+            *ngFor="let brief of playlistBriefs"
+            [playlistBrief]="brief"
+            [showMenu]="brief.author.id === currentUser?.id"
+            (playlistRemoved)="removePlaylist($event)">
+    </app-playlist-brief-card>
+    </div>
+</div>

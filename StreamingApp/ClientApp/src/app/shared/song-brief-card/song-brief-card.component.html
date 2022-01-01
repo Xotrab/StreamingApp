@@ -1,26 +1,25 @@
 <div class="brief-container" (contextmenu)="onRightClick($event)">
-    <div class="brief-container__like-button" *ngIf="(isLoggedIn$ | async) && !showMenu">
-        <mat-icon *ngIf="!playlistBrief?.likedByUser" class="not-liked" (click)="likePlaylist()">
+    <div class="brief-container__like-button" *ngIf="(isLoggedIn$ | async)">
+        <mat-icon *ngIf="!song?.likedByUser" class="not-liked" (click)="likeSong()">
             favorite_border
         </mat-icon>
-        <mat-icon *ngIf="playlistBrief?.likedByUser" class="liked" (click)="dislikePlaylist()">
+        <mat-icon *ngIf="song?.likedByUser" class="liked" (click)="dislikeSong()">
             favorite
         </mat-icon>
     </div>
     <div class="brief-container__header">
         <div class="image-placeholder">
-            <mat-icon>queue_music</mat-icon>
+            <mat-icon>music_note</mat-icon>
         </div>
         <button class="play-button">
-            <mat-icon *ngIf="!(isPlaying && playlistInThePlayer)" (click)="play()">play_arrow</mat-icon>
-            <mat-icon *ngIf="isPlaying && playlistInThePlayer" (click)="pause()">pause</mat-icon>
+            <mat-icon>play_arrow</mat-icon>
         </button>
     </div>
-    <span class="brief-container__title font-black-small-bold" (click)="openPlaylist()">
-        {{ playlistBrief?.name }}
+    <span class="brief-container__title font-black-small-bold">
+        {{ song?.name }}
     </span>
     <span class="brief-container__author font-black-small-regular">
-        {{ playlistBrief?.author?.userName }}
+        {{ song?.author?.userName }}
     </span>
     <div class="brief-container__stats font-dark-gray-small-regular">
         <div class="stat">
@@ -28,7 +27,7 @@
                 play_arrow
             </mat-icon>
             <span>
-                {{ playlistBrief?.playbacks }}
+                {{ song?.playbacks }}
             </span>
         </div>
         <div class="stat">
@@ -36,7 +35,7 @@
                 favorite
             </mat-icon>
             <span>
-                {{ playlistBrief?.likes }}
+                {{ song?.likes }}
             </span>
         </div>
     </div>
@@ -48,8 +47,9 @@
 </div> 
 <mat-menu #rightMenu="matMenu"> 
     <ng-template matMenuContent>
-        <button mat-menu-item (click)="openRemovePlaylistDialog()">
-            Remove playlist
+        <button mat-menu-item (click)="addSongToPlaylist()">
+            Add song to this playlist
         </button>
     </ng-template> 
 </mat-menu>
+

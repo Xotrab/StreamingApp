@@ -34,12 +34,18 @@ export class AudioPlayerService {
 		return this.isPlaying.asObservable();
 	}
 
+  private openedPlaylist: BehaviorSubject<PlaylistDto> = new BehaviorSubject<PlaylistDto>(null);
+	get openedPlaylist$() {
+		return this.openedPlaylist.asObservable();
+	}
+
   constructor() {
     const tempPlaylist: PlaylistDto = {
       id: -2,
       name: "Liked Songs",
       playbacks: 0,
       likes: 0,
+      likedByUser: false,
       author: null,
       songs: [
         {
@@ -117,12 +123,13 @@ export class AudioPlayerService {
   //Methods called by other components
 
   public playPlaylist(playlist: PlaylistDto, songId: number, init: boolean=false): void {
-    if (this.playlist?.id !== playlist.id) {
+    //if (this.playlist?.id !== playlist.id) {
+      const previousPlaylistId = this.playlist?.id;
       this.playlist = playlist;
       this.playlistId.next(this.playlist.id);
-    }
+    //}
 
-    if (this.currentSongId !== songId) {
+    if (this.currentSongId !== songId || previousPlaylistId !== playlist.id) {
       this.currentSongId = songId;
       this.currentSong.next(this.playlist.songs[this.currentSongId]);
       this.songId.next(this.currentSongId);
@@ -150,5 +157,15 @@ export class AudioPlayerService {
     this.currentSongId = this.currentSongId === this.playlist.songs.length - 1 ? 0 : this.currentSongId += 1;
     this.currentSong.next(this.playlist.songs[this.currentSongId]);
     this.songId.next(this.currentSongId);
+  }
+
+  //Methods for opening and closing the playlist details with song list
+
+  public openPlaylist(playlist: PlaylistDto): void {
+    this.openedPlaylist.next(playlist);
+  }
+
+  public closePlaylist(): void {
+    this.openedPlaylist.next(null);
   }
 }
