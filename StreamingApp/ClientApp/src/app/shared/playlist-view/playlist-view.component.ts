@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PlaylistDto } from 'src/app/api/dtos/playlist-dto';
+import { SearchDto } from 'src/app/api/dtos/search-dto';
+import { SongDto } from 'src/app/api/dtos/song-dto';
+import { SearchService } from 'src/app/api/services/search.service';
 
 @Component({
   selector: 'app-playlist-view',
@@ -11,6 +14,7 @@ export class PlaylistViewComponent implements OnInit {
   @Input() playlist: PlaylistDto;
 
   public searchFilter: string;
+  public foundSongs: Array<SongDto>;
 
   public pluralMap = {
     '=0': '0 songs',
@@ -18,13 +22,31 @@ export class PlaylistViewComponent implements OnInit {
     'other': '# songs'
   };
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
   public clearInput(): void {
     this.searchFilter = null;
+  }
+
+  public clearResults(): void {
+    this.foundSongs = null;
+    this.clearInput();
+  }
+
+  public search(): void {
+    if (!this.searchFilter) {
+      return;
+    }
+
+    const searchDto: SearchDto = {
+      filter: this.searchFilter,
+      onlySongs: true
+    };
+
+    this.searchService.search(searchDto).subscribe(result => this.foundSongs = result.data.songs);
   }
 
 }

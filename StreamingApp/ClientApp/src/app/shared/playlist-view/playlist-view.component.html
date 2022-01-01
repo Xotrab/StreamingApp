@@ -35,10 +35,28 @@
             </div>
         </div>
         <div class="search-input">
-            <mat-icon>search</mat-icon>
-            <input [(ngModel)]="searchFilter" placeholder="Search" class="font-black-small-regular">
+            <mat-icon (click)="search()">search</mat-icon>
+            <input [(ngModel)]="searchFilter" placeholder="Search for songs to add" class="font-black-small-regular">
             <mat-icon *ngIf="searchFilter" (click)="clearInput()">clear</mat-icon>
         </div>
     </div>
     <app-playlist-table [songs]="playlist.songs" [playlistId]="playlist.id"></app-playlist-table>
+    <ng-container *ngIf="!!foundSongs">
+        <div class="container__results-header">
+            <span class="font-black-medium-bold">
+                Found songs
+            </span>
+            <mat-icon (click)="clearResults()">close</mat-icon>
+        </div>
+        <span class="font-black-small-regular" *ngIf="!foundSongs.length">
+            No songs found matching the filter "{{ this.searchFilter }}" 
+        </span>
+        <div class="container__results-grid">
+            <app-song-brief-card
+                *ngFor="let song of foundSongs"
+                [song]="song"
+                [showMenu]="!(song.id | songInPlaylist:playlist.songs)">
+            </app-song-brief-card>
+        </div>
+    </ng-container>
 </div>

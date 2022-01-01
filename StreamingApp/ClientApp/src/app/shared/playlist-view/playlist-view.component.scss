@@ -70,4 +70,28 @@
             }
         }
     }
+
+    &__results-header {
+        display: flex;
+        gap: 0.5rem;
+
+        .mat-icon {
+            cursor: pointer;
+            color: var(--black-color);
+            margin-top: 0.9rem;
+
+            &:hover {
+                filter: brightness(1.5);
+            }
+        }
+    }
+
+    &__results-grid {
+        display: grid;
+        width: 90%;
+
+        grid-template-columns: repeat(6, 1fr);
+
+        grid-gap: 4rem;
+    }
 }
