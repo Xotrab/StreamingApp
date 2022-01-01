@@ -1,7 +1,7 @@
 <div class="home-container">
     <div class="home-container__header">
         <div class="search-input" *ngIf="selectedOption === sidebarOption.Search">
-            <mat-icon>search</mat-icon>
+            <mat-icon (click)="search()">search</mat-icon>
             <input [(ngModel)]="searchFilter" placeholder="Search" class="font-black-small-regular">
             <mat-icon *ngIf="searchFilter" (click)="clearInput()">clear</mat-icon>
         </div>
@@ -44,19 +44,29 @@
             </div>
         </ng-container>
         <div class="section" *ngSwitchCase="sidebarOption.Search">
-            <span class="font-black-medium-bold">
-                Browse genres
-            </span>
-            <div class="genres-grid">
-                <div *ngFor="let genre of genreEnum | enumToArray" class="genres-grid__item">
-                    <div class="image-placeholder">
-                        <mat-icon>music_note</mat-icon>
+            <ng-container *ngIf="!searchResult">
+                <span class="font-black-medium-bold">
+                    Browse genres
+                </span>
+                <div class="genres-grid">
+                    <div
+                        *ngFor="let genre of genreEnum | enumToArray;"
+                        class="genres-grid__item"
+                        [ngClass]="{'genres-grid__selected-item' : genre === selectedGenre}"
+                        (click)="changeSelectedGenre(genre)">
+                        <div class="image-placeholder">
+                            <mat-icon>music_note</mat-icon>
+                        </div>
+                        <span class="font-black-default-normal">
+                            {{ genre }}
+                        </span>
                     </div>
-                    <span class="font-black-default-normal">
-                        {{ genre }}
-                    </span>
                 </div>
-            </div>
+            </ng-container>
+            <app-search-result
+                *ngIf="searchResult"
+                [searchResult]="searchResult">
+            </app-search-result>
         </div>
         <app-playlist-view  *ngSwitchCase="sidebarOption.PlaylistView" [playlist]="openedPlaylist"></app-playlist-view>
         <app-user-library *ngSwitchCase="sidebarOption.Library"></app-user-library>

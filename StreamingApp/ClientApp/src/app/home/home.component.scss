@@ -117,6 +117,18 @@
                     color: var(--white-color) !important;
                 }
             }
+
+            &__selected-item {
+                background-color: var(--red-accent-color);
+
+                .image-placeholder {
+                    background-color: var(--white-color);
+                }
+
+                span {
+                    color: var(--white-color) !important;
+                }
+            }
         }
     }
 
