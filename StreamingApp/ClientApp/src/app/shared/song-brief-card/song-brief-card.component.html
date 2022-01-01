@@ -1,0 +1,55 @@
+<div class="brief-container" (contextmenu)="onRightClick($event)">
+    <div class="brief-container__like-button" *ngIf="(isLoggedIn$ | async)">
+        <mat-icon *ngIf="!song?.likedByUser" class="not-liked" (click)="likeSong()">
+            favorite_border
+        </mat-icon>
+        <mat-icon *ngIf="song?.likedByUser" class="liked" (click)="dislikeSong()">
+            favorite
+        </mat-icon>
+    </div>
+    <div class="brief-container__header">
+        <div class="image-placeholder">
+            <mat-icon>music_note</mat-icon>
+        </div>
+        <button class="play-button">
+            <mat-icon>play_arrow</mat-icon>
+        </button>
+    </div>
+    <span class="brief-container__title font-black-small-bold">
+        {{ song?.name }}
+    </span>
+    <span class="brief-container__author font-black-small-regular">
+        {{ song?.author?.userName }}
+    </span>
+    <div class="brief-container__stats font-dark-gray-small-regular">
+        <div class="stat">
+            <mat-icon class="icon--big">
+                play_arrow
+            </mat-icon>
+            <span>
+                {{ song?.playbacks }}
+            </span>
+        </div>
+        <div class="stat">
+            <mat-icon  class="icon">
+                favorite
+            </mat-icon>
+            <span>
+                {{ song?.likes }}
+            </span>
+        </div>
+    </div>
+</div>
+<div style="visibility: hidden; position: fixed;" 
+    [style.left]="menuPosition.x" 
+    [style.top]="menuPosition.y" 
+    [matMenuTriggerFor]="rightMenu">
+</div> 
+<mat-menu #rightMenu="matMenu"> 
+    <ng-template matMenuContent>
+        <button mat-menu-item (click)="addSongToPlaylist()">
+            Add song to this playlist
+        </button>
+    </ng-template> 
+</mat-menu>
+
