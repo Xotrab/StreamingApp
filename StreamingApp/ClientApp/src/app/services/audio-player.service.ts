@@ -123,12 +123,13 @@ export class AudioPlayerService {
   //Methods called by other components
 
   public playPlaylist(playlist: PlaylistDto, songId: number, init: boolean=false): void {
-    if (this.playlist?.id !== playlist.id) {
+    //if (this.playlist?.id !== playlist.id) {
+      const previousPlaylistId = this.playlist?.id;
       this.playlist = playlist;
       this.playlistId.next(this.playlist.id);
-    }
+    //}
 
-    if (this.currentSongId !== songId) {
+    if (this.currentSongId !== songId || previousPlaylistId !== playlist.id) {
       this.currentSongId = songId;
       this.currentSong.next(this.playlist.songs[this.currentSongId]);
       this.songId.next(this.currentSongId);
