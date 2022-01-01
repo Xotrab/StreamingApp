@@ -78,6 +78,11 @@
 
     &__author {
         @extend .brief-container__title;
+
+        cursor: initial;
+        &:hover {
+            text-decoration: none;
+        }
     }
 
     &__stats {
