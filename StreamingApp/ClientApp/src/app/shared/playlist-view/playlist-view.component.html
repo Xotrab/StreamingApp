@@ -34,7 +34,7 @@
                 </span>
             </div>
         </div>
-        <div class="search-input">
+        <div class="search-input" *ngIf="isPlaylistOwner">
             <mat-icon (click)="search()">search</mat-icon>
             <input [(ngModel)]="searchFilter" placeholder="Search for songs to add" class="font-black-small-regular">
             <mat-icon *ngIf="searchFilter" (click)="clearInput()">clear</mat-icon>

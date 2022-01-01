@@ -3,6 +3,7 @@ import { PlaylistDto } from 'src/app/api/dtos/playlist-dto';
 import { SearchDto } from 'src/app/api/dtos/search-dto';
 import { SongDto } from 'src/app/api/dtos/song-dto';
 import { SearchService } from 'src/app/api/services/search.service';
+import { JwtTokenService } from 'src/app/services/jwt-token.service';
 
 @Component({
   selector: 'app-playlist-view',
@@ -22,9 +23,16 @@ export class PlaylistViewComponent implements OnInit {
     'other': '# songs'
   };
 
-  constructor(private searchService: SearchService, private cdRef: ChangeDetectorRef) { }
+  public isPlaylistOwner: boolean = false;
+
+  constructor(
+    private searchService: SearchService,
+    private cdRef: ChangeDetectorRef,
+    private jwtTokenService: JwtTokenService
+  ) { }
 
   public ngOnInit(): void {
+    this.isPlaylistOwner = this.jwtTokenService.decodedUser?.id === this.playlist.author.id;
   }
 
   public clearInput(): void {
