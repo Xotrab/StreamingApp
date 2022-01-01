@@ -12,7 +12,8 @@
             <mat-icon>queue_music</mat-icon>
         </div>
         <button class="play-button">
-            <mat-icon>play_arrow</mat-icon>
+            <mat-icon *ngIf="!(isPlaying && playlistInThePlayer)" (click)="play()">play_arrow</mat-icon>
+            <mat-icon *ngIf="isPlaying && playlistInThePlayer" (click)="pause()">pause</mat-icon>
         </button>
     </div>
     <span class="brief-container__title font-black-small-bold" (click)="openPlaylist()">

@@ -35,6 +35,10 @@ export class PlaylistBriefCardComponent implements OnInit {
     y:'0'
   };
 
+  public isPlaying: boolean = false;
+  public playlistInThePlayer: boolean = false;
+  public currentSongId: number = null;
+
   public playlistDto: PlaylistDto;
 
   constructor(
@@ -47,6 +51,9 @@ export class PlaylistBriefCardComponent implements OnInit {
 
   public ngOnInit(): void {
     this.isLoggedIn$ = this.jwtTokenService.isLoggedIn$;
+    this.audioPlayerService.isPlaying$.subscribe(result => this.isPlaying = result);
+    this.audioPlayerService.songId$.subscribe(result => this.currentSongId = result);
+    this.audioPlayerService.playlistId$.subscribe(result => this.playlistInThePlayer = this.playlistBrief.id === result);
   }
 
   public dislikePlaylist(): void {
@@ -108,5 +115,23 @@ export class PlaylistBriefCardComponent implements OnInit {
       this.playlistDto = result.data;
       this.audioPlayerService.openPlaylist(this.playlistDto);
     });
+  }
+
+  public play(): void {
+    if (this.playlistDto) {
+      const songId = this.playlistInThePlayer ? this.currentSongId : 0;
+      this.audioPlayerService.playPlaylist(this.playlistDto, songId);
+      return;
+    }
+
+    this.playlistService.getPlaylist(this.playlistBrief.id).subscribe(result => {
+      this.playlistDto = result.data;
+      const songId = this.playlistInThePlayer ? this.currentSongId : 0;
+      this.audioPlayerService.playPlaylist(this.playlistDto, songId);
+    });
+  }
+
+  public pause(): void {
+    this.audioPlayerService.togglePlay(false);
   }
 }
