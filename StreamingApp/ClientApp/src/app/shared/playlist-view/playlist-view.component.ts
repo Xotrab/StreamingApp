@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { PlaylistDto } from 'src/app/api/dtos/playlist-dto';
 import { SearchDto } from 'src/app/api/dtos/search-dto';
 import { SongDto } from 'src/app/api/dtos/song-dto';
@@ -22,7 +22,7 @@ export class PlaylistViewComponent implements OnInit {
     'other': '# songs'
   };
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private cdRef: ChangeDetectorRef) { }
 
   public ngOnInit(): void {
   }
@@ -47,6 +47,11 @@ export class PlaylistViewComponent implements OnInit {
     };
 
     this.searchService.search(searchDto).subscribe(result => this.foundSongs = result.data.songs);
+  }
+
+  public addSongToPlaylist($event): void {
+    this.playlist.songs = this.playlist.songs.concat($event);
+    this.cdRef.detectChanges();
   }
 
 }

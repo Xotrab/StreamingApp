@@ -55,7 +55,9 @@
             <app-song-brief-card
                 *ngFor="let song of foundSongs"
                 [song]="song"
-                [showMenu]="!(song.id | songInPlaylist:playlist.songs)">
+                [playlistId]="playlist.id"
+                [showMenu]="!(song.id | songInPlaylist:playlist.songs)"
+                (addedSong)="addSongToPlaylist($event)">
             </app-song-brief-card>
         </div>
     </ng-container>

@@ -57,4 +57,13 @@ export class PlaylistService {
 
     return this.http.delete<ApiResponse<void>>(url);
   }
+
+  public addSong(playlistId: number, songId: number): Observable<ApiResponse<boolean>> {
+    const url = environment.appUrl + '/playlists/' + playlistId + '/songs';
+
+    const formData = new FormData();
+    formData.append("songId", songId.toString());
+
+    return this.http.post<ApiResponse<boolean>>(url, formData);
+  }
 }

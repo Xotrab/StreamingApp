@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,6 +8,7 @@ import { PlaylistService } from 'src/app/api/services/playlist.service';
 import { MenuPosition } from 'src/app/helpers/menu-position';
 import { AudioPlayerService } from 'src/app/services/audio-player.service';
 import { JwtTokenService } from 'src/app/services/jwt-token.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-song-brief-card',
@@ -18,6 +19,9 @@ export class SongBriefCardComponent implements OnInit {
 
   @Input() song: SongDto;
   @Input() showMenu: boolean = false;
+  @Input() playlistId: number;
+
+  @Output() addedSong = new EventEmitter<SongDto>();
 
   public isLoggedIn$: Observable<boolean>;
 
@@ -61,6 +65,14 @@ export class SongBriefCardComponent implements OnInit {
   }
 
   public addSongToPlaylist(): void {
-
+    this.playlistService.addSong(this.playlistId, this.song.id).subscribe(result => {
+      this.showMenu = false;
+      this.addedSong.emit(this.song);
+      this.snackBar.open(
+        "Successfully added the song to the playlist", 'Ok', {
+          duration: environment.snackbarDuration
+        }
+      );
+    });
   }
 }
