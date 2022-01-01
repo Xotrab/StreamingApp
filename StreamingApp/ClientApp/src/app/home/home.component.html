@@ -50,10 +50,10 @@
                 </span>
                 <div class="genres-grid">
                     <div
-                        *ngFor="let genre of genreEnum | enumToArray;"
+                        *ngFor="let genre of genreEnum | enumToArray; let i=index"
                         class="genres-grid__item"
-                        [ngClass]="{'genres-grid__selected-item' : genre === selectedGenre}"
-                        (click)="changeSelectedGenre(genre)">
+                        [ngClass]="{'genres-grid__selected-item' : i === selectedGenre}"
+                        (click)="changeSelectedGenre(i)">
                         <div class="image-placeholder">
                             <mat-icon>music_note</mat-icon>
                         </div>
