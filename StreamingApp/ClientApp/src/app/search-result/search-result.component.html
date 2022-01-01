@@ -34,7 +34,10 @@
             Found artists
         </span>
         <div class="results-grid" *ngIf="searchResult.users.length">
-            dupa
+            <app-artist-brief-card
+                *ngFor="let user of searchResult.users"
+                [user]="user">
+            </app-artist-brief-card>
         </div>
         <span class="font-black-small-regular" *ngIf="!searchResult.users.length">
             No artists found matching the filter
