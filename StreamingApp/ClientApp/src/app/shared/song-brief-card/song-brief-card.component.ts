@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { SongDto } from 'src/app/api/dtos/song-dto';
 import { PlaylistService } from 'src/app/api/services/playlist.service';
+import { SongService } from 'src/app/api/services/song.service';
 import { MenuPosition } from 'src/app/helpers/menu-position';
 import { AudioPlayerService } from 'src/app/services/audio-player.service';
 import { JwtTokenService } from 'src/app/services/jwt-token.service';
@@ -36,6 +37,7 @@ export class SongBriefCardComponent implements OnInit {
     private jwtTokenService: JwtTokenService,
     private dialog: MatDialog,
     private playlistService: PlaylistService,
+    private songService: SongService,
     private snackBar: MatSnackBar,
     private audioPlayerService: AudioPlayerService
   ) { }
@@ -57,11 +59,29 @@ export class SongBriefCardComponent implements OnInit {
   } 
 
   public likeSong(): void {
+    this.songService.likeSong(this.song.id).subscribe(result => {
+      this.song.likedByUser = true;
+      this.song.likes +=1;
 
+      this.snackBar.open(
+        "Song \"" + this.song.name + "\" has been liked", 'Ok', {
+          duration: environment.snackbarDuration
+        }
+      );
+    });
   }
 
   public dislikeSong(): void {
+    this.songService.dislikeSong(this.song.id).subscribe(result => {
+      this.song.likedByUser = false;
+      this.song.likes -=1;
 
+      this.snackBar.open(
+        "Song \"" + this.song.name + "\" has been disliked", 'Ok', {
+          duration: environment.snackbarDuration
+        }
+      );
+    });
   }
 
   public addSongToPlaylist(): void {
