@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PlaylistDto } from '../api/dtos/playlist-dto';
@@ -9,6 +9,7 @@ import { Genre } from '../helpers/genre.enum';
 import { SidebarOption } from '../helpers/sidebar-option.enum';
 import { AudioPlayerService } from '../services/audio-player.service';
 import { JwtTokenService } from '../services/jwt-token.service';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit {
   public selectedGenre: Genre;
   public searchResult: SearchResultDto;
   public genreEnum = Genre;
+
+  @ViewChild(SidebarComponent) sidebar: SidebarComponent;
 
   public openedPlaylist: PlaylistDto = null;
 
@@ -61,6 +64,7 @@ export class HomeComponent implements OnInit {
     this.jwtTokenService.logout();
     this.audioPlayerService.togglePlay(false);
     this.selectedOption = this.sidebarOption.Home;
+    this.sidebar.selectedOption = this.selectedOption;
   }
 
   public sidebarOptionChanged($event): void {

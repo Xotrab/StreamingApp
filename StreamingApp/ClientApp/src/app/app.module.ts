@@ -33,6 +33,9 @@ import { SearchResultComponent } from './search-result/search-result.component';
     VimeModule,
     LibraryModule
   ],
+  exports: [
+    SidebarComponent
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
