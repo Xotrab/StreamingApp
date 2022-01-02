@@ -86,6 +86,7 @@ namespace StreamingApp
             services.AddTransient<ISearchService, SearchService>();
             services.AddScoped<SongRepository, SongRepository>();
             services.AddScoped<PlaylistRepository, PlaylistRepository>();
+            services.AddScoped<ApplicationUserRepository, ApplicationUserRepository>();
             services.AddAutoMapper(typeof(SongProfile), typeof(UserProfile), typeof(PlaylistProfile));
         }
 
