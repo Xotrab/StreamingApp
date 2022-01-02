@@ -66,4 +66,10 @@ export class PlaylistService {
 
     return this.http.post<ApiResponse<boolean>>(url, formData);
   }
+
+  public removeSong(playlistId: number, songId: number): Observable<ApiResponse<boolean>> {
+    const url = environment.appUrl + '/playlists/' + playlistId + '/songs/' + songId;
+
+    return this.http.delete<ApiResponse<boolean>>(url);
+  }
 }
