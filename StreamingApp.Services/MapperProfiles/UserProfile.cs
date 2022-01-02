@@ -15,7 +15,9 @@ namespace StreamingApp.Services.Mappers
         {
             CreateMap<RegisterDto, ApplicationUser>();
 
-            CreateMap<ApplicationUser, ApplicationUserDto>();
+            CreateMap<ApplicationUser, ApplicationUserDto>()
+                .ForMember(dto => dto.NumberOfSongs, x => x.MapFrom(model => model.Songs.Count))
+                .ForMember(dto => dto.NumberOfFollowers, x => x.MapFrom(model => model.FollowedBy.Count));
         }
     }
 }
