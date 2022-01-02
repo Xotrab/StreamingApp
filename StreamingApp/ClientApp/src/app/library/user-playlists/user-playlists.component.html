@@ -15,4 +15,7 @@
             (playlistRemoved)="removePlaylist($event)">
     </app-playlist-brief-card>
     </div>
+    <span class="font-black-small-regular" *ngIf="!playlistBriefs.length">
+        You don't have any playlists saved yet
+    </span>
 </div>

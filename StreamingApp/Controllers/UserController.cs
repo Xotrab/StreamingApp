@@ -63,5 +63,44 @@ namespace StreamingApp.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpGet("follows")]
+        public async Task<IActionResult> GetUserFollowsAsync()
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mUserService.GetUserFollowsAsync(userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpPost("follows/{followedId}")]
+        public async Task<IActionResult> FollowUserAsync(int followedId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mUserService.FollowUserAsync(userId, followedId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("follows/{followedId}")]
+        public async Task<IActionResult> UnfollowUserAsync(int followedId)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+
+            var result = await mUserService.UnfollowUserAsync(userId, followedId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }

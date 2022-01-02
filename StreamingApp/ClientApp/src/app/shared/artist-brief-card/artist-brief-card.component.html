@@ -1,9 +1,9 @@
 <div class="brief-container">
-    <div class="brief-container__follow-button" *ngIf="isLoggedIn$ | async">
-        <mat-icon *ngIf="!isFollowed" class="not-followed" (click)="toogleArtistFollow()">
+    <div class="brief-container__follow-button" *ngIf="(isLoggedIn$ | async) && !isLoggedInUser">
+        <mat-icon *ngIf="!user.followedByUser" class="not-followed" (click)="followArtist()">
             favorite_border
         </mat-icon>
-        <mat-icon *ngIf="isFollowed" class="followed" (click)="toogleArtistFollow()">
+        <mat-icon *ngIf="user.followedByUser" class="followed" (click)="unfollowArtist()">
             favorite
         </mat-icon>
     </div>
@@ -16,9 +16,9 @@
         {{ user.userName }}
     </span>
     <span class="font-dark-gray-small-regular">
-        Followed by 23k
+        Followed by {{ user.numberOfFollowers }}
     </span>
     <span class="font-dark-gray-small-regular">
-        Songs 49
+        {{ user.numberOfSongs | i18nPlural:pluralMap }}
     </span>
 </div>

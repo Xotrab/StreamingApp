@@ -1,0 +1,15 @@
+<div class="container">
+    <span class="font-black-medium-bold">
+        Followed Artists
+    </span>
+    <div class="container__follows-grid">
+        <app-artist-brief-card 
+            *ngFor="let artist of followedUsers"
+            [user]="artist"
+            (userUnfollowed)="removeUser($event)">
+    </app-artist-brief-card>
+    </div>
+    <span class="font-black-small-regular" *ngIf="!followedUsers.length">
+        You don't have any followed artists yet
+    </span>
+</div>

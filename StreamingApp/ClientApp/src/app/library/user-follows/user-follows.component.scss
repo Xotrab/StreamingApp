@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__follows-grid {
+        display: grid;
+        width: 90%;
+
+        grid-template-columns: repeat(6, 1fr);
+
+        grid-gap: 4rem;
+    }
+}

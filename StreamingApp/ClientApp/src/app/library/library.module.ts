@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { LikedSongsComponent } from './liked-songs/liked-songs.component';
 import { UserPlaylistsComponent } from './user-playlists/user-playlists.component';
 import { CreatePlaylistDialogComponent } from './create-playlist-dialog/create-playlist-dialog.component';
+import { UserFollowsComponent } from './user-follows/user-follows.component';
 
 
 
@@ -19,7 +20,8 @@ import { CreatePlaylistDialogComponent } from './create-playlist-dialog/create-p
     UploadSongDialogComponent,
     LikedSongsComponent,
     UserPlaylistsComponent,
-    CreatePlaylistDialogComponent
+    CreatePlaylistDialogComponent,
+    UserFollowsComponent
   ],
   imports: [
     CommonModule,
