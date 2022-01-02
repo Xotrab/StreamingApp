@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PlaylistDto } from '../api/dtos/playlist-dto';
+import { SearchDto } from '../api/dtos/search-dto';
+import { SearchResultDto } from '../api/dtos/search-result-dto';
+import { SearchService } from '../api/services/search.service';
 import { Genre } from '../helpers/genre.enum';
 import { SidebarOption } from '../helpers/sidebar-option.enum';
 import { AudioPlayerService } from '../services/audio-player.service';
@@ -21,11 +24,18 @@ export class HomeComponent implements OnInit {
   public selectedOption: SidebarOption = this.sidebarOption.Home;
 
   public searchFilter: string;
+  public selectedGenre: Genre;
+  public searchResult: SearchResultDto;
   public genreEnum = Genre;
 
   public openedPlaylist: PlaylistDto = null;
 
-  constructor(private router: Router, private jwtTokenService: JwtTokenService, private audioPlayerService: AudioPlayerService) { }
+  constructor(
+    private router: Router,
+    private jwtTokenService: JwtTokenService,
+    private audioPlayerService: AudioPlayerService,
+    private searchService: SearchService  
+  ) { }
 
   public ngOnInit(): void {
     this.isLoggedIn$ = this.jwtTokenService.isLoggedIn$;
@@ -58,5 +68,24 @@ export class HomeComponent implements OnInit {
 
   public clearInput(): void {
     this.searchFilter = null;
+    this.searchResult = null;
+  }
+
+  public changeSelectedGenre(genre: Genre): void {
+    this.selectedGenre = this.selectedGenre === genre ? null : genre;
+  }
+
+  public search(): void {
+    if (!this.searchFilter) {
+      return;
+    }
+
+    const searchDto: SearchDto = {
+      filter: this.searchFilter,
+      genre: this.selectedGenre,
+      onlySongs: false
+    };
+
+    this.searchService.search(searchDto).subscribe(result => this.searchResult = result.data);
   }
 }

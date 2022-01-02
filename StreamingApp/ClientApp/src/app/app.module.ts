@@ -13,13 +13,15 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { VimeModule } from '@vime/angular';
 import { LibraryModule } from './library/library.module';
 import { AttachTokenInterceptor } from './services/attach-token-interceptor';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SidebarComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

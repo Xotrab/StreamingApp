@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="container__section">
+        <span class="font-black-medium-bold">
+            Found songs
+        </span>
+        <div class="results-grid" *ngIf="searchResult.songs.length">
+            <app-song-brief-card
+                *ngFor="let song of searchResult.songs"
+                [song]="song"
+                [showMenu]="false">
+            </app-song-brief-card>
+        </div>
+        <span class="font-black-small-regular" *ngIf="!searchResult.songs.length">
+            No songs found matching the filter and the selected genre
+        </span>
+    </div>
+    <div class="container__section">
+        <span class="font-black-medium-bold">
+            Found playlists
+        </span>
+        <div class="results-grid" *ngIf="searchResult.playlistBriefs.length">
+            <app-playlist-brief-card
+                *ngFor="let brief of searchResult.playlistBriefs"
+                [playlistBrief]="brief"
+                [showMenu]="false">
+            </app-playlist-brief-card>
+        </div>
+        <span class="font-black-small-regular" *ngIf="!searchResult.playlistBriefs.length">
+            No playlists found matching the filter
+        </span>
+    </div>
+    <div class="container__section">
+        <span class="font-black-medium-bold">
+            Found artists
+        </span>
+        <div class="results-grid" *ngIf="searchResult.users.length">
+            <app-artist-brief-card
+                *ngFor="let user of searchResult.users"
+                [user]="user">
+            </app-artist-brief-card>
+        </div>
+        <span class="font-black-small-regular" *ngIf="!searchResult.users.length">
+            No artists found matching the filter
+        </span>
+    </div>
+</div>

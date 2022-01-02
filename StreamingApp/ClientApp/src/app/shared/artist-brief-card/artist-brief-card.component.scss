@@ -46,11 +46,5 @@
         text-overflow:ellipsis;
         max-width: 100%;
         display:inline-block;
-
-        cursor: pointer;
-
-        &:hover {
-            text-decoration: underline;
-        }
     }
 }
