@@ -2,5 +2,5 @@
     <span class="font-black-medium-bold">
         Liked songs
     </span>
-    <app-playlist-table [songs]="likedSongs" [playlistId]="-1"></app-playlist-table>
+    <app-playlist-table [songs]="likedSongs" [playlistId]="-1" [showMenu]="true" (songRemoved)="removeSong($event)"></app-playlist-table>
 </div>

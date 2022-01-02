@@ -40,7 +40,7 @@
             <mat-icon *ngIf="searchFilter" (click)="clearInput()">clear</mat-icon>
         </div>
     </div>
-    <app-playlist-table [songs]="playlist.songs" [playlistId]="playlist.id"></app-playlist-table>
+    <app-playlist-table [songs]="playlist.songs" [playlistId]="playlist.id" [showMenu]="isPlaylistOwner" (songRemoved)="removeSong($event)"></app-playlist-table>
     <ng-container *ngIf="!!foundSongs">
         <div class="container__results-header">
             <span class="font-black-medium-bold">

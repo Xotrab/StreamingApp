@@ -62,4 +62,8 @@ export class PlaylistViewComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
+  public removeSong($event): void {
+    this.playlist.songs = this.playlist.songs.filter(song => song.id !== $event);
+    this.cdRef.detectChanges();
+  }
 }

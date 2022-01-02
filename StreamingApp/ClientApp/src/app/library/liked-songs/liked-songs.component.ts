@@ -17,4 +17,7 @@ export class LikedSongsComponent implements OnInit {
     this.songService.getLiked().subscribe(result => this.likedSongs = result.data);
   }
 
+  public removeSong($event): void {
+    this.likedSongs = this.likedSongs.filter(song => song.id !== $event);
+  }
 }
