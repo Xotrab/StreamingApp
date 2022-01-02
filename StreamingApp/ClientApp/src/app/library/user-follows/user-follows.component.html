@@ -9,7 +9,7 @@
             (userUnfollowed)="removeUser($event)">
     </app-artist-brief-card>
     </div>
-    <span class="font-black-small-regular" *ngIf="!followedUsers.length">
+    <span class="font-black-small-regular" *ngIf="!followedUsers?.length">
         You don't have any followed artists yet
     </span>
 </div>
