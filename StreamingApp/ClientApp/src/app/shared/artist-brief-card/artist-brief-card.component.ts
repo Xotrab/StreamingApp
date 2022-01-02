@@ -15,6 +15,12 @@ export class ArtistBriefCardComponent implements OnInit {
   public isLoggedIn$: Observable<boolean>;
   public isFollowed: boolean = false;
 
+  public pluralMap = {
+    '=0': '0 songs',
+    '=1': '1 song',
+    'other': '# songs'
+  };
+
   constructor(private jwtTokenService: JwtTokenService) { }
 
   public ngOnInit(): void {

@@ -16,9 +16,9 @@
         {{ user.userName }}
     </span>
     <span class="font-dark-gray-small-regular">
-        Followed by 23k
+        Followed by {{ user.numberOfFollowers }}
     </span>
     <span class="font-dark-gray-small-regular">
-        Songs 49
+        {{ user.numberOfSongs | i18nPlural:pluralMap }}
     </span>
 </div>
