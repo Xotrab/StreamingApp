@@ -119,15 +119,33 @@ export class PlaylistBriefCardComponent implements OnInit {
 
   public play(): void {
     if (this.playlistDto) {
-      const songId = this.playlistInThePlayer ? this.currentSongId : 0;
-      this.audioPlayerService.playPlaylist(this.playlistDto, songId);
+      if (this.playlistDto.songs.length) {
+        const songId = this.playlistInThePlayer ? this.currentSongId : 0;
+        this.audioPlayerService.playPlaylist(this.playlistDto, songId);
+      }
+      else {
+        this.snackBar.open(
+          "Playlist " + this.playlistBrief.name + " has no songs to play", 'Ok', {
+            duration: environment.snackbarDuration
+          }
+        );
+      }
       return;
     }
 
     this.playlistService.getPlaylist(this.playlistBrief.id).subscribe(result => {
       this.playlistDto = result.data;
-      const songId = this.playlistInThePlayer ? this.currentSongId : 0;
-      this.audioPlayerService.playPlaylist(this.playlistDto, songId);
+      if (this.playlistDto.songs.length) {
+        const songId = this.playlistInThePlayer ? this.currentSongId : 0;
+        this.audioPlayerService.playPlaylist(this.playlistDto, songId);
+      }
+      else {
+        this.snackBar.open(
+          "Playlist " + this.playlistBrief.name + " has no songs to play", 'Ok', {
+            duration: environment.snackbarDuration
+          }
+        );
+      }
     });
   }
 
