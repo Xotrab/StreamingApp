@@ -17,19 +17,19 @@ namespace StreamingApp.Services
     {
         private readonly SongRepository mSongRepository;
         private readonly PlaylistRepository mPlaylistRepository;
-        private readonly UserManager<ApplicationUser> mUserManager;
+        private readonly ApplicationUserRepository mApplicationUserRepository;
         private readonly IMapper mMapper;
 
         public SearchService(
             SongRepository songRepository,
             PlaylistRepository playlistRepository,
-            UserManager<ApplicationUser> userManager,
+            ApplicationUserRepository applicationUserRepository,
             IMapper mapper
         )
         {
             mSongRepository = songRepository;
             mPlaylistRepository = playlistRepository;
-            mUserManager = userManager;
+            mApplicationUserRepository = applicationUserRepository;
             mMapper = mapper;
         }
 
@@ -74,8 +74,14 @@ namespace StreamingApp.Services
                 opt.Items["UserId"] = userId;
             });
 
-            users = mUserManager.Users.Where(x => x.UserName.ToLower().Contains(searchDto.Filter.ToLower()))
-                                      .ToList();
+            try
+            {
+                users = await mApplicationUserRepository.SearchAsync(searchDto.Filter);
+            }
+            catch (Exception)
+            {
+                return "Error occured while searching for users".ToResponseFail();
+            }
 
             result.Users = mMapper.Map<List<ApplicationUserDto>>(users);
 
