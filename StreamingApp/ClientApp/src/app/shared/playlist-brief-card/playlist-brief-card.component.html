@@ -11,7 +11,7 @@
         <div class="image-placeholder">
             <mat-icon>queue_music</mat-icon>
         </div>
-        <button class="play-button">
+        <button class="play-button" *ngIf="isLoggedIn$ | async">
             <mat-icon *ngIf="!(isPlaying && playlistInThePlayer)" (click)="play()">play_arrow</mat-icon>
             <mat-icon *ngIf="isPlaying && playlistInThePlayer" (click)="pause()">pause</mat-icon>
         </button>

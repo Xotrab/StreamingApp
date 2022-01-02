@@ -11,7 +11,7 @@
         <div class="image-placeholder">
             <mat-icon>music_note</mat-icon>
         </div>
-        <button class="play-button">
+        <button class="play-button" *ngIf="isLoggedIn$ | async">
             <mat-icon>play_arrow</mat-icon>
         </button>
     </div>
