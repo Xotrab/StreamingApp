@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using StreamingApp.Database.Repositories;
 using StreamingApp.Domain.DTOs;
 using StreamingApp.Domain.Entities;
 using StreamingApp.Domain.Interfaces;
@@ -24,17 +25,21 @@ namespace StreamingApp.Services
         private readonly IMapper mMapper;
         private readonly IConfiguration mConfiguration;
         private readonly IMailService mMailService;
+        private readonly ApplicationUserRepository mApplicationUserRepository;
 
         public UserService(
             UserManager<ApplicationUser> userManager,
             IMapper mapper,
             IConfiguration configuration,
-            IMailService mailService)
+            IMailService mailService,
+            ApplicationUserRepository applicationUserRepository
+        )
         {
             mUserManager = userManager;
             mMapper = mapper;
             mConfiguration = configuration;
             mMailService = mailService;
+            mApplicationUserRepository = applicationUserRepository;
         }
 
         public async Task<Response> LoginUserAsync(LoginDto loginDto)
@@ -110,6 +115,50 @@ namespace StreamingApp.Services
 
             return "Error occured while confirming the email".ToResponseErrorList(errors);
             
+        }
+
+        public async Task<Response> GetUserFollowsAsync(int userId)
+        {
+            List<ApplicationUser> users;
+            try
+            {
+                users = await mApplicationUserRepository.GetUserFollowsAsync(userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while fetching user follows".ToResponseFail();
+            }
+
+            return mMapper.Map<List<ApplicationUserDto>>(users)
+                          .ToResponseData();
+        }
+
+        public async Task<Response> FollowUserAsync(int userId, int followedId)
+        {
+            try
+            {
+                await mApplicationUserRepository.FollowUserAsync(userId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while following the user".ToResponseFail();
+            }
+
+            return "User followed successfully".ToResponseSuccess();
+        }
+
+        public async Task<Response> UnfollowUserAsync(int userId, int followedId)
+        {
+            try
+            {
+                await mApplicationUserRepository.UnfollowUserAsync(userId, userId);
+            }
+            catch (Exception)
+            {
+                return "Error occured while unfollowing the user".ToResponseFail();
+            }
+
+            return "User unfollowed successfully".ToResponseSuccess();
         }
 
         private string GenerateJwtToken(ApplicationUser applicationUser)

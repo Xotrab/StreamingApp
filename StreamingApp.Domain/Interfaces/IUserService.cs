@@ -15,5 +15,11 @@ namespace StreamingApp.Domain.Interfaces
         Task<Response> LoginUserAsync(LoginDto loginDto);
 
         Task<Response> ConfirmEmailAsync(string userId, string token);
+
+        Task<Response> FollowUserAsync(int userId, int followedId);
+
+        Task<Response> UnfollowUserAsync(int userId, int followedId);
+
+        Task<Response> GetUserFollowsAsync(int userId);
     }
 }
