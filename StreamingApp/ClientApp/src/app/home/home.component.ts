@@ -59,6 +59,8 @@ export class HomeComponent implements OnInit {
 
   public logout(): void {
     this.jwtTokenService.logout();
+    this.audioPlayerService.togglePlay(false);
+    this.selectedOption = this.sidebarOption.Home;
   }
 
   public sidebarOptionChanged($event): void {
