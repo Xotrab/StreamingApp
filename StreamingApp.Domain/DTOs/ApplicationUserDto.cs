@@ -11,5 +11,7 @@
         public int NumberOfSongs { get; set; }
 
         public int NumberOfFollowers { get; set; }
+
+        public bool FollowedByUser { get; set; }
     }
 }

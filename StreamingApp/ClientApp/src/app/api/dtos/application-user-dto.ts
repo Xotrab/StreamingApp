@@ -4,4 +4,5 @@ export interface ApplicationUserDto {
     userName: string;
     numberOfSongs?: number;
     numberOfFollowers?: number;
+    followedByUser?: boolean;
 };

@@ -129,15 +129,17 @@ namespace StreamingApp.Services
                 return "Error occured while fetching user follows".ToResponseFail();
             }
 
-            return mMapper.Map<List<ApplicationUserDto>>(users)
-                          .ToResponseData();
+            return mMapper.Map<List<ApplicationUserDto>>(users, opt =>
+            {
+                opt.Items["UserId"] = userId;
+            }).ToResponseData();
         }
 
         public async Task<Response> FollowUserAsync(int userId, int followedId)
         {
             try
             {
-                await mApplicationUserRepository.FollowUserAsync(userId, userId);
+                await mApplicationUserRepository.FollowUserAsync(userId, followedId);
             }
             catch (Exception)
             {
@@ -151,7 +153,7 @@ namespace StreamingApp.Services
         {
             try
             {
-                await mApplicationUserRepository.UnfollowUserAsync(userId, userId);
+                await mApplicationUserRepository.UnfollowUserAsync(userId, followedId);
             }
             catch (Exception)
             {

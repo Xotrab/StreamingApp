@@ -83,7 +83,10 @@ namespace StreamingApp.Services
                 return "Error occured while searching for users".ToResponseFail();
             }
 
-            result.Users = mMapper.Map<List<ApplicationUserDto>>(users);
+            result.Users = mMapper.Map<List<ApplicationUserDto>>(users, opt =>
+            {
+                opt.Items["UserId"] = userId;
+            });
 
             return result.ToResponseData();
         }
